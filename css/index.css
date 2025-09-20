@@ -29,6 +29,26 @@ body {
     z-index: 1;
 }
 
+/* Top Center Name Image */
+#top-center {
+    position: absolute;
+    top: 30px;
+    left: 220px;
+    z-index: 10;
+}
+
+.top-center-name {
+    height: 80px;
+    object-fit: contain;
+    opacity: 1.0;
+    filter: brightness(0) invert(1) contrast(1.4) saturate(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+    transition: all 0.3s ease;
+}
+
+.top-center-name:hover {
+    opacity: 1;
+}
+
 /* Social Icons on Left Side - Only in first section */
 #social-icons {
     position: absolute;
@@ -102,8 +122,12 @@ body {
 }
 
 .corner-link.top-left {
-    top: 0;
-    left: -30px;
+    top: 20px !important;
+    left: 20px !important;
+    display: block !important;
+    position: absolute !important;
+    z-index: 1000 !important;
+    padding: 10px !important;
 }
 
 .corner-link.top-right {
@@ -134,11 +158,6 @@ body {
     opacity: 0.8;
 }
 
-.corner-link:hover img {
-    transform: scale(1.1);
-    opacity: 1;
-}
-
 .corner-link .menu-link {
     text-decoration: none;
     display: block;
@@ -148,20 +167,31 @@ body {
 }
 
 .corner-link .corner-logo {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+    width: 170px !important;
+    height: 170px !important;
+    object-fit: cover !important;
     border-radius: 8px;
     transition: all 0.3s ease;
-    opacity: 1.0;
-    filter: brightness(0) invert(1);
-    clip-path: inset(0 0 18px 0);
+    filter: brightness(0) invert(1) contrast(1.4) saturate(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)) !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: skew(-20deg);
 }
 
-.corner-link:hover .corner-logo {
-    opacity: 1;
-    transform: scale(1.05);
+.logo-heading {
+    color: white !important;
+    font-family: 'Diplomata SC', serif !important;
+    font-size: 48px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: -105px 0 0 151px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+    white-space: nowrap;
+    display: block !important;
 }
+
 
 .corner-link:hover .menu-link {
     color: rgba(255, 255, 255, 0.7);
@@ -180,7 +210,7 @@ body {
     height: 100vh;
     padding: 40px;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     display: flex;
@@ -244,10 +274,10 @@ body {
 
 .horizontal-scroll-wrapper img {
     flex-shrink: 0;
-    height: 600px;
+    height: 660px;
     width: auto;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 0;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
