@@ -1,7 +1,7 @@
 /* Base Styles */
 body {
     background-color: #000;
-    font-family: "raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #fff;
     font-size: 100%;
     text-transform: uppercase;
@@ -29,11 +29,60 @@ body {
     z-index: 1;
 }
 
+/* Social Icons on Left Side - Only in first section */
+#social-icons {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 10;
+}
+
+.social-icon {
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-icon:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.social-icon img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.social-icon:hover img {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
 /* Corner Icons Section */
 #corner-section {
     position: relative;
     background: transparent !important;
     backdrop-filter: none !important;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+#corner-section * {
+    text-transform: uppercase;
+    font-style: italic;
 }
 
 #corner-icons {
@@ -54,7 +103,7 @@ body {
 
 .corner-link.top-left {
     top: 0;
-    left: 0;
+    left: -30px;
 }
 
 .corner-link.top-right {
@@ -65,6 +114,11 @@ body {
 .corner-link.bottom-left {
     bottom: 0;
     left: 0;
+}
+
+.corner-link.bottom-right-upper {
+    bottom: 40px;
+    right: 0;
 }
 
 .corner-link.bottom-right {
@@ -85,9 +139,32 @@ body {
     opacity: 1;
 }
 
-.corner-link .social-link {
+.corner-link .menu-link {
     text-decoration: none;
     display: block;
+    color: white;
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+.corner-link .corner-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    opacity: 1.0;
+    filter: brightness(0) invert(1);
+    clip-path: inset(0 0 18px 0);
+}
+
+.corner-link:hover .corner-logo {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.corner-link:hover .menu-link {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Content Sections */
