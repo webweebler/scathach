@@ -71,11 +71,11 @@ class HorizontalGallery {
                 e.preventDefault(); // Stop normal page scrolling
                 
                 // Convert vertical wheel movement to horizontal scroll
-                const scrollAmount = e.deltaY * 2; // Multiply for sensitivity
+                const scrollAmount = e.deltaY * 4; // Multiply for sensitivity
                 
                 this.scrollContainer.scrollBy({
                     left: scrollAmount,
-                    behavior: 'auto' // Use 'auto' for immediate response to wheel
+                    behavior: 'smooth' // Use 'smooth' for smoother scrolling
                 });
                 
                 // Update button states after wheel scroll
@@ -387,5 +387,95 @@ class SectionFlicker {
             name: this.currentSection < 0 ? 'background' : `section-${this.currentSection}`,
             isBackground: this.currentSection < 0
         };
+    }
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize existing gallery
+    const gallery = new HorizontalGallery('#gallery');
+    
+    // Initialize merch horizontal scrolling
+    const merch = new HorizontalMerch('#merch');
+    
+    // Initialize scroll manager
+    const scrollManager = new SectionScrollManager();
+});
+
+// Merch horizontal scrolling functionality
+class HorizontalMerch {
+    constructor(merchSelector) {
+        this.merch = document.querySelector(merchSelector);
+        this.scrollContainer = this.merch.querySelector('.merch-scroll-container');
+        this.items = this.scrollContainer.querySelectorAll('.merch-item');
+        
+        this.init();
+    }
+    
+    init() {
+        this.setupMouseWheelScrolling();
+        this.setupTouchNavigation();
+    }
+    
+    setupMouseWheelScrolling() {
+        // Add wheel event to the scroll container specifically
+        this.scrollContainer.addEventListener('wheel', (e) => {
+            // Check if there's horizontal scroll available
+            const canScrollLeft = this.scrollContainer.scrollLeft > 0;
+            const canScrollRight = this.scrollContainer.scrollLeft < 
+                (this.scrollContainer.scrollWidth - this.scrollContainer.clientWidth);
+            
+            // Only prevent vertical scrolling if we're directly over the scroll container
+            // and there's horizontal scroll capability
+            if (canScrollLeft || canScrollRight) {
+                e.preventDefault(); // Stop normal page scrolling
+                e.stopPropagation(); // Stop event from bubbling up
+                
+                // Convert vertical wheel movement to horizontal scroll
+                const scrollAmount = e.deltaY * 2.5;
+                
+                this.scrollContainer.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        }, { passive: false });
+        
+        // Allow normal vertical scrolling for the merch section areas outside the scroll container
+        // by not adding any wheel event listeners to the parent merch section
+    }
+    
+    setupTouchNavigation() {
+        let startX = 0;
+        let scrollLeft = 0;
+        let isDown = false;
+        
+        this.scrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            this.scrollContainer.style.cursor = 'grabbing';
+            startX = e.pageX - this.scrollContainer.offsetLeft;
+            scrollLeft = this.scrollContainer.scrollLeft;
+        });
+        
+        this.scrollContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            this.scrollContainer.style.cursor = 'grab';
+        });
+        
+        this.scrollContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            this.scrollContainer.style.cursor = 'grab';
+        });
+        
+        this.scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - this.scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            this.scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Set initial cursor
+        this.scrollContainer.style.cursor = 'grab';
     }
 }
