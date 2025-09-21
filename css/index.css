@@ -192,6 +192,48 @@ body {
     transition: color 0.3s ease;
 }
 
+/* Text Boxes in Corner Section */
+#text-boxes-container {
+    position: absolute;
+    bottom: 50px;
+    right: 300px;
+    display: flex;
+    gap: 60px;
+    z-index: 100;
+}
+
+.text-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    border-radius: 0;
+    padding: 20px;
+    width: 350px;
+    transition: all 0.3s ease;
+}
+
+
+
+.text-box h3 {
+    color: #ffa500;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    font-family: 'Diplomata SC', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.text-box p {
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.text-box-large {
+    width: 500px;
+}
+
 /* Content Sections */
 .sections {
     position: relative;
