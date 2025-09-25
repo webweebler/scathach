@@ -53,6 +53,23 @@ body {
     top: 30px;
     left: 220px;
     z-index: 10;
+    /* ...existing code... */
+    position: absolute;
+    top: 30px;
+    left: 220px;
+    z-index: 10;
+}
+
+#top-center::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 11;
 }
 
 .top-center-name {
@@ -113,7 +130,7 @@ body {
 /* Corner Icons Section */
 #corner-section {
     position: relative;
-    background: transparent !important;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%) !important;
     backdrop-filter: none !important;
     text-transform: uppercase;
     font-style: italic;
@@ -255,6 +272,7 @@ body {
     justify-content: center;
     position: relative;
     margin: 0;
+    width: 100%;
 }
 
 /* Darken all sections except the first corner section */
@@ -282,22 +300,54 @@ body {
 }
 
 /* Gallery Section */
+/* Sparkle Effect */
+.sparkle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sparkle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    box-shadow: 0 0 4px 1px #fff, 0 0 8px 2px #e0e0ff;
+    animation: sparkleAnim 2s infinite ease-in-out;
+}
+
+@keyframes sparkleAnim {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
 #gallery {
-    padding: 0;
+    padding-left: 100px;
+    padding-right: 60px;
     max-width: none;
-    width: 100vw;
+    width: 100%;
     margin: 0;
     position: relative;
     left: 0;
     transform: none;
+    background: transparent;
 }
 
+/* Darker background for gallery wrapper */
 .gallery-wrapper {
     position: relative;
     width: 100%;
     margin: 0;
     padding: 0;
     overflow: visible;
+    background: transparent;
+    /* Optional: add some transparency or gradient for style */
+    /* background: linear-gradient(180deg, #181818 90%, #222 100%); */
 }
 
 .horizontal-scroll-wrapper {
@@ -332,7 +382,7 @@ body {
 
 .gallery-img-wrapper {
     flex-shrink: 0;
-    box-shadow: 0 0 8px rgba(255, 165, 0, 0.4);
+         box-shadow: 0 0 4px rgba(255, 165, 0, 0.2);
     cursor: pointer;
 }
 
@@ -393,6 +443,7 @@ body {
 
 .blog-content {
     padding: 25px;
+    background: rgba(0, 0, 0, 0.85);
 }
 
 .blog-title {
@@ -414,11 +465,13 @@ body {
 
 .blog-excerpt {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
+    font-size: 1.85rem;
     line-height: 1.6;
     margin: 0 0 20px 0;
     text-transform: none;
     letter-spacing: 0.5px;
+    height: 135px;
+    overflow: hidden;
 }
 
 .read-more {
@@ -487,7 +540,7 @@ body {
 
 .merch-label {
     color: #fff;
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: 200;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -497,6 +550,7 @@ body {
     flex-shrink: 0;
     opacity: 0.8;
     margin-left: 100px;
+    margin-top: 60px;
     text-shadow: 2px 2px 4px rgba(255, 191, 0, 0.6);
 }
 

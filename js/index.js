@@ -1,3 +1,21 @@
+// Sparkle Effect Script
+function createSparkles(num) {
+    const container = document.querySelector('.sparkle-container');
+    if (!container) return;
+    container.innerHTML = '';
+    for (let i = 0; i < num; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.top = Math.random() * 100 + 'vh';
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.animationDelay = (Math.random() * 2) + 's';
+        container.appendChild(sparkle);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    createSparkles(60); // Number of sparkles
+});
 // Gallery horizontal scrolling functionality
 class HorizontalGallery {
     constructor(gallerySelector) {
