@@ -416,8 +416,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize merch horizontal scrolling
     const merch = new HorizontalMerch('#merch');
     
-    // Initialize scroll manager
-    const scrollManager = new SectionScrollManager();
+    // Initialize corner menu visibility - DISABLED
+    // setupCornerMenuVisibility();
 });
 
 // Merch horizontal scrolling functionality
@@ -496,4 +496,65 @@ class HorizontalMerch {
         // Set initial cursor
         this.scrollContainer.style.cursor = 'grab';
     }
+}
+
+// Hide corner menu items when footer is in view
+function setupCornerMenuVisibility() {
+    console.log('=== STARTING CORNER MENU SETUP ===');
+    
+    // Simple immediate test
+    const topRightLink = document.querySelector('.corner-link.top-right');
+    const bottomLeftLink = document.querySelector('.corner-link.bottom-left');
+    const bottomRightUpperLink = document.querySelector('.corner-link.bottom-right-upper');
+    const bottomRightLink = document.querySelector('.corner-link.bottom-right');
+    
+    console.log('Links found:', {
+        topRight: topRightLink ? 'YES' : 'NO',
+        bottomLeft: bottomLeftLink ? 'YES' : 'NO',
+        bottomRightUpper: bottomRightUpperLink ? 'YES' : 'NO',
+        bottomRight: bottomRightLink ? 'YES' : 'NO'
+    });
+    
+    const linksToHide = [topRightLink, bottomLeftLink, bottomRightUpperLink, bottomRightLink].filter(link => link);
+    
+    if (linksToHide.length === 0) {
+        console.log('ERROR: No corner links found!');
+        return;
+    }
+    
+    console.log('Found', linksToHide.length, 'links to control');
+    
+    // Test - hide for 2 seconds then show
+    console.log('TESTING: Hiding links...');
+    linksToHide.forEach(link => {
+        link.style.display = 'none';
+    });
+    
+    setTimeout(() => {
+        console.log('TESTING: Showing links...');
+        linksToHide.forEach(link => {
+            link.style.display = 'block';
+        });
+        
+        // Set up music section detection
+        const musicSection = document.getElementById('music');
+        if (musicSection) {
+            console.log('Setting up music section scroll detection...');
+            
+            window.addEventListener('scroll', function() {
+                const rect = musicSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Check if music section is in the middle of the viewport
+                const inView = rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4;
+                
+                if (inView) {
+                    linksToHide.forEach(link => link.style.display = 'none');
+                } else {
+                    linksToHide.forEach(link => link.style.display = 'block');
+                }
+            });
+        }
+        
+    }, 2000);
 }

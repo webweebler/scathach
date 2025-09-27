@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
 }
 
 html {
@@ -10,6 +11,7 @@ html {
     padding: 0;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -45,43 +47,6 @@ body {
     background-position: center center;
     background-attachment: fixed;
     z-index: 1;
-}
-
-/* Top Center Name Image */
-#top-center {
-    position: absolute;
-    top: 30px;
-    left: 220px;
-    z-index: 10;
-    /* ...existing code... */
-    position: absolute;
-    top: 30px;
-    left: 220px;
-    z-index: 10;
-}
-
-#top-center::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    pointer-events: none;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
-    z-index: 11;
-}
-
-.top-center-name {
-    height: 80px;
-    object-fit: contain;
-    opacity: 1.0;
-    filter: brightness(0) invert(1) contrast(1.4) saturate(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
-    transition: all 0.3s ease;
-}
-
-.top-center-name:hover {
-    opacity: 1;
 }
 
 /* Social Icons - Fixed Position */
@@ -133,22 +98,12 @@ body {
     background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%) !important;
     backdrop-filter: none !important;
     text-transform: uppercase;
-    font-style: italic;
+    
 }
 
 #corner-section * {
     text-transform: uppercase;
-    font-style: italic;
-}
-
-#corner-icons {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 10;
+    
 }
 
 .corner-link {
@@ -156,11 +111,18 @@ body {
     pointer-events: auto;
     padding: 20px;
     z-index: 1000;
+    animation: none !important;
+    transition: none !important;
+}
+
+.corner-link * {
+    animation: none !important;
+    transition: none !important;
 }
 
 .corner-link.top-left {
     top: 20px !important;
-    left: 20px !important;
+    left: 8px !important;
     display: block !important;
     position: fixed !important;
     z-index: 1000 !important;
@@ -170,29 +132,30 @@ body {
 .corner-link.top-right {
     top: 0;
     right: 0;
+    font-style: italic;
 }
 
 .corner-link.bottom-left {
     bottom: 0;
     left: 0;
+    font-style: italic;
 }
 
 .corner-link.bottom-right-upper {
     bottom: 40px;
     right: 0;
+    font-style: italic;
 }
 
 .corner-link.bottom-right {
     bottom: 0;
     right: 0;
+    font-style: italic;
 }
 
 .corner-link img {
     width: 32px;
     height: 32px;
-    filter: brightness(1.2);
-    transition: all 0.3s ease;
-    opacity: 0.8;
 }
 
 .corner-link .menu-link {
@@ -206,17 +169,18 @@ body {
 
 .corner-link:hover .menu-link {
     color: #ffa500;
-    transition: color 0.3s ease;
 }
 
 /* Text Boxes in Corner Section */
 #text-boxes-container {
     position: absolute;
     bottom: 50px;
-    right: 300px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    gap: 60px;
+    gap: 3vw;
     z-index: 100;
+    max-width: 90%;
 }
 
 .text-box {
@@ -224,8 +188,76 @@ body {
     border: 1px solid rgba(255, 165, 0, 0.3);
     border-radius: 0;
     padding: 20px;
-    width: 350px;
+    width: 22vw;
+    min-width: 280px;
+    max-width: 350px;
     transition: all 0.3s ease;
+    /* Animation properties */
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideUpFade 0.8s ease-out forwards;
+}
+
+.text-box h3{
+    font-style: italic;
+}
+
+/* Staggered animation delays for each text box */
+.text-box:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.text-box:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.text-box:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* Slide up and fade in animation */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
@@ -248,7 +280,9 @@ body {
 }
 
 .text-box-large {
-    width: 500px;
+    width: 30vw;
+    min-width: 350px;
+    max-width: 500px;
 }
 
 /* Content Sections */
@@ -258,6 +292,7 @@ body {
     max-width: none;
     width: 100%;
     margin: 0 auto;
+    overflow-x: hidden;
 }
 
 .sections section {
@@ -517,7 +552,13 @@ body {
 
 /* Music Section */
 #music {
-    padding: 80px 0;
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
 /* Merch Section */
@@ -661,13 +702,14 @@ body {
 }
 
 .music-wrapper {
-    max-width: 90%;
-    width: 90%;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .music-title {
@@ -685,16 +727,17 @@ body {
     max-width: 800px;
     width: 100%;
     position: relative;
-    padding: 20px;
-    border: 1px solid rgba(255, 165, 0, 0.3);
+    padding: 0;
+    margin: 50px auto 0 auto;
+    border: none;
     border-radius: 0;
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.2);
-    background: rgba(255, 165, 0, 0.05);
+    box-shadow: none;
+    background: transparent;
 }
 
 .spotify-player-container iframe {
     border-radius: 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 165, 0, 0.3);
+    box-shadow: none;
 }
 
 /* Tickets Section */
@@ -850,6 +893,83 @@ body {
 .footer {
     position: relative;
     z-index: 2;
-    height: 20px;
+    height: 25vh;
     background: black;
+}
+
+/* Responsive Design for Text Boxes */
+@media screen and (max-width: 1400px) {
+    #text-boxes-container {
+        gap: 2vw;
+    }
+    
+    .text-box {
+        width: 25vw;
+        min-width: 250px;
+        max-width: 320px;
+        padding: 15px;
+    }
+    
+    .text-box-large {
+        width: 28vw;
+        min-width: 300px;
+        max-width: 420px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #text-boxes-container {
+        flex-direction: column;
+        bottom: 100px;
+        gap: 20px;
+        max-width: 400px;
+    }
+    
+    .text-box, .text-box-large {
+        width: 100%;
+        min-width: auto;
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #text-boxes-container {
+        bottom: 80px;
+        max-width: 95%;
+    }
+    
+    .text-box, .text-box-large {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+    
+    .text-box h3 {
+        font-size: 1rem;
+    }
+    
+    .text-box p {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #text-boxes-container {
+        bottom: 60px;
+        gap: 15px;
+        max-width: 98%;
+    }
+    
+    .text-box, .text-box-large {
+        padding: 10px;
+    }
+    
+    .text-box h3 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    .text-box p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
 }
