@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Optional: Enable auto-scroll (uncomment the line below)
     // const autoScroll = new GalleryAutoScroll(gallery, 4000);
     
-    console.log('Gallery and section flicker initialized successfully');
+    // Gallery and section flicker initialized successfully
 });
 
 // Section flicking with mouse wheel
@@ -416,8 +416,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize merch horizontal scrolling
     const merch = new HorizontalMerch('#merch');
     
-    // Initialize corner menu visibility - DISABLED
-    // setupCornerMenuVisibility();
+    // Initialize corner menu visibility
+    setupCornerMenuVisibility();
 });
 
 // Merch horizontal scrolling functionality
@@ -498,63 +498,120 @@ class HorizontalMerch {
     }
 }
 
-// Hide corner menu items when footer is in view
+// Hide corner menu items and navigation links when music section or footer is in view
 function setupCornerMenuVisibility() {
-    console.log('=== STARTING CORNER MENU SETUP ===');
-    
-    // Simple immediate test
+    // Get all corner link containers that contain navigation
     const topRightLink = document.querySelector('.corner-link.top-right');
     const bottomLeftLink = document.querySelector('.corner-link.bottom-left');
     const bottomRightUpperLink = document.querySelector('.corner-link.bottom-right-upper');
     const bottomRightLink = document.querySelector('.corner-link.bottom-right');
     
-    console.log('Links found:', {
-        topRight: topRightLink ? 'YES' : 'NO',
-        bottomLeft: bottomLeftLink ? 'YES' : 'NO',
-        bottomRightUpper: bottomRightUpperLink ? 'YES' : 'NO',
-        bottomRight: bottomRightLink ? 'YES' : 'NO'
-    });
+    const allLinksToHide = [
+        topRightLink, bottomLeftLink, bottomRightUpperLink, bottomRightLink
+    ].filter(link => link);
     
-    const linksToHide = [topRightLink, bottomLeftLink, bottomRightUpperLink, bottomRightLink].filter(link => link);
+    console.log('Found navigation links:', allLinksToHide.length);
     
-    if (linksToHide.length === 0) {
-        console.log('ERROR: No corner links found!');
+    if (allLinksToHide.length === 0) {
+        console.log('No navigation links found!');
         return;
     }
     
-    console.log('Found', linksToHide.length, 'links to control');
+    // Set up music section and footer detection
+    const musicSection = document.getElementById('music');
+    const footerSection = document.querySelector('.footer');
     
-    // Test - hide for 2 seconds then show
-    console.log('TESTING: Hiding links...');
-    linksToHide.forEach(link => {
-        link.style.display = 'none';
+    console.log('Found sections:', {
+        music: musicSection ? 'YES' : 'NO',
+        footer: footerSection ? 'YES' : 'NO'
     });
     
-    setTimeout(() => {
-        console.log('TESTING: Showing links...');
-        linksToHide.forEach(link => {
-            link.style.display = 'block';
+    if (musicSection || footerSection) {
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            let shouldHide = false;
+            
+            // Check if music section is visible
+            if (musicSection) {
+                const musicRect = musicSection.getBoundingClientRect();
+                if (musicRect.top < windowHeight && musicRect.bottom > 0) {
+                    shouldHide = true;
+                }
+            }
+            
+            // Check if footer is visible
+            if (footerSection) {
+                const footerRect = footerSection.getBoundingClientRect();
+                if (footerRect.top < windowHeight && footerRect.bottom > 0) {
+                    shouldHide = true;
+                }
+            }
+            
+            // Hide or show all links based on visibility
+            if (shouldHide) {
+                allLinksToHide.forEach(link => {
+                    link.style.opacity = '0';
+                    link.style.pointerEvents = 'none';
+                    link.style.transition = 'opacity 0.3s ease';
+                });
+            } else {
+                allLinksToHide.forEach(link => {
+                    link.style.opacity = '1';
+                    link.style.pointerEvents = 'auto';
+                    link.style.transition = 'opacity 0.3s ease';
+                });
+            }
         });
         
-        // Set up music section detection
-        const musicSection = document.getElementById('music');
-        if (musicSection) {
-            console.log('Setting up music section scroll detection...');
-            
-            window.addEventListener('scroll', function() {
-                const rect = musicSection.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                
-                // Check if music section is in the middle of the viewport
-                const inView = rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4;
-                
-                if (inView) {
-                    linksToHide.forEach(link => link.style.display = 'none');
-                } else {
-                    linksToHide.forEach(link => link.style.display = 'block');
-                }
-            });
-        }
-        
-    }, 2000);
+        // Initial check
+        window.dispatchEvent(new Event('scroll'));
+    }
 }
+
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    if (overlay.classList.contains('active')) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
+function openMobileMenu() {
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    toggleButton.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+function closeMobileMenu() {
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    toggleButton.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+        }
+    });
+});

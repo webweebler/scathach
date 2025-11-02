@@ -39,29 +39,46 @@
             <div id="corner-menu-items">
                 <div class="corner-link top-left">
                     <a href="#" class="menu-link" style="display: flex; align-items: center; gap: 3px;">
-                        <img src="images/logo3.png" alt="Scathach Logo" style="width:100px;height:auto;">
+                        <img src="images/logo2.png" alt="Scathach Logo" style="width:100px;height:auto;">
                         <span style="color: #ffa500; font-family: 'Diplomata SC', serif; font-size: 2.5rem; letter-spacing: 2px; position: relative; top: 7px;">cáthach</span>
                     </a>
                 </div>
                 <div class="corner-link top-right">
-                    <a href="#merch" class="menu-link">
-                        Merch
-                    </a>
-                </div>
-                <div class="corner-link bottom-left">
                     <a href="#blog" class="menu-link">
                         Blog
                     </a>
                 </div>
-                <div class="corner-link bottom-right-upper">
+                <div class="corner-link bottom-left">
                     <a href="#music" class="menu-link">
                         Music
                     </a>
                 </div>
-                <div class="corner-link bottom-right">
+                <div class="corner-link bottom-right-upper">
                     <a href="#tickets" class="menu-link">
                         Tickets
                     </a>
+                </div>
+                <div class="corner-link bottom-right">
+                    <a href="#merch" class="menu-link">
+                        Merch
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <a href="#blog" class="mobile-menu-link" onclick="closeMobileMenu()">Blog</a>
+                    <a href="#music" class="mobile-menu-link" onclick="closeMobileMenu()">Music</a>
+                    <a href="#tickets" class="mobile-menu-link" onclick="closeMobileMenu()">Tickets</a>
+                    <a href="#merch" class="mobile-menu-link" onclick="closeMobileMenu()">Merch</a>
                 </div>
             </div>
             
@@ -120,7 +137,7 @@
                 </article>
             </div>
             <div class="blog-more-wrapper">
-                <a href="#blog" class="blog-more-btn">More</a>
+                <a href="blog.html" class="blog-more-btn">More</a>
             </div>
         </section>  
 
@@ -203,7 +220,7 @@
         <section id="tickets">
            <div class="tickets-video-background">
                <video autoplay muted loop>
-                   <source src="images/scathachVideo1.mp4" type="video/mp4">
+                   <source src="videos/scathachVideo1.mp4" type="video/mp4">
                    <!-- Fallback for browsers that don't support video -->
                </video>
            </div>
@@ -312,34 +329,45 @@
                   <iframe data-testid="embed-iframe" style="border-radius:0px" src="https://open.spotify.com/embed/artist/7oXD9KvMquYYDTsKG0OEdO?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
               </div>
             </div>
-        </section>  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </section>
 
     </div>
     <div class="footer">
-
-        <p>&copy; 2025 Scathach. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="footer-social">
+                    <a href="https://facebook.com/scathach" target="_blank">
+                        <img src="images/fbIcon.svg" alt="Facebook">
+                    </a>
+                    <a href="https://instagram.com/scathach" target="_blank">
+                        <img src="images/instaIcon.svg" alt="Instagram">
+                    </a>
+                    <a href="https://youtube.com/scathach" target="_blank">
+                        <img src="images/ytIcon.svg" alt="YouTube">
+                    </a>
+                    <a href="https://open.spotify.com/artist/scathach" target="_blank">
+                        <img src="images/sptfyIcon.svg" alt="Spotify">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-center">
+                <div class="footer-links">
+                    <a href="#blog">News</a> | 
+                    <a href="#music">Music</a> | 
+                    <a href="#merch">Merch</a> | 
+                    <a href="#tickets">Tours</a>
+                </div>
+                <p class="footer-copyright">&copy; 2025 Scáthach. All rights reserved.</p>
+            </div>
+            
+            <div class="footer-right">
+                <div class="footer-contact">
+                    <a href="mailto:booking@scathach.com">Booking</a>
+                    <a href="mailto:info@scathach.com">Contact</a>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script src="js/index.js"></script>
