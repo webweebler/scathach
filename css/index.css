@@ -76,7 +76,7 @@ body {
 /* Social Icons - Fixed Position */
 #social-icons {
     position: fixed;
-    left: 80px;
+    left: 40px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -120,7 +120,7 @@ body {
 /* Responsive Social Icons */
 @media screen and (max-width: 768px) {
     #social-icons {
-        left: 20px;
+        left: 5px;
         gap: 15px;
     }
     
@@ -170,9 +170,25 @@ body {
     position: fixed;
     pointer-events: auto;
     padding: 20px;
-    z-index: 1000;
+    z-index: 9999 !important;
     animation: none !important;
     transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#corner-menu-items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999 !important;
+}
+
+#corner-menu-items .corner-link {
+    pointer-events: auto;
 }
 
 .corner-link * {
@@ -963,7 +979,7 @@ body {
     max-width: 100%;
     width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 60px 0 20px;
 }
 
 .merch-content {
@@ -1293,7 +1309,7 @@ body {
     max-width: 100%;
     width: 100%;
     margin: 0 auto;
-    padding: 20px 40px 20px 120px; /* Reduced right padding from 20px to 40px for better balance */
+    padding: 20px 60px 20px 140px; /* Increased padding to reduce effective width by ~40px total */
 }
 
 .tickets-grid {
@@ -1301,8 +1317,8 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 2px;
-    height: 80vh;
-    max-height: 600px;
+    height: calc(80vh - 40px);
+    max-height: 560px;
 }
 
 .ticket-corner {

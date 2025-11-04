@@ -8,47 +8,21 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
-    background: rgba(12, 6, 0, 0.95);
+    background: #000;
 }
 
 body {
-    background: 
-        radial-gradient(ellipse at top left, rgba(255, 165, 0, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at top right, rgba(255, 140, 0, 0.05) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom left, rgba(255, 100, 0, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at bottom right, rgba(255, 165, 0, 0.06) 0%, transparent 50%),
-        linear-gradient(
-            135deg,
-            rgba(5, 2, 0, 0.98) 0%,
-            rgba(15, 8, 2, 0.95) 25%,
-            rgba(8, 5, 2, 0.96) 50%,
-            rgba(12, 6, 0, 0.95) 75%,
-            rgba(2, 2, 2, 0.98) 100%
-        );
+    background: #000;
     color: #fff;
     font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 200;
     letter-spacing: 1px;
     line-height: 1.6;
-    overflow-x: hidden;
-    min-height: 100vh;
+    overflow: hidden;
+    height: 100vh;
     position: relative;
     margin: 0;
     padding: 0;
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 30% 70%, rgba(255, 165, 0, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(255, 140, 0, 0.02) 0%, transparent 50%);
-    z-index: -1;
-    pointer-events: none;
 }
 
 /* Header Styles */
@@ -212,18 +186,17 @@ body::before {
 
 /* Main Content */
 .main-content {
-    min-height: 100vh;
     position: relative;
     z-index: 10;
-    padding-top: 80px;
-    margin-bottom: 0;
+    height: calc(100vh - 80px - 25vh); /* Height minus header and footer */
+    overflow: hidden;
+    margin-top: 80px; /* Push down below header */
 }
 
 /* About Section Styles */
 .about-section {
-    padding: 60px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+    height: 0;
+    overflow: hidden;
 }
 
 .about-container {
@@ -246,16 +219,102 @@ body::before {
     margin: 0 auto;
 }
 
+/* Horizontal Sections */
+.horizontal-section {
+    position: fixed;
+    top: 80px; /* Account for header height */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px - 25vh); /* Full height minus header and footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 5;
+    transition: opacity 0.5s ease;
+}
+
+.horizontal-section.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+.section-content {
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    padding: 50px;
+    border: 2px solid rgba(255, 165, 0, 0.8);
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+    min-height: 55vh; /* Reduced to fit in available space */
+}
+
+/* Odd sections - Orange borders */
+.horizontal-section:nth-child(odd) .section-content {
+    border: 2px solid rgba(255, 165, 0, 0.8);
+}
+
+/* Even sections - White borders */
+.horizontal-section:nth-child(even) .section-content {
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.section-text {
+    flex: 1;
+    max-width: 700px;
+}
+
+.section-text h2 {
+    font-family: 'Diplomata SC', serif;
+    font-size: 3rem;
+    color: #ffa500;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+}
+
+.section-text p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #ddd;
+    text-align: justify;
+}
+
+.section-image {
+    flex: 1;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-image img {
+    width: 100%;
+    height: 400px; /* Reduced from 500px to fit better */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.section-image:hover img {
+    transform: scale(1.05);
+}
+
 /* Footer Styles */
 .footer {
-    position: relative;
-    z-index: 2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 15; /* Higher than sections */
     height: 25vh;
-    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    background: #000;
     display: flex;
     align-items: center;
     padding: 0 40px;
-    margin-top: 0;
+    border-top: 1px solid rgba(255, 165, 0, 0.3);
 }
 
 .footer-container {
@@ -383,6 +442,49 @@ body::before {
 
     .about-container h1 {
         font-size: 2.5rem;
+    }
+
+    .horizontal-section {
+        height: calc(100vh - 60px - 25vh); /* Account for smaller mobile header */
+        top: 60px;
+    }
+
+    .section-content {
+        width: 95%;
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px 20px;
+        min-height: 50vh; /* Reduced for mobile */
+    }
+
+    .section-text {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .section-text h2 {
+        font-size: 2.2rem;
+    }
+
+    .section-text p {
+        font-size: 1.1rem;
+        text-align: left;
+    }
+
+    .section-image {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .section-image img {
+        height: 250px; /* Reduced for mobile with footer */
+    }
+
+    /* Reverse order for alternating sections on mobile for better visual flow */
+    .section-2 .section-content,
+    .section-4 .section-content,
+    .section-6 .section-content {
+        flex-direction: column-reverse;
     }
 
     .footer {

@@ -416,8 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize merch horizontal scrolling
     const merch = new HorizontalMerch('#merch');
     
-    // Initialize corner menu visibility
-    setupCornerMenuVisibility();
+    // Corner menu items will always remain visible - visibility control removed
 });
 
 // Merch horizontal scrolling functionality
@@ -495,76 +494,6 @@ class HorizontalMerch {
         
         // Set initial cursor
         this.scrollContainer.style.cursor = 'grab';
-    }
-}
-
-// Hide corner menu items and navigation links when music section or footer is in view
-function setupCornerMenuVisibility() {
-    // Get all corner link containers that contain navigation
-    const topRightLink = document.querySelector('.corner-link.top-right');
-    const bottomLeftLink = document.querySelector('.corner-link.bottom-left');
-    const bottomRightUpperLink = document.querySelector('.corner-link.bottom-right-upper');
-    const bottomRightLink = document.querySelector('.corner-link.bottom-right');
-    
-    const allLinksToHide = [
-        topRightLink, bottomLeftLink, bottomRightUpperLink, bottomRightLink
-    ].filter(link => link);
-    
-    console.log('Found navigation links:', allLinksToHide.length);
-    
-    if (allLinksToHide.length === 0) {
-        console.log('No navigation links found!');
-        return;
-    }
-    
-    // Set up music section and footer detection
-    const musicSection = document.getElementById('music');
-    const footerSection = document.querySelector('.footer');
-    
-    console.log('Found sections:', {
-        music: musicSection ? 'YES' : 'NO',
-        footer: footerSection ? 'YES' : 'NO'
-    });
-    
-    if (musicSection || footerSection) {
-        window.addEventListener('scroll', function() {
-            const windowHeight = window.innerHeight;
-            let shouldHide = false;
-            
-            // Check if music section is visible
-            if (musicSection) {
-                const musicRect = musicSection.getBoundingClientRect();
-                if (musicRect.top < windowHeight && musicRect.bottom > 0) {
-                    shouldHide = true;
-                }
-            }
-            
-            // Check if footer is visible
-            if (footerSection) {
-                const footerRect = footerSection.getBoundingClientRect();
-                if (footerRect.top < windowHeight && footerRect.bottom > 0) {
-                    shouldHide = true;
-                }
-            }
-            
-            // Hide or show all links based on visibility
-            if (shouldHide) {
-                allLinksToHide.forEach(link => {
-                    link.style.opacity = '0';
-                    link.style.pointerEvents = 'none';
-                    link.style.transition = 'opacity 0.3s ease';
-                });
-            } else {
-                allLinksToHide.forEach(link => {
-                    link.style.opacity = '1';
-                    link.style.pointerEvents = 'auto';
-                    link.style.transition = 'opacity 0.3s ease';
-                });
-            }
-        });
-        
-        // Initial check
-        window.dispatchEvent(new Event('scroll'));
     }
 }
 
