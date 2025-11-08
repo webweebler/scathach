@@ -24,6 +24,14 @@ class HorizontalGallery {
         this.images = this.scrollContainer.querySelectorAll('img');
         this.scrollAmount = 300; // pixels to scroll per click
         
+        // Hover delay properties
+        this.hoverDelay = 1000; // 1 second delay
+        this.hoverTimer = null;
+        this.horizontalScrollEnabled = false;
+        
+        // Initialize global flag for SectionFlicker coordination
+        window.galleryHorizontalScrollEnabled = false;
+        
         this.init();
     }
     
@@ -76,17 +84,14 @@ class HorizontalGallery {
     }
     
     setupMouseWheelScrolling() {
+        // Setup hover detection for enabling horizontal scroll
+        this.setupHoverDetection();
+        
         this.scrollContainer.addEventListener('wheel', (e) => {
-            // Check if the mouse is over the scroll container (content area)
-            const rect = this.scrollContainer.getBoundingClientRect();
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            
-            // Check if mouse is within scroll container bounds
-            if (mouseX >= rect.left && mouseX <= rect.right && 
-                mouseY >= rect.top && mouseY <= rect.bottom) {
-                
-                e.preventDefault(); // Stop normal page scrolling
+            // Only handle wheel events if horizontal scrolling is enabled after hover delay
+            if (this.horizontalScrollEnabled) {
+                e.preventDefault(); // Stop normal page scrolling AND section flicking
+                e.stopPropagation(); // Prevent the event from bubbling to SectionFlicker
                 
                 // Convert vertical wheel movement to horizontal scroll
                 const scrollAmount = e.deltaY * 4; // Multiply for sensitivity
@@ -95,13 +100,31 @@ class HorizontalGallery {
                     left: scrollAmount,
                     behavior: 'smooth' // Use 'smooth' for smoother scrolling
                 });
-                
-                // Update button states after wheel scroll
-                setTimeout(() => {
-                    // Button state update removed since no buttons
-                }, 10);
             }
+            // If horizontalScrollEnabled is false, let the SectionFlicker handle this
+            // Don't call preventDefault() so the section navigation works normally
         }, { passive: false });
+    }
+    
+    setupHoverDetection() {
+        // Setup hover detection for the gallery images
+        this.scrollContainer.addEventListener('mouseenter', () => {
+            // Start hover delay timer
+            this.hoverTimer = setTimeout(() => {
+                this.horizontalScrollEnabled = true;
+                window.galleryHorizontalScrollEnabled = true; // Global flag for SectionFlicker
+            }, this.hoverDelay);
+        });
+        
+        // Reset on mouse leave
+        this.scrollContainer.addEventListener('mouseleave', () => {
+            this.horizontalScrollEnabled = false;
+            window.galleryHorizontalScrollEnabled = false; // Reset global flag
+            if (this.hoverTimer) {
+                clearTimeout(this.hoverTimer);
+                this.hoverTimer = null;
+            }
+        });
     }
     
     setupTouchNavigation() {
@@ -329,7 +352,7 @@ class SectionFlicker {
                 return;
             }
             
-            // Skip if wheel is over gallery content (let gallery handle it)
+            // Skip if wheel is over gallery content and gallery horizontal scrolling is enabled
             const galleryScrollContainer = document.querySelector('.horizontal-scroll-wrapper');
             if (galleryScrollContainer) {
                 const rect = galleryScrollContainer.getBoundingClientRect();
@@ -338,7 +361,13 @@ class SectionFlicker {
                 
                 if (mouseX >= rect.left && mouseX <= rect.right && 
                     mouseY >= rect.top && mouseY <= rect.bottom) {
-                    return; // Let gallery handle this wheel event
+                    
+                    // Check if the gallery has horizontal scrolling enabled
+                    // We'll access this through a global variable that the gallery sets
+                    if (window.galleryHorizontalScrollEnabled) {
+                        return; // Let gallery handle this wheel event
+                    }
+                    // If horizontal scrolling is not enabled, continue with section flicking
                 }
             }
             
