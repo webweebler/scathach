@@ -314,10 +314,13 @@ class GalleryAutoScroll {
     }
 }
 
-// Initialize gallery when DOM is loaded
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the main gallery
     const gallery = new HorizontalGallery('#gallery');
+    
+    // Initialize merch horizontal scrolling
+    const merch = new HorizontalMerch('#merch');
     
     // Initialize section flicking
     const sectionFlicker = new SectionFlicker();
@@ -325,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Optional: Enable auto-scroll (uncomment the line below)
     // const autoScroll = new GalleryAutoScroll(gallery, 4000);
     
-    // Gallery and section flicker initialized successfully
+    // All components initialized successfully
 });
 
 // Section flicking with mouse wheel
@@ -334,24 +337,21 @@ class SectionFlicker {
         this.currentSection = -1; // Start at background (before first section)
         this.isAnimating = false;
         this.sections = document.querySelectorAll('.sections section');
-        this.totalSections = this.sections.length;
+        // Treat music section + footer as one combined section
+        this.totalSections = this.sections.length - 1;
+        this.pendingDirection = null; // Queue for pending scroll actions
         
         this.init();
     }
     
     init() {
         this.setupWheelListener();
+        this.setupScrollListener(); // Need this to detect music/footer area
         this.goToSection(this.currentSection); // Start at background
     }
     
     setupWheelListener() {
         window.addEventListener('wheel', (e) => {
-            // Skip if currently animating
-            if (this.isAnimating) {
-                e.preventDefault();
-                return;
-            }
-            
             // Skip if wheel is over gallery content and gallery horizontal scrolling is enabled
             const galleryScrollContainer = document.querySelector('.horizontal-scroll-wrapper');
             if (galleryScrollContainer) {
@@ -363,19 +363,83 @@ class SectionFlicker {
                     mouseY >= rect.top && mouseY <= rect.bottom) {
                     
                     // Check if the gallery has horizontal scrolling enabled
-                    // We'll access this through a global variable that the gallery sets
                     if (window.galleryHorizontalScrollEnabled) {
                         return; // Let gallery handle this wheel event
                     }
-                    // If horizontal scrolling is not enabled, continue with section flicking
                 }
             }
             
+            // Skip if wheel is over merch content and merch horizontal scrolling is enabled
+            const merchScrollContainer = document.querySelector('.merch-scroll-container');
+            if (merchScrollContainer) {
+                const rect = merchScrollContainer.getBoundingClientRect();
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                if (mouseX >= rect.left && mouseX <= rect.right && 
+                    mouseY >= rect.top && mouseY <= rect.bottom) {
+                    
+                    // Check if the merch has horizontal scrolling enabled
+                    if (window.merchHorizontalScrollEnabled) {
+                        return; // Let merch handle this wheel event
+                    }
+                }
+            }
+            
+            // Prevent default scrolling and handle section navigation
             e.preventDefault();
             
             const direction = e.deltaY > 0 ? 'down' : 'up';
+            
+            // If currently animating, queue the action for later
+            if (this.isAnimating) {
+                this.pendingDirection = direction;
+                return;
+            }
+            
             this.handleWheelTick(direction);
         }, { passive: false });
+    }
+    
+    setupScrollListener() {
+        // Track scroll position to keep currentSection in sync
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            // Debounce scroll events
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Only update if not currently animating (to avoid conflicts with programmatic scrolling)
+                if (!this.isAnimating) {
+                    this.syncCurrentSection();
+                }
+            }, 150); // Increased debounce time for stability
+        });
+    }
+    
+    syncCurrentSection() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const viewportHeight = window.innerHeight;
+        
+        // Determine which section we're closest to based on scroll position
+        let newSection = -1; // Default to background
+        
+        // Check if we're at or past the music section position
+        const musicSectionStart = viewportHeight * this.sections.length;
+        if (scrollTop >= musicSectionStart - (viewportHeight / 2)) {
+            // We're in the music+footer area - treat as last section
+            newSection = this.totalSections - 1;
+        } else {
+            // Normal section detection for other sections
+            for (let i = 0; i < this.totalSections - 1; i++) {
+                const sectionStart = viewportHeight * (i + 1);
+                if (scrollTop >= sectionStart - (viewportHeight / 2)) {
+                    newSection = i;
+                }
+            }
+        }
+        
+        // Update current section if it changed
+        this.currentSection = newSection;
     }
     
     handleWheelTick(direction) {
@@ -395,10 +459,22 @@ class SectionFlicker {
         
         this.goToSection(this.currentSection);
         
-        // Reset animation lock
+        // Reset animation lock with shorter timeout for better responsiveness
         setTimeout(() => {
             this.isAnimating = false;
-        }, 600); // Slightly longer than scroll animation
+            
+            // Process any pending scroll action
+            if (this.pendingDirection) {
+                const direction = this.pendingDirection;
+                this.pendingDirection = null;
+                // Execute the pending scroll after a brief delay
+                setTimeout(() => {
+                    if (!this.isAnimating) {
+                        this.handleWheelTick(direction);
+                    }
+                }, 50);
+            }
+        }, 400); // Reduced from 800ms for better responsiveness
     }
     
     goToSection(sectionIndex) {
@@ -407,6 +483,10 @@ class SectionFlicker {
         if (sectionIndex < 0) {
             // Go to background (top of page)
             scrollTarget = 0;
+        } else if (sectionIndex >= this.totalSections - 1) {
+            // Last section (music + footer combined) - scroll to show music section
+            // This will be at the actual music section position (last real section)
+            scrollTarget = window.innerHeight * this.sections.length;
         } else {
             // Go to specific section
             // Each section is positioned at 100vh + (sectionIndex * 100vh)
@@ -437,16 +517,7 @@ class SectionFlicker {
     }
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize existing gallery
-    const gallery = new HorizontalGallery('#gallery');
-    
-    // Initialize merch horizontal scrolling
-    const merch = new HorizontalMerch('#merch');
-    
-    // Corner menu items will always remain visible - visibility control removed
-});
+// Merch initialization moved to main DOMContentLoaded block above
 
 // Merch horizontal scrolling functionality
 class HorizontalMerch {
@@ -454,18 +525,37 @@ class HorizontalMerch {
         this.merch = document.querySelector(merchSelector);
         this.scrollContainer = this.merch.querySelector('.merch-scroll-container');
         this.items = this.scrollContainer.querySelectorAll('.merch-item');
+        this.scrollAmount = 300; // pixels to scroll per click
+        
+        // Hover delay properties
+        this.hoverDelay = 1000; // 1 second delay
+        this.hoverTimer = null;
+        this.horizontalScrollEnabled = false;
+        
+        // Initialize global flag for SectionFlicker coordination
+        window.merchHorizontalScrollEnabled = false;
         
         this.init();
     }
     
     init() {
-        this.setupMouseWheelScrolling();
+        this.setupEventListeners();
         this.setupTouchNavigation();
+    }
+    
+    setupEventListeners() {
+        this.setupMouseWheelScrolling();
+        this.setupHoverDetection();
     }
     
     setupMouseWheelScrolling() {
         // Add wheel event to the scroll container specifically
         this.scrollContainer.addEventListener('wheel', (e) => {
+            // Only handle wheel events if horizontal scrolling is enabled after hover delay
+            if (!this.horizontalScrollEnabled) {
+                return; // Allow normal vertical scrolling
+            }
+            
             // Check if there's horizontal scroll available
             const canScrollLeft = this.scrollContainer.scrollLeft > 0;
             const canScrollRight = this.scrollContainer.scrollLeft < 
@@ -485,6 +575,7 @@ class HorizontalMerch {
                     behavior: 'smooth'
                 });
             }
+            // Don't call preventDefault() so the section navigation works normally
         }, { passive: false });
         
         // Allow normal vertical scrolling for the merch section areas outside the scroll container
@@ -523,6 +614,27 @@ class HorizontalMerch {
         
         // Set initial cursor
         this.scrollContainer.style.cursor = 'grab';
+    }
+    
+    setupHoverDetection() {
+        // Setup hover detection for the merch items
+        this.scrollContainer.addEventListener('mouseenter', () => {
+            // Start hover delay timer
+            this.hoverTimer = setTimeout(() => {
+                this.horizontalScrollEnabled = true;
+                window.merchHorizontalScrollEnabled = true; // Global flag for SectionFlicker
+            }, this.hoverDelay);
+        });
+        
+        // Reset on mouse leave
+        this.scrollContainer.addEventListener('mouseleave', () => {
+            this.horizontalScrollEnabled = false;
+            window.merchHorizontalScrollEnabled = false; // Reset global flag
+            if (this.hoverTimer) {
+                clearTimeout(this.hoverTimer);
+                this.hoverTimer = null;
+            }
+        });
     }
 }
 
@@ -573,3 +685,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
