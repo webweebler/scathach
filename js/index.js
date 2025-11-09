@@ -686,3 +686,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Accordion functionality for mobile
+document.addEventListener('DOMContentLoaded', function() {
+    const accordionPanels = document.querySelectorAll('.accordion-panel');
+    
+    // Function to check if we're on mobile
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+    
+    // Function to expand a specific panel
+    function expandPanel(panel) {
+        // Remove expanded class from all panels
+        accordionPanels.forEach(p => p.classList.remove('expanded'));
+        // Add expanded class to the clicked panel
+        panel.classList.add('expanded');
+    }
+    
+    // Initialize: expand the last panel on mobile
+    function initializeAccordion() {
+        if (isMobile() && accordionPanels.length > 0) {
+            // Expand the last panel (Song 4)
+            const lastPanel = accordionPanels[accordionPanels.length - 1];
+            lastPanel.classList.add('expanded');
+        }
+    }
+    
+    // Add click event to each panel
+    accordionPanels.forEach(panel => {
+        panel.addEventListener('click', function() {
+            if (isMobile()) {
+                expandPanel(this);
+            }
+        });
+    });
+    
+    // Initialize on page load
+    initializeAccordion();
+    
+    // Re-initialize on window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // Remove all expanded classes if not mobile
+            if (!isMobile()) {
+                accordionPanels.forEach(p => p.classList.remove('expanded'));
+            } else {
+                // Re-initialize if switching to mobile and no panel is expanded
+                const hasExpanded = Array.from(accordionPanels).some(p => p.classList.contains('expanded'));
+                if (!hasExpanded) {
+                    initializeAccordion();
+                }
+            }
+        }, 250);
+    });
+});
+

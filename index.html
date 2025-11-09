@@ -12,14 +12,16 @@
 <body>
     <div id="background"></div>
     
-    <!-- Corner Menu Items - Moved outside sections for global visibility -->
+    <!-- Logo Header - Separate from corner menu for mobile -->
+    <header id="site-header">
+        <a href="#" class="logo-link">
+            <img src="images/logo2.png" alt="Scathach Logo" class="logo-image">
+            <span class="logo-text">cáthach</span>
+        </a>
+    </header>
+    
+    <!-- Corner Menu Items - Navigation only -->
     <div id="corner-menu-items">
-        <div class="corner-link top-left">
-            <a href="#" class="menu-link" style="display: flex; align-items: center; gap: 3px;">
-                <img src="images/logo2.png" alt="Scathach Logo" style="width:100px;height:auto;">
-                <span style="color: #ffa500; font-family: 'Diplomata SC', serif; font-size: 2.5rem; letter-spacing: 2px; position: relative; top: 7px;">cáthach</span>
-            </a>
-        </div>
         <div class="corner-link top-right">
             <a href="#blog" class="menu-link">
                 Blog
@@ -101,41 +103,47 @@
 
          <section id="blog">
            <div class="blog-wrapper">
-                <article class="blog-post">
-                    <div class="blog-image">
-                        <img src="images/scathachPic1.jpg" alt="Band Performance">
-                    </div>
-                    <div class="blog-content">
-                        <h3 class="blog-title">This the latest! What a show we have in store for you!</h3>
-                        <p class="blog-date">November 1, 2025</p>
-                        <p class="blog-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                        <a href="blog.html#latest-show" class="read-more">Read More</a>
-                    </div>
-                </article>
+                <a href="blog.html#latest-show" class="blog-post-link">
+                    <article class="blog-post">
+                        <div class="blog-image">
+                            <img src="images/scathachPic1.jpg" alt="Band Performance">
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">This the latest! What a show we have in store for you!</h3>
+                            <p class="blog-date">November 1, 2025</p>
+                            <p class="blog-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation...</p>
+                            <span class="read-more">Read More</span>
+                        </div>
+                    </article>
+                </a>
 
-                <article class="blog-post">
-                    <div class="blog-image">
-                        <img src="images/scathachGalleryPic2.jpg" alt="Band member">
-                    </div>
-                    <div class="blog-content">
-                        <h3 class="blog-title">Behind the Scenes</h3>
-                        <p class="blog-date">October 30, 2025</p>
-                        <p class="blog-excerpt">Check out our latest news right here to see whats ahead. Get an exclusive look at what happens when the cameras aren't rolling and discover the magic behind our performances...</p>
-                        <a href="blog.html#behind-the-scenes" class="read-more">Read More</a>
-                    </div>
-                </article>
+                <a href="blog.html#behind-the-scenes" class="blog-post-link">
+                    <article class="blog-post">
+                        <div class="blog-image">
+                            <img src="images/scathachGalleryPic2.jpg" alt="Band member">
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Behind the Scenes</h3>
+                            <p class="blog-date">October 30, 2025</p>
+                            <p class="blog-excerpt">Check out our latest news right here to see whats ahead. Get an exclusive look at what happens when the cameras aren't rolling and discover the magic behind our performances...</p>
+                            <span class="read-more">Read More</span>
+                        </div>
+                    </article>
+                </a>
 
-                <article class="blog-post">
-                    <div class="blog-image">
-                        <img src="images/scathachGalleryPic3.jpg" alt="Performance">
-                    </div>
-                    <div class="blog-content">
-                        <h3 class="blog-title">Live Performance Energy</h3>
-                        <p class="blog-date">October 28, 2025</p>
-                        <p class="blog-excerpt">Check out our latest news right here to see whats ahead. Experience the raw energy and passion that flows through every live performance as we bring our Celtic heritage to life...</p>
-                        <a href="blog.html#live-performance-energy" class="read-more">Read More</a>
-                    </div>
-                </article>
+                <a href="blog.html#live-performance-energy" class="blog-post-link">
+                    <article class="blog-post">
+                        <div class="blog-image">
+                            <img src="images/scathachGalleryPic3.jpg" alt="Performance">
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Live Performance Energy</h3>
+                            <p class="blog-date">October 28, 2025</p>
+                            <p class="blog-excerpt">Check out our latest news right here to see whats ahead. Experience the raw energy and passion that flows through every live performance as we bring our Celtic heritage to life...</p>
+                            <span class="read-more">Read More</span>
+                        </div>
+                    </article>
+                </a>
             </div>
             <div class="blog-more-wrapper">
                 <a href="blog.html" class="blog-more-btn">More</a>
@@ -230,42 +238,51 @@
                </video>
            </div>
            <div class="tickets-wrapper">
+                <div class="venues-label">VENUES</div>
                 <div class="tickets-grid">
-                    <div class="ticket-corner top-left">
-                        <div class="ticket-content">
-                            <h3>Dublin</h3>
-                            <p class="date">Oct 15, 2025</p>
-                            <p class="venue">The Academy</p>
-                            <button class="ticket-btn">Buy Tickets</button>
+                    <a href="venues.html" class="ticket-link">
+                        <div class="ticket-corner top-left">
+                            <div class="ticket-content">
+                                <h3>Dublin</h3>
+                                <p class="date">Oct 15, 2025</p>
+                                <p class="venue">The Academy</p>
+                                <span class="ticket-btn">Buy Tickets</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="ticket-corner top-right">
-                        <div class="ticket-content">
-                            <h3>Cork</h3>
-                            <p class="date">Oct 22, 2025</p>
-                            <p class="venue">Cyprus Avenue</p>
-                            <button class="ticket-btn">Buy Tickets</button>
+                    <a href="venues.html" class="ticket-link">
+                        <div class="ticket-corner top-right">
+                            <div class="ticket-content">
+                                <h3>Cork</h3>
+                                <p class="date">Oct 22, 2025</p>
+                                <p class="venue">Cyprus Avenue</p>
+                                <span class="ticket-btn">Buy Tickets</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="ticket-corner bottom-left">
-                        <div class="ticket-content">
-                            <h3>Galway</h3>
-                            <p class="date">Oct 29, 2025</p>
-                            <p class="venue">Róisín Dubh</p>
-                            <button class="ticket-btn">Buy Tickets</button>
+                    <a href="venues.html" class="ticket-link">
+                        <div class="ticket-corner bottom-left">
+                            <div class="ticket-content">
+                                <h3>Galway</h3>
+                                <p class="date">Oct 29, 2025</p>
+                                <p class="venue">Róisín Dubh</p>
+                                <span class="ticket-btn">Buy Tickets</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="ticket-corner bottom-right">
-                        <div class="ticket-content">
-                            <h3>Belfast</h3>
-                            <p class="date">Nov 5, 2025</p>
-                            <p class="venue">The Limelight</p>
-                            <button class="ticket-btn">Buy Tickets</button>
+                    <a href="venues.html" class="ticket-link">
+                        <div class="ticket-corner bottom-right">
+                            <div class="ticket-content">
+                                <h3>Belfast</h3>
+                                <p class="date">Nov 5, 2025</p>
+                                <p class="venue">The Limelight</p>
+                                <span class="ticket-btn">Buy Tickets</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="more-venues-wrapper">
                     <a href="venues.html" class="more-venues-btn">More Venues</a>
@@ -333,13 +350,13 @@
               <div class="spotify-player-container">
                   <iframe data-testid="embed-iframe" style="border-radius:0px" src="https://open.spotify.com/embed/artist/7oXD9KvMquYYDTsKG0OEdO?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
               </div>
-              <div class="music-button-container" style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 24px; flex-wrap: wrap;">
-                  <a href="https://music.apple.com/us/artist/sc%C3%A1thach/1801620227" target="_blank" class="music-btn" style="text-decoration: none;">Apple Music</a>
-                  <a href="https://www.youtube.com/@Scathachmusic" target="_blank" class="music-btn" style="text-decoration: none;">YouTube</a>
-                  <a href="https://open.spotify.com/artist/scathach" target="_blank" class="music-btn" style="text-decoration: none;">Spotify</a>
+              <div class="music-button-container">
+                  <a href="https://music.apple.com/us/artist/sc%C3%A1thach/1801620227" target="_blank" class="music-btn">Apple Music</a>
+                  <a href="https://www.youtube.com/@Scathachmusic" target="_blank" class="music-btn">YouTube</a>
+                  <a href="https://open.spotify.com/artist/scathach" target="_blank" class="music-btn">Spotify</a>
               </div>
             </div>
-        </section
+        </section>
 
     </div>
     <div class="footer">
