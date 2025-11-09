@@ -1703,7 +1703,7 @@ body {
     width: 100%;
     position: relative;
     padding: 0;
-    margin: 50px auto 0 auto;
+    margin: 0 auto;
     border: none;
     border-radius: 0;
     box-shadow: none;
@@ -1748,6 +1748,23 @@ body {
     color: #000;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 165, 0, 0.3);
+}
+
+/* Desktop Music Section - for screens larger than 1024px */
+@media screen and (min-width: 1025px) {
+    #music {
+        justify-content: flex-start;
+        padding-top: 310px;
+    }
+    
+    .music-wrapper {
+        padding-bottom: 0;
+        gap: 0;
+    }
+    
+    .spotify-player-container {
+        margin-top: 0;
+    }
 }
 
 /* Responsive Music Section */
@@ -1923,25 +1940,29 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 2px;
+    gap: 0;
     height: calc(80vh - 40px);
     max-height: 560px;
+    width: 100%;
 }
 
 .ticket-link {
     text-decoration: none;
     color: inherit;
     display: block;
+    height: 100%;
 }
 
 .ticket-corner {
-    background: linear-gradient(135deg, #ffa500 40%, #fffbe6 100%); /* Only for Shop Merch box */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 0;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ticket-link:hover .ticket-corner {
