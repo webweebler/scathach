@@ -15,6 +15,30 @@ function createSparkles(num) {
 
 document.addEventListener('DOMContentLoaded', function() {
     createSparkles(60); // Number of sparkles
+    
+    // Logo text fade on scroll
+    const logoText = document.querySelector('.logo-text');
+    const firstSection = document.querySelector('#corner-section');
+    
+    if (logoText && firstSection) {
+        window.addEventListener('scroll', function() {
+            const firstSectionHeight = firstSection.offsetHeight;
+            const scrollPosition = window.scrollY;
+            
+            // Calculate opacity: fade out as we scroll through the first section
+            // Opacity goes from 1 to 0 as we scroll from 0 to firstSectionHeight
+            const opacity = Math.max(0, 1 - (scrollPosition / firstSectionHeight));
+            
+            logoText.style.opacity = opacity;
+            
+            // Optional: also hide it completely when fully scrolled past
+            if (scrollPosition >= firstSectionHeight) {
+                logoText.style.visibility = 'hidden';
+            } else {
+                logoText.style.visibility = 'visible';
+            }
+        });
+    }
 });
 // Gallery horizontal scrolling functionality
 class HorizontalGallery {
@@ -36,9 +60,16 @@ class HorizontalGallery {
     }
     
     init() {
-        this.setupEventListeners();
+        // Only setup desktop features if not on mobile
+        const isMobile = window.innerWidth <= 480;
+        
+        if (!isMobile) {
+            this.setupEventListeners();
+            this.setupKeyboardNavigation();
+        }
+        
+        // Touch navigation works for all devices
         this.setupTouchNavigation();
-        this.setupKeyboardNavigation();
     }
     
     createNavigationButtons() {
@@ -128,6 +159,15 @@ class HorizontalGallery {
     }
     
     setupTouchNavigation() {
+        // Check if on mobile
+        const isMobile = window.innerWidth <= 480;
+        
+        // On mobile, let native scrolling handle everything
+        if (isMobile) {
+            return; // Don't add any touch/mouse event handlers on mobile
+        }
+        
+        // Desktop drag-to-scroll functionality
         let startX = 0;
         let scrollLeft = 0;
         let isDown = false;
@@ -153,19 +193,6 @@ class HorizontalGallery {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - this.scrollContainer.offsetLeft;
-            const walk = (x - startX) * 2;
-            this.scrollContainer.scrollLeft = scrollLeft - walk;
-        });
-        
-        // Touch events for mobile
-        this.scrollContainer.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].pageX - this.scrollContainer.offsetLeft;
-            scrollLeft = this.scrollContainer.scrollLeft;
-        });
-        
-        this.scrollContainer.addEventListener('touchmove', (e) => {
-            if (!startX) return;
-            const x = e.touches[0].pageX - this.scrollContainer.offsetLeft;
             const walk = (x - startX) * 2;
             this.scrollContainer.scrollLeft = scrollLeft - walk;
         });
@@ -322,8 +349,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize merch horizontal scrolling
     const merch = new HorizontalMerch('#merch');
     
-    // Initialize section flicking
-    const sectionFlicker = new SectionFlicker();
+    // Initialize section flicking ONLY on desktop/tablet (not on mobile)
+    // Check if screen width is greater than 480px (mobile breakpoint)
+    if (window.innerWidth > 480) {
+        const sectionFlicker = new SectionFlicker();
+    }
+    
+    // Re-check on window resize to enable/disable section flicking
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Reload page if crossing the mobile/desktop boundary
+            // This ensures proper initialization
+            const isMobile = window.innerWidth <= 480;
+            const hasSectionFlicker = window.sectionFlickerInstance !== undefined;
+            
+            if (isMobile && hasSectionFlicker) {
+                // Switched to mobile - reload to disable section flicker
+                location.reload();
+            } else if (!isMobile && !hasSectionFlicker) {
+                // Switched to desktop - reload to enable section flicker
+                location.reload();
+            }
+        }, 300);
+    });
     
     // Optional: Enable auto-scroll (uncomment the line below)
     // const autoScroll = new GalleryAutoScroll(gallery, 4000);
@@ -340,6 +390,9 @@ class SectionFlicker {
         // Treat music section + footer as one combined section
         this.totalSections = this.sections.length - 1;
         this.pendingDirection = null; // Queue for pending scroll actions
+        
+        // Store instance globally for tracking
+        window.sectionFlickerInstance = this;
         
         this.init();
     }
@@ -539,8 +592,14 @@ class HorizontalMerch {
     }
     
     init() {
-        this.setupEventListeners();
-        this.setupTouchNavigation();
+        // Only setup desktop features if not on mobile
+        const isMobile = window.innerWidth <= 480;
+        
+        if (!isMobile) {
+            this.setupEventListeners();
+            this.setupTouchNavigation();
+        }
+        // On mobile, let native scrolling handle everything
     }
     
     setupEventListeners() {
@@ -686,59 +745,92 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Accordion functionality for mobile
+// Accordion functionality
 document.addEventListener('DOMContentLoaded', function() {
     const accordionPanels = document.querySelectorAll('.accordion-panel');
+    const horizontalAccordion = document.querySelector('.horizontal-accordion');
+    
+    if (!accordionPanels.length || !horizontalAccordion) return;
     
     // Function to check if we're on mobile
     function isMobile() {
         return window.innerWidth <= 768;
     }
     
-    // Function to expand a specific panel
-    function expandPanel(panel) {
-        // Remove expanded class from all panels
-        accordionPanels.forEach(p => p.classList.remove('expanded'));
-        // Add expanded class to the clicked panel
-        panel.classList.add('expanded');
-    }
-    
-    // Initialize: expand the last panel on mobile
-    function initializeAccordion() {
-        if (isMobile() && accordionPanels.length > 0) {
-            // Expand the last panel (Song 4)
-            const lastPanel = accordionPanels[accordionPanels.length - 1];
-            lastPanel.classList.add('expanded');
+    // Function to update the accordion container class
+    function updateAccordionState() {
+        const hasExpanded = Array.from(accordionPanels).some(p => p.classList.contains('expanded'));
+        if (hasExpanded) {
+            horizontalAccordion.classList.add('has-expanded');
+        } else {
+            horizontalAccordion.classList.remove('has-expanded');
         }
     }
     
-    // Add click event to each panel
-    accordionPanels.forEach(panel => {
-        panel.addEventListener('click', function() {
-            if (isMobile()) {
-                expandPanel(this);
+    // Function to expand a panel
+    function expandPanel(panel) {
+        accordionPanels.forEach(p => p.classList.remove('expanded'));
+        panel.classList.add('expanded');
+        updateAccordionState();
+        console.log('Panel expanded:', panel.querySelector('h3')?.textContent);
+    }
+    
+    // Function to collapse all panels
+    function collapseAll() {
+        accordionPanels.forEach(p => p.classList.remove('expanded'));
+        updateAccordionState();
+        console.log('All panels collapsed');
+    }
+    
+    if (isMobile()) {
+        // Mobile: Click/Tap to toggle
+        accordionPanels.forEach(panel => {
+            // Use click event for mobile
+            panel.addEventListener('click', function(e) {
+                // Don't interfere with link clicks
+                if (e.target.closest('.accordion-link')) {
+                    return;
+                }
+                
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle behavior
+                if (this.classList.contains('expanded')) {
+                    collapseAll();
+                } else {
+                    expandPanel(this);
+                }
+            });
+        });
+        
+        // Close when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!horizontalAccordion.contains(e.target)) {
+                collapseAll();
             }
         });
-    });
-    
-    // Initialize on page load
-    initializeAccordion();
+        
+    } else {
+        // Desktop: Hover behavior
+        accordionPanels.forEach(panel => {
+            panel.addEventListener('mouseenter', function() {
+                expandPanel(this);
+            });
+        });
+        
+        // Reset when mouse leaves the entire accordion
+        horizontalAccordion.addEventListener('mouseleave', function() {
+            collapseAll();
+        });
+    }
     
     // Re-initialize on window resize
     let resizeTimer;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
-            // Remove all expanded classes if not mobile
-            if (!isMobile()) {
-                accordionPanels.forEach(p => p.classList.remove('expanded'));
-            } else {
-                // Re-initialize if switching to mobile and no panel is expanded
-                const hasExpanded = Array.from(accordionPanels).some(p => p.classList.contains('expanded'));
-                if (!hasExpanded) {
-                    initializeAccordion();
-                }
-            }
+            collapseAll();
         }, 250);
     });
 });

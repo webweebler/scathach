@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Diplomata+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/mobile-menu-uniform.css">
 </head>
 <body>
     <div id="background"></div>
@@ -78,10 +79,26 @@
             <!-- Mobile Menu Overlay -->
             <div class="mobile-menu-overlay" id="mobileMenuOverlay">
                 <div class="mobile-menu-content">
-                    <a href="#blog" class="mobile-menu-link" onclick="closeMobileMenu()">Blog</a>
-                    <a href="#music" class="mobile-menu-link" onclick="closeMobileMenu()">Music</a>
-                    <a href="#tickets" class="mobile-menu-link" onclick="closeMobileMenu()">Tickets</a>
-                    <a href="#merch" class="mobile-menu-link" onclick="closeMobileMenu()">Merch</a>
+                    <a href="index.html" class="mobile-menu-link" onclick="closeMobileMenu()">Home</a>
+                    <a href="blog.html" class="mobile-menu-link" onclick="closeMobileMenu()">Blog</a>
+                    <a href="venues.html" class="mobile-menu-link" onclick="closeMobileMenu()">Venues</a>
+                    <a href="about.html" class="mobile-menu-link" onclick="closeMobileMenu()">About</a>
+                    <a href="contact.html" class="mobile-menu-link" onclick="closeMobileMenu()">Contact</a>
+                    
+                    <div class="mobile-menu-social">
+                        <a href="https://www.facebook.com/profile.php?id=61572786083629" class="mobile-social-icon" target="_blank">
+                            <img src="images/fbIcon.svg" alt="Facebook">
+                        </a>
+                        <a href="https://www.instagram.com/scathach_official/" class="mobile-social-icon" target="_blank">
+                            <img src="images/instaIcon.svg" alt="Instagram">
+                        </a>
+                        <a href="https://youtube.com/scathach" class="mobile-social-icon" target="_blank">
+                            <img src="images/ytIcon.svg" alt="YouTube">
+                        </a>
+                        <a href="https://open.spotify.com/artist/scathach" class="mobile-social-icon" target="_blank">
+                            <img src="images/sptfyIcon.svg" alt="Spotify">
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -102,6 +119,7 @@
          </section>
 
          <section id="blog">
+           <div class="blog-label">BLOG</div>
            <div class="blog-wrapper">
                 <a href="blog.html#latest-show" class="blog-post-link">
                     <article class="blog-post">
@@ -291,11 +309,12 @@
         </section>  
 
         <section id="gallery">
+           <div class="gallery-label">GALLERY</div>
          <div class="gallery-wrapper">
                 <div class="sparkle-container"></div>
                 <div class="scroll-container horizontal-scroll-wrapper">
                     <div class="gallery-img-wrapper"><img src="images/scathachPic1.jpg" alt=""></div>
-                    <div class="gallery-img-wrapper"><img src="images/scathachGalleryPic2.jpg" alt="scathach image"></div>
+                    <div class="gallery-img-wrapper"><img src="images/taylorLily.jpg" alt="scathach image"></div>
                     <div class="gallery-img-wrapper"><img src="images/scathachGalleryPic3.jpg" alt=""></div>
                     <div class="gallery-img-wrapper"><img src="images/scathachPic1.jpg" alt=""></div>
                     <div class="gallery-img-wrapper"><img src="images/scathachGalleryPic2.jpg" alt=""></div>
@@ -309,43 +328,45 @@
         </section>  
 
         <section id="accordion">
+           <div class="accordion-label">ALBUMS</div>
             <div class="horizontal-accordion">
                 <div class="accordion-panel" data-bg="images/scathachPic1.jpg">
                     <div class="panel-header">
-                        <h3>SONG 1</h3>
+                        <h3>ECHOES</h3>
                     </div>
                     <div class="panel-content">
-                        <p>Discover our Celtic heritage and musical journey.</p>
+                        <a href="#" class="accordion-link">LISTEN NOW</a>
                     </div>
                 </div>
                 <div class="accordion-panel" data-bg="images/scathachGalleryPic2.jpg">
                     <div class="panel-header">
-                        <h3>SONG 2</h3>
+                        <h3>SHADOWS</h3>
                     </div>
                     <div class="panel-content">
-                        <p>Explore our latest releases and compositions.</p>
+                        <a href="#" class="accordion-link">LISTEN NOW</a>
                     </div>
                 </div>
                 <div class="accordion-panel" data-bg="images/scathachGalleryPic3.jpg">
                     <div class="panel-header">
-                        <h3>SONG 3</h3>
+                        <h3>WARRIORS</h3>
                     </div>
                     <div class="panel-content">
-                        <p>Find upcoming concerts and live performances.</p>
+                        <a href="#" class="accordion-link">LISTEN NOW</a>
                     </div>
                 </div>
-                <div class="accordion-panel" data-bg="images/scathachGalleryPic4.jpg">
+                <div class="accordion-panel" data-bg="images/band1.jpg">
                     <div class="panel-header">
-                        <h3>SONG 4</h3>
+                        <h3>LEGENDS</h3>
                     </div>
                     <div class="panel-content">
-                        <p>Stay updated with our latest announcements and stories.</p>
+                        <a href="#" class="accordion-link">LISTEN NOW</a>
                     </div>
                 </div>
             </div>
         </section>
 
          <section id="music">
+           <div class="music-label">MUSIC</div>
            <div class="music-wrapper">
               <div class="spotify-player-container">
                   <iframe data-testid="embed-iframe" style="border-radius:0px" src="https://open.spotify.com/embed/artist/7oXD9KvMquYYDTsKG0OEdO?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -359,6 +380,7 @@
         </section>
 
     </div>
+    
     <div class="footer">
         <div class="footer-container">
             <div class="footer-left">

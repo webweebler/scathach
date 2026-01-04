@@ -1,5 +1,42 @@
 // About Page JavaScript - Fixed Height with Wheel Navigation
 document.addEventListener('DOMContentLoaded', function() {
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const headerNav = document.querySelector('.header-nav');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    
+    if (hamburger) {
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (window.innerWidth <= 768) {
+                // On mobile, toggle the overlay menu
+                mobileMenuOverlay.classList.toggle('active');
+            } else {
+                // On desktop, toggle the header nav
+                headerNav.classList.toggle('active');
+            }
+        });
+    }
+
+    // Close mobile menu when clicking on a link
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                hamburger.classList.remove('active');
+                this.classList.remove('active');
+            }
+        });
+    }
+
     const sections = document.querySelectorAll('.horizontal-section');
     const totalSections = sections.length;
     let currentSection = 0;
@@ -33,10 +70,40 @@ document.addEventListener('DOMContentLoaded', function() {
         
         currentSection = index;
         
+        // Update arrow visibility
+        updateArrows();
+        
         // Reset animation lock
         setTimeout(() => {
             isAnimating = false;
         }, 800);
+    }
+    
+    function updateArrows() {
+        const upArrows = document.querySelectorAll('.arrow-left');
+        const downArrows = document.querySelectorAll('.arrow-right');
+        
+        // Fade out up arrows on first section
+        upArrows.forEach(arrow => {
+            if (currentSection === 0) {
+                arrow.style.opacity = '0';
+                arrow.style.pointerEvents = 'none';
+            } else {
+                arrow.style.opacity = '1';
+                arrow.style.pointerEvents = 'auto';
+            }
+        });
+        
+        // Fade out down arrows on last section
+        downArrows.forEach(arrow => {
+            if (currentSection === totalSections - 1) {
+                arrow.style.opacity = '0';
+                arrow.style.pointerEvents = 'none';
+            } else {
+                arrow.style.opacity = '1';
+                arrow.style.pointerEvents = 'auto';
+            }
+        });
     }
     
     // Initialize first section
@@ -93,6 +160,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 showSection(currentSection - 1);
             }
         }
+    });
+    
+    // Arrow button navigation
+    document.querySelectorAll('.arrow-left').forEach(arrow => {
+        arrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showSection(currentSection - 1);
+        });
+    });
+    
+    document.querySelectorAll('.arrow-right').forEach(arrow => {
+        arrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showSection(currentSection + 1);
+        });
     });
 });
 

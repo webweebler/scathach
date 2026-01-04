@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Diplomata+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/mobile-menu-uniform.css">
 </head>
 <body>
     <!-- Header Section -->
@@ -21,6 +22,13 @@
                     <span class="logo-text">Scáthach</span>
                 </a>
             </div>
+
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             
             <!-- Navigation -->
             <nav class="header-nav">
@@ -30,6 +38,32 @@
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link active">Contact</a>
             </nav>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <a href="index.html" class="mobile-menu-link">Home</a>
+                    <a href="blog.html" class="mobile-menu-link">Blog</a>
+                    <a href="venues.html" class="mobile-menu-link">Venues</a>
+                    <a href="about.html" class="mobile-menu-link">About</a>
+                    <a href="contact.html" class="mobile-menu-link">Contact</a>
+                    
+                    <div class="mobile-menu-social">
+                        <a href="https://www.facebook.com/profile.php?id=61572786083629" class="mobile-social-icon" target="_blank">
+                            <img src="images/fbIcon.svg" alt="Facebook">
+                        </a>
+                        <a href="https://www.instagram.com/scathach_official/" class="mobile-social-icon" target="_blank">
+                            <img src="images/instaIcon.svg" alt="Instagram">
+                        </a>
+                        <a href="https://youtube.com/scathach" class="mobile-social-icon" target="_blank">
+                            <img src="images/ytIcon.svg" alt="YouTube">
+                        </a>
+                        <a href="https://open.spotify.com/artist/scathach" class="mobile-social-icon" target="_blank">
+                            <img src="images/sptfyIcon.svg" alt="Spotify">
+                        </a>
+                    </div>
+                </div>
+            </div>
             
             <!-- Social Icons -->
             <div class="header-social">
@@ -188,6 +222,6 @@
         </div>
     </div>
 
-
+    <script src="js/contact.js"></script>
 </body>
 </html>
