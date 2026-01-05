@@ -212,9 +212,12 @@ body {
 
 .mobile-menu-overlay.active {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding-top: 100px;
+    padding: 2rem 2rem 4rem 2rem;
+    box-sizing: border-box;
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 .mobile-menu-content {
@@ -224,6 +227,9 @@ body {
     text-align: center;
     width: 100%;
     max-width: 500px;
+    padding: 1rem 0;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .mobile-menu-link {
@@ -242,6 +248,27 @@ body {
 .mobile-menu-link:active {
     color: #ffa500;
     transform: scale(1.05);
+}
+
+@media screen and (max-width: 480px) {
+    .mobile-menu-link {
+        font-size: 1.5rem;
+    }
+    
+    .mobile-menu-content {
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .mobile-menu-link {
+        font-size: 1.4rem;
+        padding: 8px;
+    }
+    
+    .mobile-menu-content {
+        gap: 0.8rem;
+    }
 }
 
 .menu-section {

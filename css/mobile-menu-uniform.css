@@ -34,8 +34,10 @@
     opacity: 1;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 2rem 2rem 4rem 2rem;
     overflow-y: auto;
+    box-sizing: border-box;
+    min-height: 100vh;
 }
 
 .mobile-menu-content {
@@ -47,6 +49,9 @@
     max-width: 500px;
     position: relative;
     z-index: 1;
+    padding: 1rem 0;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .mobile-menu-link {
@@ -57,11 +62,31 @@
     letter-spacing: 0.15rem;
     font-weight: 200;
     font-family: 'Diplomata SC', serif;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     position: relative;
     background: transparent;
     border: none;
     overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Mobile responsive font sizes */
+@media screen and (max-width: 480px) {
+    .mobile-menu-link {
+        font-size: 1.5rem;
+        padding: 0.6rem 1rem;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .mobile-menu-link {
+        font-size: 1.4rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .mobile-menu-content {
+        gap: 0.3rem;
+    }
 }
 
 .mobile-menu-link:hover,
@@ -81,9 +106,18 @@
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
     border-top: 1px solid #ffa500;
+    flex-shrink: 0;
+}
+
+@media screen and (max-height: 700px) {
+    .mobile-menu-social {
+        margin-top: 1rem;
+        padding-top: 0.8rem;
+        gap: 1rem;
+    }
 }
 
 .mobile-social-icon {
