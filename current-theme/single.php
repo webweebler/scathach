@@ -83,9 +83,16 @@ get_header(); ?>
         .post-title {
             font-family: 'Diplomata SC', serif;
             font-size: 2.5rem;
-            color: #ffa500;
+            color: #fff;
             margin: 0;
             line-height: 1.2;
+            max-width: 1400px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .post-featured-image {
@@ -139,6 +146,13 @@ get_header(); ?>
             
             .post-title {
                 font-size: 1.8rem;
+                max-width: 100%;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             
             .post-content {
