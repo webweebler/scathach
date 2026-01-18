@@ -371,7 +371,7 @@ body {
 .section-text h2 {
     font-family: 'Diplomata SC', serif;
     font-size: 3rem;
-    color: #ffa500;
+    color: #00ff00;
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     line-height: 1.2;
@@ -380,7 +380,7 @@ body {
 .section-text p {
     font-size: 1.3rem;
     line-height: 1.8;
-    color: #ddd;
+    color: #00ff00;
     text-align: justify;
 }
 
