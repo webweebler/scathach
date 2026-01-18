@@ -440,16 +440,14 @@ body {
 
 /* Footer Styles */
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 15; /* Higher than sections */
-    height: 20vh;
+    position: relative;
+    z-index: 2;
+    height: clamp(20vh, 25vh, 30vh);
     background: #000;
     display: flex;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 clamp(20px, 3vw, 40px);
+    margin-top: 0;
     border-top: 1px solid rgba(255, 165, 0, 0.3);
 }
 
@@ -474,7 +472,9 @@ body {
 
 .footer-social {
     display: flex;
+    justify-content: center;
     gap: 15px;
+    margin-bottom: 15px;
 }
 
 .footer-social a {

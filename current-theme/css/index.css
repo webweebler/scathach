@@ -2162,6 +2162,7 @@ body:has(.mobile-menu-overlay.active) #site-header {
 @media screen and (max-width: 1366px) and (min-width: 1025px) {
     .spotify-player-container {
         max-width: 600px;
+        margin-top: -80px;
     }
     
     .spotify-player-container iframe {
@@ -2169,7 +2170,7 @@ body:has(.mobile-menu-overlay.active) #site-header {
     }
     
     .music-button-container {
-        margin-top: -105px;
+        margin-top: -120px;
         gap: 15px;
     }
     
@@ -2819,7 +2820,9 @@ body:has(.mobile-menu-overlay.active) #site-header {
 
 .footer-social {
     display: flex;
+    justify-content: center;
     gap: 15px;
+    margin-bottom: 15px;
 }
 
 .footer-social a {

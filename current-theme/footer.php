@@ -1,6 +1,9 @@
     <div class="footer">
         <div class="footer-container">
             <div class="footer-left">
+            </div>
+            
+            <div class="footer-center">
                 <div class="footer-social">
                     <a href="https://www.facebook.com/profile.php?id=61572786083629" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/fbIcon.svg" alt="Facebook">
@@ -14,10 +17,13 @@
                     <a href="https://open.spotify.com/artist/scathach" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
                     </a>
+                    <a href="https://twitter.com/scathach" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/twitterIcon.svg" alt="Twitter">
+                    </a>
+                    <a href="https://tiktok.com/@scathach" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
+                    </a>
                 </div>
-            </div>
-            
-            <div class="footer-center">
                 <div class="footer-links">
                     <a href="<?php echo home_url('/about/'); ?>">About</a> | 
                     <a href="<?php echo home_url('/blog/'); ?>">Blog</a> | 
