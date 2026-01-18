@@ -24,7 +24,7 @@
             <div class="header-logo">
                 <a href="<?php echo home_url(); ?>" class="logo-link">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/logo2.png" alt="Scathach Logo" class="logo-image">
-                    <span class="logo-text">Scáthach</span>
+                    <span class="logo-text">cáthach</span>
                 </a>
             </div>
 
@@ -83,6 +83,12 @@
                 </a>
                 <a href="https://open.spotify.com/artist/scathach" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
+                </a>
+                <a href="https://twitter.com/scathach" class="social-icon" target="_blank">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/twitterIcon.svg" alt="Twitter">
+                </a>
+                <a href="https://www.tiktok.com/@scathach" class="social-icon" target="_blank">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
                 </a>
             </div>
             

@@ -76,27 +76,31 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(12px, 1.5vh, 15px) clamp(20px, 3vw, 30px);
+    padding: 15px 30px;
     width: 100%;
+    max-width: 100%;
     margin: 0;
-    gap: clamp(25px, 3vw, 40px);
+    gap: 20px;
+    flex-wrap: nowrap;
 }
 
 /* Logo Section */
 .header-logo {
-    flex-shrink: 0;
+    flex: 1.2;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .header-logo .logo-link {
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: clamp(10px, 1.5vw, 15px);
+    gap: 4px;
     transition: all 0.3s ease;
 }
 
 .logo-image {
-    width: clamp(35px, 4vw, 45px);
+    width: 45px;
     height: auto;
     filter: drop-shadow(0 0 6px rgba(255, 165, 0, 0.3));
     transition: all 0.3s ease;
@@ -104,9 +108,9 @@ body {
 
 .logo-text {
     font-family: 'Diplomata SC', serif;
-    font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+    font-size: 1.5rem;
     color: #ffa500;
-    letter-spacing: clamp(1px, 0.2vw, 2px);
+    letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     transition: all 0.3s ease;
 }
@@ -124,23 +128,24 @@ body {
 /* Navigation */
 .header-nav {
     display: flex;
-    gap: clamp(20px, 2.5vw, 35px);
+    gap: clamp(10px, 2vw, 25px);
     align-items: center;
     flex: 1;
     justify-content: center;
-    margin: 0 clamp(15px, 2vw, 20px);
+    margin: 0 10px;
 }
 
 .nav-link {
     color: #fff;
     text-decoration: none;
-    font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
     text-transform: uppercase;
-    letter-spacing: clamp(1px, 0.2vw, 2px);
+    letter-spacing: 2px;
     font-weight: 300;
     position: relative;
     transition: all 0.3s ease;
     padding: 8px 0;
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -167,16 +172,18 @@ body {
 
 /* Social Icons */
 .header-social {
-    display: flex;
-    gap: clamp(15px, 2vw, 20px);
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 26px);
+    gap: 10px 12px;
     align-items: center;
-    flex-shrink: 0;
+    justify-content: flex-end;
 }
 
 .social-icon {
     display: block;
-    width: clamp(28px, 3vw, 32px);
-    height: clamp(28px, 3vw, 32px);
+    width: 26px;
+    height: 26px;
     transition: all 0.3s ease;
     opacity: 0.8;
 }

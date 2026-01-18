@@ -66,20 +66,24 @@ body {
     align-items: center;
     padding: 15px 30px;
     width: 100%;
+    max-width: 100%;
     margin: 0;
-    gap: 40px;
+    gap: 20px;
+    flex-wrap: nowrap;
 }
 
 /* Logo Section */
 .header-logo {
-    flex-shrink: 0;
+    flex: 1.2;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .header-logo .logo-link {
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: 15px;
+    gap: 4px;
     transition: all 0.3s ease;
 }
 
@@ -101,34 +105,35 @@ body {
 
 .header-logo .logo-link:hover .logo-image {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+    filter: drop-shadow(0 0 12px rgba(255, 165, 0, 0.6));
 }
 
 .header-logo .logo-link:hover .logo-text {
     color: #fff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 8px rgba(255, 165, 0, 0.8);
 }
 
 /* Navigation */
 .header-nav {
     display: flex;
-    gap: 35px;
+    gap: clamp(10px, 2vw, 25px);
     align-items: center;
     flex: 1;
     justify-content: center;
-    margin: 0 20px;
+    margin: 0 10px;
 }
 
 .nav-link {
     color: #fff;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 300;
     position: relative;
     transition: all 0.3s ease;
     padding: 8px 0;
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -138,14 +143,14 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #ffffff, #cccccc);
+    background: linear-gradient(90deg, #ffa500, #ff8c00);
     transition: width 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    color: #ffa500;
+    text-shadow: 0 0 8px rgba(255, 165, 0, 0.4);
 }
 
 .nav-link:hover::after,
@@ -155,16 +160,18 @@ body {
 
 /* Social Icons */
 .header-social {
-    display: flex;
-    gap: 20px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 26px);
+    gap: 10px 12px;
     align-items: center;
-    flex-shrink: 0;
+    justify-content: flex-end;
 }
 
 .social-icon {
     display: block;
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     transition: all 0.3s ease;
     opacity: 0.8;
 }
