@@ -174,7 +174,7 @@ body {
 .header-social {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(3, 26px);
+    grid-template-columns: repeat(2, 26px);
     gap: 10px 12px;
     align-items: center;
     justify-content: flex-end;

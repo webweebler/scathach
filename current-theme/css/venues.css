@@ -34,7 +34,7 @@ body {
     z-index: 1000;
     background: transparent;
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 165, 0, 0.3);
     transition: background 0.3s ease, box-shadow 0.3s ease, border-bottom-color 0.3s ease;
 }
 
@@ -45,7 +45,7 @@ body {
 .blog-header.scrolled {
     background: transparent;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-    border-bottom-color: rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(255, 165, 0, 0.5);
 }
 
 .header-overlay {
@@ -162,7 +162,7 @@ body {
 .header-social {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(3, 26px);
+    grid-template-columns: repeat(2, 26px);
     gap: 10px 12px;
     align-items: center;
     justify-content: flex-end;

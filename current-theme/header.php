@@ -63,8 +63,8 @@
                         <a href="https://youtube.com/scathach" class="mobile-social-icon" target="_blank">
                             <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube">
                         </a>
-                        <a href="https://open.spotify.com/artist/scathach" class="mobile-social-icon" target="_blank">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
+                        <a href="https://www.tiktok.com/@scathach" class="mobile-social-icon" target="_blank">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
                         </a>
                     </div>
                 </div>
@@ -80,12 +80,6 @@
                 </a>
                 <a href="https://youtube.com/scathach" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube">
-                </a>
-                <a href="https://open.spotify.com/artist/scathach" class="social-icon" target="_blank">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
-                </a>
-                <a href="https://twitter.com/scathach" class="social-icon" target="_blank">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/twitterIcon.svg" alt="Twitter">
                 </a>
                 <a href="https://www.tiktok.com/@scathach" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
