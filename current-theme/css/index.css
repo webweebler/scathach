@@ -2158,6 +2158,27 @@ body:has(.mobile-menu-overlay.active) #site-header {
     }
 }
 
+/* Small Laptop Music Section - 1024px to 1366px */
+@media screen and (max-width: 1366px) and (min-width: 1025px) {
+    .spotify-player-container {
+        max-width: 600px;
+    }
+    
+    .spotify-player-container iframe {
+        height: 300px;
+    }
+    
+    .music-button-container {
+        margin-top: -105px;
+        gap: 15px;
+    }
+    
+    .music-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}
+
 /* Responsive Music Section */
 @media screen and (max-width: 1024px) {
     #music {
