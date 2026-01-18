@@ -26,8 +26,8 @@ get_header(); ?>
                                 ));
                                 if ($first_post->have_posts()) :
                                     while ($first_post->have_posts()) : $first_post->the_post();
-                                        $short_title = strlen(get_the_title()) > 20 ? substr(get_the_title(), 0, 20) . '...' : get_the_title();
-                                        echo strtoupper(str_replace(' ', '<br>', esc_html($short_title)));
+                                        $short_title = strlen(get_the_title()) > 30 ? substr(get_the_title(), 0, 30) . '...' : get_the_title();
+                                        echo strtoupper(esc_html($short_title));
                                     endwhile;
                                     wp_reset_postdata();
                                 else:
