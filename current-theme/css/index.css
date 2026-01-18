@@ -121,6 +121,40 @@ body {
 }
 
 /* Responsive Social Icons */
+@media screen and (max-width: 1600px) and (min-width: 1024px) {
+    #social-icons {
+        left: 2rem; /* 32px */
+        gap: 1rem; /* 16px */
+    }
+    
+    .social-icon img {
+        width: 2rem; /* 32px */
+        height: 2rem;
+    }
+    
+    .social-icon:not(:last-child)::after {
+        height: 1rem; /* 16px */
+        bottom: -0.9375rem; /* -15px */
+    }
+}
+
+@media screen and (max-width: 1023px) and (min-width: 769px) {
+    #social-icons {
+        left: 1.5rem; /* 24px */
+        gap: 1rem; /* 16px */
+    }
+    
+    .social-icon img {
+        width: 2.25rem; /* 36px */
+        height: 2.25rem;
+    }
+    
+    .social-icon:not(:last-child)::after {
+        height: 1rem; /* 16px */
+        bottom: -0.875rem; /* -14px */
+    }
+}
+
 @media screen and (max-width: 768px) {
     #social-icons {
         left: 0.3125rem; /* 5px -> rem */
@@ -282,6 +316,24 @@ body {
 
 .corner-link:hover .menu-link {
     color: #ffa500;
+}
+
+/* Responsive Logo - Laptop */
+@media screen and (max-width: 1366px) and (min-width: 769px) {
+    .logo-image {
+        width: 5rem; /* Reduced from 6.25rem */
+    }
+    
+    .logo-text {
+        font-size: 2rem; /* Reduced from 2.5rem */
+        top: 0.35rem;
+    }
+
+    #site-header {
+        top: 1rem;
+        left: 0.4rem;
+        padding: 0.5rem;
+    }
 }
 
 /* Responsive Corner Navigation */
@@ -765,6 +817,22 @@ body:has(.mobile-menu-overlay.active) #site-header {
 
 /* Remove the pseudo-element since we're using wrapper divs now */
 
+/* Gallery Laptop Responsive Styles */
+@media screen and (max-width: 1366px) and (min-width: 1025px) {
+    .horizontal-scroll-wrapper img {
+        height: 28rem; /* Reduced from 37.5rem */
+    }
+
+    .horizontal-scroll-wrapper {
+        gap: 1.5rem; /* Reduced from 1.875rem */
+        padding: 0.75rem 1rem; /* Reduced padding */
+    }
+
+    .gallery-img-wrapper {
+        box-shadow: 0 0 0.2rem rgba(255, 165, 0, 0.2);
+    }
+}
+
 /* Gallery Mobile Responsive Styles */
 @media screen and (max-width: 1024px) {
     #gallery {
@@ -1142,6 +1210,59 @@ body:has(.mobile-menu-overlay.active) #site-header {
     color: #000;
     transform: translateY(-0.125rem); /* -2px -> rem */
     box-shadow: 0 0.5rem 1.25rem rgba(255, 165, 0, 0.3); /* 8px 20px -> rem */
+}
+
+/* Blog Section Laptop Styles */
+@media screen and (max-width: 1366px) and (min-width: 769px) {
+    .blog-wrapper {
+        max-width: 60rem; /* Reduced from 75rem */
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); /* Reduced from 21.875rem */
+        gap: 1.5rem; /* Reduced from 2.5rem */
+    }
+
+    .blog-post {
+        height: 22rem; /* Reduced from 29.375rem */
+    }
+
+    .blog-image {
+        height: 8.5rem; /* Reduced from 11.25rem */
+    }
+
+    .blog-content {
+        padding: 1.2rem; /* Reduced from 1.5625rem */
+        height: 13.5rem; /* Reduced from 18.125rem */
+    }
+
+    .blog-title {
+        font-size: 1.1rem; /* Reduced from 1.4rem */
+        margin-bottom: 0.5rem; /* Reduced from 0.625rem */
+    }
+
+    .blog-date {
+        font-size: 0.75rem; /* Reduced from 0.9rem */
+        margin-bottom: 0.7rem; /* Reduced from 0.9375rem */
+    }
+
+    .blog-excerpt {
+        font-size: 0.85rem; /* Reduced from 1.85rem */
+        line-height: 1.5;
+        margin-bottom: 1rem; /* Reduced from 1.25rem */
+        -webkit-line-clamp: 3; /* Reduced from 4 lines */
+        line-clamp: 3;
+    }
+
+    .read-more {
+        font-size: 0.75rem; /* Reduced from 0.9rem */
+    }
+
+    .blog-more-wrapper {
+        margin-top: 2rem; /* Reduced from 2.5rem */
+    }
+
+    .blog-more-btn {
+        padding: 0.75rem 2rem; /* Reduced from 0.9375rem 2.5rem */
+        font-size: 0.95rem; /* Reduced from 1.1rem */
+    }
 }
 
 /* Blog Section Mobile Styles */
@@ -1813,6 +1934,15 @@ body:has(.mobile-menu-overlay.active) #site-header {
     box-shadow: 0 8px 20px rgba(255, 165, 0, 0.3);
 }
 
+/* Responsive Merch Section - Laptops */
+@media screen and (max-width: 1366px) and (min-width: 1025px) {
+    .merch-label {
+        font-size: 3.5rem;
+        margin-left: 60px;
+        margin-top: 40px;
+    }
+}
+
 /* Responsive Merch Section */
 @media screen and (max-width: 1024px) {
     .merch-content {
@@ -1820,9 +1950,9 @@ body:has(.mobile-menu-overlay.active) #site-header {
     }
     
     .merch-label {
-        font-size: 2rem;
-        margin-left: 50px;
-        margin-top: 40px;
+        font-size: 1.5rem;
+        margin-left: 30px;
+        margin-top: 30px;
     }
     
     .merch-item {
@@ -2369,6 +2499,43 @@ body:has(.mobile-menu-overlay.active) #site-header {
     color: #000;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 165, 0, 0.3);
+}
+
+/* Responsive styles for tickets section - Laptops */
+@media screen and (max-width: 1366px) and (min-width: 769px) {
+    .tickets-grid {
+        height: calc(70vh - 40px);
+        max-height: 450px;
+    }
+
+    .ticket-corner {
+        padding-top: 10px;
+    }
+
+    .ticket-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .ticket-content .date {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+    }
+
+    .ticket-content .venue {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+
+    .ticket-btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+
+    .more-venues-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
 }
 
 /* Responsive styles for tickets section */

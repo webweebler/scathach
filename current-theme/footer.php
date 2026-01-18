@@ -29,9 +29,6 @@
             </div>
             
             <div class="footer-right">
-                <div class="footer-contact">
-                    <a href="<?php echo home_url('/contact/'); ?>">Contact</a>
-                </div>
             </div>
         </div>
     </div>

@@ -1071,7 +1071,7 @@ body:has(.mobile-menu-overlay.active) #site-header {
 }
 
 .blog-title {
-    color: #fff;
+    color: #00ff00;
     font-size: 1.4rem;
     font-weight: 300;
     margin: 0 0 0.625rem 0; /* 10px -> rem */
@@ -1141,6 +1141,60 @@ body:has(.mobile-menu-overlay.active) #site-header {
     color: #000;
     transform: translateY(-0.125rem); /* -2px -> rem */
     box-shadow: 0 0.5rem 1.25rem rgba(255, 165, 0, 0.3); /* 8px 20px -> rem */
+}
+
+/* Blog Section Laptop Styles */
+@media screen and (max-width: 1366px) and (min-width: 769px) {
+    .blog-wrapper {
+        max-width: 60rem; /* Reduced from 75rem */
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); /* Reduced from 21.875rem */
+        gap: 1.5rem; /* Reduced from 2.5rem */
+    }
+
+    .blog-post {
+        height: 22rem; /* Reduced from 29.375rem */
+    }
+
+    .blog-image {
+        height: 8.5rem; /* Reduced from 11.25rem */
+    }
+
+    .blog-content {
+        padding: 1.2rem; /* Reduced from 1.5625rem */
+        height: 13.5rem; /* Reduced from 18.125rem */
+    }
+
+    .blog-title {
+        color: #00ff00;
+        font-size: 1.1rem; /* Reduced from 1.4rem */
+        margin-bottom: 0.5rem; /* Reduced from 0.625rem */
+    }
+
+    .blog-date {
+        font-size: 0.75rem; /* Reduced from 0.9rem */
+        margin-bottom: 0.7rem; /* Reduced from 0.9375rem */
+    }
+
+    .blog-excerpt {
+        font-size: 0.85rem; /* Reduced from 1.85rem */
+        line-height: 1.5;
+        margin-bottom: 1rem; /* Reduced from 1.25rem */
+        -webkit-line-clamp: 3; /* Reduced from 4 lines */
+        line-clamp: 3;
+    }
+
+    .read-more {
+        font-size: 0.75rem; /* Reduced from 0.9rem */
+    }
+
+    .blog-more-wrapper {
+        margin-top: 2rem; /* Reduced from 2.5rem */
+    }
+
+    .blog-more-btn {
+        padding: 0.75rem 2rem; /* Reduced from 0.9375rem 2.5rem */
+        font-size: 0.95rem; /* Reduced from 1.1rem */
+    }
 }
 
 /* Blog Section Mobile Styles */
