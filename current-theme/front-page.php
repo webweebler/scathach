@@ -4,12 +4,6 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php wp_title('|', true, 'right'); bloginfo('name'); ?></title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Diplomata+SC&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/index.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mobile-menu-uniform.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/lightbox.css">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -302,9 +296,9 @@
                     <a href="<?php echo home_url('/venues/#show-' . get_the_ID()); ?>" class="ticket-link">
                         <div class="ticket-corner <?php echo esc_attr($position); ?>">
                             <div class="ticket-content">
-                                <h3><?php echo esc_html($location); ?></h3>
+                                <h3><?php echo esc_html($venue); ?></h3>
                                 <p class="date"><?php echo esc_html(date('M j, Y', strtotime($date))); ?></p>
-                                <p class="venue"><?php echo esc_html($venue); ?></p>
+                                <p class="venue"><?php echo esc_html($location); ?></p>
                                 <span class="ticket-btn">Buy Tickets</span>
                             </div>
                         </div>

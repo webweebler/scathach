@@ -6,8 +6,6 @@
 
 get_header(); ?>
 
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/venues.css">
-
     <!-- Main Content -->
     <main class="main-content">
         <!-- Venues & Tours Section -->

@@ -88,7 +88,7 @@ body {
 }
 
 .logo-image {
-    width: 45px;
+    width: 45px !important;
     height: auto;
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
     transition: all 0.3s ease;
@@ -96,7 +96,7 @@ body {
 
 .logo-text {
     font-family: 'Diplomata SC', serif;
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     color: #ffa500;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);

@@ -393,11 +393,11 @@ body {
     }
     
     .logo-image {
-        width: 3rem; /* 48px - even smaller on mobile */
+        width: 35px;
     }
     
     .logo-text {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     
     .corner-link .menu-link {

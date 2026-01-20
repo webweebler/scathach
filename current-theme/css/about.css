@@ -88,7 +88,7 @@ body {
 }
 
 .logo-image {
-    width: 45px;
+    width: 45px !important;
     height: auto;
     filter: drop-shadow(0 0 6px rgba(255, 165, 0, 0.3));
     transition: all 0.3s ease;
@@ -96,7 +96,7 @@ body {
 
 .logo-text {
     font-family: 'Diplomata SC', serif;
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     color: #ffa500;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -578,14 +578,6 @@ body {
         letter-spacing: 1px;
     }
 
-    .logo-text {
-        font-size: 1.3rem;
-    }
-
-    .logo-image {
-        width: 40px;
-    }
-
     .header-social {
         gap: 15px;
     }
@@ -805,10 +797,6 @@ body {
 @media (max-width: 480px) {
     html {
         font-size: 13px;
-    }
-
-    .logo-text {
-        font-size: 1rem;
     }
 
     .section-content {
