@@ -28,6 +28,8 @@ function scathach_theme_enqueue() {
         wp_enqueue_style('scathach-about-css', get_template_directory_uri() . '/css/about.css', array('scathach-mobile-css'), '1.0');
     } elseif (is_page('contact')) {
         wp_enqueue_style('scathach-contact-css', get_template_directory_uri() . '/css/contact.css', array('scathach-mobile-css'), '1.0');
+    } elseif (is_page('terms')) {
+        wp_enqueue_style('scathach-terms-css', get_template_directory_uri() . '/css/terms.css', array('scathach-mobile-css'), '1.0');
     } elseif (is_home() || is_category() || is_single()) {
         wp_enqueue_style('scathach-blog-css', get_template_directory_uri() . '/css/blog.css', array('scathach-mobile-css'), '1.0');
     }
@@ -50,6 +52,8 @@ function scathach_preload_css() {
         echo '<link rel="preload" href="' . get_template_directory_uri() . '/css/about.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
     } elseif (is_page('contact')) {
         echo '<link rel="preload" href="' . get_template_directory_uri() . '/css/contact.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
+    } elseif (is_page('terms')) {
+        echo '<link rel="preload" href="' . get_template_directory_uri() . '/css/terms.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
     } elseif (is_home() || is_category() || is_single()) {
         echo '<link rel="preload" href="' . get_template_directory_uri() . '/css/blog.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
     }
@@ -399,6 +403,124 @@ function scathach_customizer_settings($wp_customize) {
         'transport' => 'refresh'
     ));
     
+    // Add section for Terms & Conditions page
+    $wp_customize->add_section('scathach_terms_conditions', array(
+        'title' => 'Terms & Conditions',
+        'priority' => 35,
+        'description' => 'Customize key sections of the Terms & Conditions page'
+    ));
+    
+    // Terms & Conditions Settings
+    $wp_customize->add_setting('terms_intro_text', array(
+        'default' => 'Welcome to Scáthach\'s official website. These Terms and Conditions ("Terms") govern your use of our website and services. By accessing or using our website, you agree to be bound by these Terms.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    // Section headings
+    $wp_customize->add_setting('terms_section_1_title', array(
+        'default' => '1. Acceptance of Terms',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_2_title', array(
+        'default' => '2. Use License',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_3_title', array(
+        'default' => '3. Music and Content',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_4_title', array(
+        'default' => '4. User Conduct',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_5_title', array(
+        'default' => '5. Privacy Policy',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_6_title', array(
+        'default' => '6. Merchandise and Sales',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_7_title', array(
+        'default' => '7. Live Events and Tickets',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_8_title', array(
+        'default' => '8. Disclaimer',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_9_title', array(
+        'default' => '9. Limitations',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_10_title', array(
+        'default' => '10. Changes to Terms',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_section_11_title', array(
+        'default' => '11. Governing Law',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_contact_section_title', array(
+        'default' => 'Contact Information',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    // Content sections
+    $wp_customize->add_setting('terms_music_content', array(
+        'default' => 'All music, videos, images, and other content on this website are the intellectual property of Scáthach and are protected by copyright laws. You may stream or download content only for personal, non-commercial use. Redistribution, commercial use, or unauthorized sharing of our content is strictly prohibited.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_merchandise', array(
+        'default' => 'All merchandise sales are final unless the item received is defective or damaged. We reserve the right to limit quantities and refuse service. Prices are subject to change without notice.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_events', array(
+        'default' => 'Ticket sales for live events are subject to venue-specific terms and conditions. Refunds may be available in accordance with venue policies. We are not responsible for cancelled or rescheduled events due to circumstances beyond our control.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_governing_law', array(
+        'default' => 'These Terms and Conditions are governed by and construed in accordance with the laws of Ireland and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('terms_contact_text', array(
+        'default' => 'If you have any questions about these Terms and Conditions, please contact us through our contact page.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
     // Add control for background image
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'front_page_background_image', array(
         'label' => 'Front Page Background Image',
@@ -721,6 +843,145 @@ function scathach_customizer_settings($wp_customize) {
         'description' => 'Fifth subject option - leave blank to hide',
         'section' => 'scathach_contact_form',
         'type' => 'text'
+    ));
+    
+    // Terms & Conditions Controls
+    $wp_customize->add_control('terms_intro_text', array(
+        'label' => 'Introduction Text',
+        'description' => 'Main introduction paragraph for the terms page',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
+    
+    // Section 1: Acceptance of Terms
+    $wp_customize->add_control('terms_section_1_title', array(
+        'label' => 'Section 1 - Heading',
+        'description' => 'Title for Acceptance of Terms section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    // Section 2: Use License
+    $wp_customize->add_control('terms_section_2_title', array(
+        'label' => 'Section 2 - Heading',
+        'description' => 'Title for Use License section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    // Section 3: Music and Content
+    $wp_customize->add_control('terms_section_3_title', array(
+        'label' => 'Section 3 - Heading',
+        'description' => 'Title for Music and Content section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    $wp_customize->add_control('terms_music_content', array(
+        'label' => 'Section 3 - Content',
+        'description' => 'Text for the music and content copyright section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
+    
+    // Section 4: User Conduct
+    $wp_customize->add_control('terms_section_4_title', array(
+        'label' => 'Section 4 - Heading',
+        'description' => 'Title for User Conduct section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    // Section 5: Privacy Policy
+    $wp_customize->add_control('terms_section_5_title', array(
+        'label' => 'Section 5 - Heading',
+        'description' => 'Title for Privacy Policy section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    // Section 6: Merchandise and Sales
+    $wp_customize->add_control('terms_section_6_title', array(
+        'label' => 'Section 6 - Heading',
+        'description' => 'Title for Merchandise and Sales section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    $wp_customize->add_control('terms_merchandise', array(
+        'label' => 'Section 6 - Content',
+        'description' => 'Text for the merchandise sales policy section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
+    
+    // Section 7: Live Events and Tickets
+    $wp_customize->add_control('terms_section_7_title', array(
+        'label' => 'Section 7 - Heading',
+        'description' => 'Title for Live Events and Tickets section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    $wp_customize->add_control('terms_events', array(
+        'label' => 'Section 7 - Content',
+        'description' => 'Text for the live events and ticket policy section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
+    
+    // Section 8: Disclaimer
+    $wp_customize->add_control('terms_section_8_title', array(
+        'label' => 'Section 8 - Heading',
+        'description' => 'Title for Disclaimer section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    // Section 9: Limitations
+    $wp_customize->add_control('terms_section_9_title', array(
+        'label' => 'Section 9 - Heading',
+        'description' => 'Title for Limitations section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    // Section 10: Changes to Terms
+    $wp_customize->add_control('terms_section_10_title', array(
+        'label' => 'Section 10 - Heading',
+        'description' => 'Title for Changes to Terms section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    // Section 11: Governing Law
+    $wp_customize->add_control('terms_section_11_title', array(
+        'label' => 'Section 11 - Heading',
+        'description' => 'Title for Governing Law section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    $wp_customize->add_control('terms_governing_law', array(
+        'label' => 'Section 11 - Content',
+        'description' => 'Text for the governing law and jurisdiction section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
+    
+    // Contact Section
+    $wp_customize->add_control('terms_contact_section_title', array(
+        'label' => 'Contact Section - Heading',
+        'description' => 'Title for Contact Information section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'text'
+    ));
+    
+    $wp_customize->add_control('terms_contact_text', array(
+        'label' => 'Contact Section - Content',
+        'description' => 'Text for the contact information section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
     ));
     
     // Add setting for hiding merch section

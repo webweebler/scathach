@@ -38,6 +38,7 @@
                 <a href="<?php echo home_url('/venues/'); ?>" class="nav-link <?php echo (is_page('venues') ? 'active' : ''); ?>">Venues</a>
                 <a href="<?php echo home_url('/about/'); ?>" class="nav-link <?php echo (is_page('about') ? 'active' : ''); ?>">About</a>
                 <a href="<?php echo home_url('/contact/'); ?>" class="nav-link <?php echo (is_page('contact') ? 'active' : ''); ?>">Contact</a>
+                <a href="<?php echo home_url('/terms/'); ?>" class="nav-link <?php echo (is_page('terms') ? 'active' : ''); ?>">Terms</a>
             </nav>
 
             <!-- Mobile Menu Overlay -->
@@ -73,6 +74,9 @@
                             </a>
                         </div>
                     </div>
+                </div>
+                <div class="mobile-menu-bottom">
+                    <a href="<?php echo home_url('/terms/'); ?>" class="mobile-terms-bottom-link">Terms & Conditions</a>
                 </div>
             </div>
             

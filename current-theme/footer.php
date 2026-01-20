@@ -28,7 +28,8 @@
                     <a href="<?php echo home_url('/about/'); ?>">About</a> | 
                     <a href="<?php echo home_url('/blog/'); ?>">Blog</a> | 
                     <a href="<?php echo home_url('/contact/'); ?>">Contact</a> | 
-                    <a href="<?php echo home_url('/venues/'); ?>">Venues</a>
+                    <a href="<?php echo home_url('/venues/'); ?>">Venues</a> | 
+                    <a href="<?php echo home_url('/terms/'); ?>">Terms</a>
                 </div>
                 <p class="footer-copyright">&copy; <?php echo date('Y'); ?> Scáthach. All rights reserved.</p>
             </div>
