@@ -81,3 +81,41 @@ add_filter('show_admin_bar', '__return_false');
 
 // Include custom post types
 require_once get_template_directory() . '/custom-post-types.php';
+
+// WordPress Customizer - Front Page Background
+function scathach_customizer_settings($wp_customize) {
+    // Add section for front page settings
+    $wp_customize->add_section('scathach_front_page', array(
+        'title' => 'Front Page Settings',
+        'priority' => 30,
+        'description' => 'Customize the front page appearance'
+    ));
+    
+    // Add setting for background image
+    $wp_customize->add_setting('front_page_background_image', array(
+        'default' => get_template_directory_uri() . '/images/scBackground2.jpg',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    // Add control for background image
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'front_page_background_image', array(
+        'label' => 'Front Page Background Image',
+        'description' => 'Choose a background image for the front page',
+        'section' => 'scathach_front_page',
+        'settings' => 'front_page_background_image'
+    )));
+}
+add_action('customize_register', 'scathach_customizer_settings');
+
+// Add custom CSS for dynamic background
+function scathach_custom_css() {
+    $background_image = get_theme_mod('front_page_background_image', get_template_directory_uri() . '/images/scBackground2.jpg');
+    
+    if (is_front_page()) {
+        echo '<style type="text/css">';
+        echo '#background { background-image: url(' . esc_url($background_image) . '); }';
+        echo '</style>';
+    }
+}
+add_action('wp_head', 'scathach_custom_css');
