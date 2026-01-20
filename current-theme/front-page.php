@@ -79,18 +79,28 @@
                     <a href="<?php echo home_url('/contact/'); ?>" class="mobile-menu-link" onclick="closeMobileMenu()">Contact</a>
                     
                     <div class="mobile-menu-social">
-                        <a href="https://www.facebook.com/profile.php?id=61572786083629" class="mobile-social-icon" target="_blank">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/fbIcon.svg" alt="Facebook">
-                        </a>
-                        <a href="https://www.instagram.com/scathach_official/" class="mobile-social-icon" target="_blank">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/instaIcon.svg" alt="Instagram">
-                        </a>
-                        <a href="https://youtube.com/scathach" class="mobile-social-icon" target="_blank">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube">
-                        </a>
-                        <a href="https://open.spotify.com/artist/scathach" class="mobile-social-icon" target="_blank">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
-                        </a>
+                        <div class="mobile-social-row mobile-social-top">
+                            <a href="https://www.facebook.com/profile.php?id=61572786083629" class="mobile-social-icon" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/fbIcon.svg" alt="Facebook">
+                            </a>
+                            <a href="https://www.instagram.com/scathach_official/" class="mobile-social-icon" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/instaIcon.svg" alt="Instagram">
+                            </a>
+                            <a href="https://youtube.com/scathach" class="mobile-social-icon" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube">
+                            </a>
+                        </div>
+                        <div class="mobile-social-row mobile-social-bottom">
+                            <a href="https://open.spotify.com/artist/scathach" class="mobile-social-icon" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
+                            </a>
+                            <a href="https://twitter.com/scathach" class="mobile-social-icon" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/twitterIcon.svg" alt="Twitter">
+                            </a>
+                            <a href="https://tiktok.com/@scathach" class="mobile-social-icon" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -154,6 +164,7 @@
             </div>
         </section>  
 
+        <?php if (!get_theme_mod('hide_merch_section', false)) : ?>
         <section id="merch">
            <div class="merch-wrapper">
               <div class="merch-content">
@@ -162,75 +173,63 @@
                       <div class="merch-item merch-button-item">
                           <a href="#" class="merch-shop-btn">Shop Merch</a>
                       </div>
+                      
+                      <?php
+                      // Query merch items from WordPress admin
+                      $merch_args = array(
+                          'post_type' => 'merch',
+                          'post_status' => 'publish',
+                          'posts_per_page' => -1, // Get all merch items
+                          'orderby' => 'date',
+                          'order' => 'DESC' // Show newest first
+                      );
+                      $merch_query = new WP_Query($merch_args);
+                      
+                      if ($merch_query->have_posts()) :
+                          while ($merch_query->have_posts()) : $merch_query->the_post();
+                              $price = get_post_meta(get_the_ID(), '_merch_price', true);
+                              $link = get_post_meta(get_the_ID(), '_merch_link', true);
+                              $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+                              
+                              // Fallback to default image if no thumbnail
+                              if (!$thumbnail) {
+                                  $thumbnail = get_template_directory_uri() . '/images/default-merch.jpg';
+                              }
+                      ?>
                       <div class="merch-item">
                           <div class="merch-image">
-                              <img src="<?php echo get_template_directory_uri(); ?>/images/merchImg1.jpg" alt="Band T-Shirt">
+                              <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
                           </div>
                           <div class="merch-info">
-                              <h3 class="merch-name">Scáthach T-Shirt</h3>
-                              <p class="merch-price">€23.00</p>
-                              <button class="merch-btn">View</button>
+                              <h3 class="merch-name"><?php the_title(); ?></h3>
+                              <?php if ($price) : ?>
+                                  <p class="merch-price"><?php echo esc_html($price); ?></p>
+                              <?php endif; ?>
+                              <?php if ($link) : ?>
+                                  <a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener" class="merch-btn">Buy Now</a>
+                              <?php else : ?>
+                                  <button class="merch-btn">View</button>
+                              <?php endif; ?>
                           </div>
                       </div>
-
+                      <?php 
+                          endwhile;
+                          wp_reset_postdata();
+                      else : 
+                      ?>
+                      <!-- No merch items found - show simple message -->
                       <div class="merch-item">
-                          <div class="merch-image">
-                              <img src="<?php echo get_template_directory_uri(); ?>/images/merchImg2.webp" alt="Band Hoodie">
-                          </div>
-                          <div class="merch-info">
-                              <h3 class="merch-name">Celtic Hoodie</h3>
-                              <p class="merch-price">€42.00</p>
-                              <button class="merch-btn">View</button>
+                          <div class="merch-info" style="text-align: center; width: 100%;">
+                              <h3 class="merch-name">No merch items yet</h3>
+                              <p class="merch-price">Add items in WordPress Admin → Merch</p>
                           </div>
                       </div>
-
-                      <div class="merch-item">
-                          <div class="merch-image">
-                              <img src="<?php echo get_template_directory_uri(); ?>/images/merchimg3.webp" alt="Vinyl Record">
-                          </div>
-                          <div class="merch-info">
-                              <h3 class="merch-name">Latest Album Vinyl</h3>
-                              <p class="merch-price">€32.00</p>
-                              <button class="merch-btn">View</button>
-                          </div>
-                      </div>
-
-                      <div class="merch-item">
-                          <div class="merch-image">
-                              <img src="<?php echo get_template_directory_uri(); ?>/images/merchimg4.png" alt="Band Poster">
-                          </div>
-                          <div class="merch-info">
-                              <h3 class="merch-name">Concert Poster</h3>
-                              <p class="merch-price">€14.00</p>
-                              <button class="merch-btn">View</button>
-                          </div>
-                      </div>
-
-                      <div class="merch-item">
-                          <div class="merch-image">
-                              <img src="<?php echo get_template_directory_uri(); ?>/images/scathachPic1.jpg" alt="Band Mug">
-                          </div>
-                          <div class="merch-info">
-                              <h3 class="merch-name">Warrior Mug</h3>
-                              <p class="merch-price">€17.00</p>
-                              <button class="merch-btn">View</button>
-                          </div>
-                      </div>
-
-                      <div class="merch-item">
-                          <div class="merch-image">
-                              <img src="<?php echo get_template_directory_uri(); ?>/images/scathachGalleryPic2.jpg" alt="Band Cap">
-                          </div>
-                          <div class="merch-info">
-                              <h3 class="merch-name">Celtic Cap</h3>
-                              <p class="merch-price">€20.00</p>
-                              <button class="merch-btn">View</button>
-                          </div>
-                      </div>
+                      <?php endif; ?>
                   </div>
               </div>
            </div>
         </section>
+        <?php endif; ?>
 
         <section id="tickets">
            <div class="tickets-video-background">
@@ -378,6 +377,7 @@
             </div>
         </section>  
 
+        <?php if (!get_theme_mod('hide_accordion_section', false)) : ?>
         <section id="accordion">
            <div class="accordion-label">ALBUMS</div>
             <div class="horizontal-accordion">
@@ -450,6 +450,7 @@
                 <?php endif; ?>
             </div>
         </section>
+        <?php endif; ?>
 
          <section id="music">
            <div class="music-label">MUSIC</div>
@@ -496,8 +497,7 @@
                 <div class="footer-links">
                     <a href="<?php echo home_url('/about/'); ?>">About</a> | 
                     <a href="<?php echo home_url('/blog/'); ?>">Blog</a> | 
-                    <a href="#music">Music</a> | 
-                    <a href="#merch">Merch</a> | 
+                    <a href="<?php echo home_url('/contact/'); ?>">Contact</a> | 
                     <a href="<?php echo home_url('/venues/'); ?>">Venues</a>
                 </div>
                 <p class="footer-copyright">&copy; <?php echo date('Y'); ?> Scáthach. All rights reserved.</p>

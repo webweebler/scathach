@@ -27,8 +27,7 @@
                 <div class="footer-links">
                     <a href="<?php echo home_url('/about/'); ?>">About</a> | 
                     <a href="<?php echo home_url('/blog/'); ?>">Blog</a> | 
-                    <a href="#music">Music</a> | 
-                    <a href="#merch">Merch</a> | 
+                    <a href="<?php echo home_url('/contact/'); ?>">Contact</a> | 
                     <a href="<?php echo home_url('/venues/'); ?>">Venues</a>
                 </div>
                 <p class="footer-copyright">&copy; <?php echo date('Y'); ?> Scáthach. All rights reserved.</p>

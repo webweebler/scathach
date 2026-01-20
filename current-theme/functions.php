@@ -105,6 +105,36 @@ function scathach_customizer_settings($wp_customize) {
         'section' => 'scathach_front_page',
         'settings' => 'front_page_background_image'
     )));
+    
+    // Add setting for hiding merch section
+    $wp_customize->add_setting('hide_merch_section', array(
+        'default' => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+        'transport' => 'refresh'
+    ));
+    
+    // Add control for hiding merch section
+    $wp_customize->add_control('hide_merch_section', array(
+        'label' => 'Hide Merch Section',
+        'description' => 'Check to hide the merch section from the front page',
+        'section' => 'scathach_front_page',
+        'type' => 'checkbox'
+    ));
+    
+    // Add setting for hiding accordion section
+    $wp_customize->add_setting('hide_accordion_section', array(
+        'default' => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+        'transport' => 'refresh'
+    ));
+    
+    // Add control for hiding accordion section
+    $wp_customize->add_control('hide_accordion_section', array(
+        'label' => 'Hide Albums Section',
+        'description' => 'Check to hide the albums accordion section from the front page',
+        'section' => 'scathach_front_page',
+        'type' => 'checkbox'
+    ));
 }
 add_action('customize_register', 'scathach_customizer_settings');
 

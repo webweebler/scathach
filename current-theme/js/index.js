@@ -346,8 +346,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the main gallery
     const gallery = new HorizontalGallery('#gallery');
     
-    // Initialize merch horizontal scrolling
-    const merch = new HorizontalMerch('#merch');
+    // Initialize merch horizontal scrolling - only if merch section exists
+    const merchSection = document.querySelector('#merch');
+    if (merchSection) {
+        const merch = new HorizontalMerch('#merch');
+    }
     
     // Initialize section flicking ONLY on desktop/tablet (not on mobile)
     // Check if screen width is greater than 480px (mobile breakpoint)
@@ -386,9 +389,7 @@ class SectionFlicker {
     constructor() {
         this.currentSection = -1; // Start at background (before first section)
         this.isAnimating = false;
-        this.sections = document.querySelectorAll('.sections section');
-        // Treat music section + footer as one combined section
-        this.totalSections = this.sections.length - 1;
+        this.updateVisibleSections(); // Dynamic section detection
         this.pendingDirection = null; // Queue for pending scroll actions
         
         // Store instance globally for tracking
@@ -396,11 +397,23 @@ class SectionFlicker {
         
         this.init();
     }
+
+    // Dynamically detect visible sections (not hidden by PHP conditionals)
+    updateVisibleSections() {
+        this.sections = document.querySelectorAll('.sections section');
+        // Treat music section + footer as one combined section
+        this.totalSections = this.sections.length - 1;
+    }
     
     init() {
         this.setupWheelListener();
         this.setupScrollListener(); // Need this to detect music/footer area
         this.goToSection(this.currentSection); // Start at background
+    }
+
+    // Method to recalculate sections if DOM changes
+    refreshSections() {
+        this.updateVisibleSections();
     }
     
     setupWheelListener() {
@@ -423,6 +436,7 @@ class SectionFlicker {
             }
             
             // Skip if wheel is over merch content and merch horizontal scrolling is enabled
+            // Only check if merch section exists (not hidden)
             const merchScrollContainer = document.querySelector('.merch-scroll-container');
             if (merchScrollContainer) {
                 const rect = merchScrollContainer.getBoundingClientRect();
@@ -470,6 +484,9 @@ class SectionFlicker {
     }
     
     syncCurrentSection() {
+        // Refresh section count in case sections were hidden/shown
+        this.updateVisibleSections();
+        
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const viewportHeight = window.innerHeight;
         
@@ -531,6 +548,9 @@ class SectionFlicker {
     }
     
     goToSection(sectionIndex) {
+        // Ensure we have current section information
+        this.updateVisibleSections();
+        
         let scrollTarget;
         
         if (sectionIndex < 0) {

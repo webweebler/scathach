@@ -239,24 +239,6 @@ body {
     overflow-y: auto;
 }
 
-.mobile-menu-link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15rem;
-    font-weight: 200;
-    transition: all 0.3s ease;
-    font-family: 'Diplomata SC', serif;
-    padding: 10px;
-}
-
-.mobile-menu-link:hover,
-.mobile-menu-link:active {
-    color: #ffa500;
-    transform: scale(1.05);
-}
-
 @media screen and (max-width: 480px) {
     .mobile-menu-link {
         font-size: 1.5rem;
