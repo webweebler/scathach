@@ -20,11 +20,22 @@ get_header(); ?>
                         <div class="contact-main">
                             <div class="contact-form-section">
                                 <div class="contact-intro">
-                                    <p>Ready to connect with Scáthach? Whether you're looking to book us for your venue, 
-                                    have press inquiries, or just want to say hello, we'd love to hear from you.</p>
+                                    <p>Ready to connect with Scáthach? Whether you have questions, want to collaborate, 
+                                    or just want to say hello, we'd love to hear from you.</p>
                                 </div>
                                 
                                 <form class="contact-form" id="contactForm">
+                                    <?php
+                                    // Get customizable contact form settings
+                                    $form_email = get_theme_mod('contact_form_email', 'info@scathach.com');
+                                    $subject_1 = get_theme_mod('contact_subject_1', 'General Inquiry');
+                                    $subject_2 = get_theme_mod('contact_subject_2', 'Collaboration');
+                                    $subject_3 = get_theme_mod('contact_subject_3', 'Fan Message');
+                                    $subject_4 = get_theme_mod('contact_subject_4', 'Press Inquiry');
+                                    $subject_5 = get_theme_mod('contact_subject_5', '');
+                                    ?>
+                                    <input type="hidden" name="form_recipient" value="<?php echo esc_attr($form_email); ?>">
+                                    
                                     <div class="form-group">
                                         <label for="name">Name *</label>
                                         <input type="text" id="name" name="name" required>
@@ -39,10 +50,11 @@ get_header(); ?>
                                         <label for="subject">Subject *</label>
                                         <select id="subject" name="subject" required>
                                             <option value="">Select a subject...</option>
-                                            <option value="booking">Booking Inquiry</option>
-                                            <option value="collaboration">Collaboration</option>
-                                            <option value="fan">Fan Message</option>
-                                            <option value="general">General Inquiry</option>
+                                            <?php if ($subject_1) : ?><option value="<?php echo esc_attr(strtolower(str_replace(' ', '_', $subject_1))); ?>"><?php echo esc_html($subject_1); ?></option><?php endif; ?>
+                                            <?php if ($subject_2) : ?><option value="<?php echo esc_attr(strtolower(str_replace(' ', '_', $subject_2))); ?>"><?php echo esc_html($subject_2); ?></option><?php endif; ?>
+                                            <?php if ($subject_3) : ?><option value="<?php echo esc_attr(strtolower(str_replace(' ', '_', $subject_3))); ?>"><?php echo esc_html($subject_3); ?></option><?php endif; ?>
+                                            <?php if ($subject_4) : ?><option value="<?php echo esc_attr(strtolower(str_replace(' ', '_', $subject_4))); ?>"><?php echo esc_html($subject_4); ?></option><?php endif; ?>
+                                            <?php if ($subject_5) : ?><option value="<?php echo esc_attr(strtolower(str_replace(' ', '_', $subject_5))); ?>"><?php echo esc_html($subject_5); ?></option><?php endif; ?>
                                         </select>
                                     </div>
                                     
@@ -57,21 +69,13 @@ get_header(); ?>
                             
                             <div class="contact-info-section">
                                 <div class="contact-info-card">
-                                    <h3>Direct Contact</h3>
+                                    <h3>Get in Touch</h3>
                                     <div class="contact-details">
                                         <div class="contact-item">
                                             <span class="contact-icon">📧</span>
                                             <div>
-                                                <strong>General Inquiries</strong>
-                                                <p>info@scathach.com</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="contact-item">
-                                            <span class="contact-icon">🎵</span>
-                                            <div>
-                                                <strong>Booking & Shows</strong>
-                                                <p>booking@scathach.com</p>
+                                                <strong>General Enquiries</strong>
+                                                <p>We'd love to hear from you! Send us a message using the form or reach out directly for any questions, collaborations, or just to say hello.</p>
                                             </div>
                                         </div>
                                     </div>

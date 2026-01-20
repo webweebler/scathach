@@ -106,17 +106,36 @@
             </div>
             
             <div id="text-boxes-container">
-                <a href="<?php echo home_url('/blog/'); ?>" class="text-box">
-                    <h3>Latest News</h3>
-                    <p>Stay updated with our latest releases and tour announcements.</p>
+                <?php
+                // Get customizable text box settings
+                $textbox_1_title = get_theme_mod('textbox_1_title', 'Latest News');
+                $textbox_1_text = get_theme_mod('textbox_1_text', 'Stay updated with our latest releases and tour announcements.');
+                $textbox_1_link = get_theme_mod('textbox_1_link', '/blog/');
+                
+                $textbox_2_title = get_theme_mod('textbox_2_title', 'Celtic Heritage');
+                $textbox_2_text = get_theme_mod('textbox_2_text', 'Exploring ancient legends through modern musical expression.');
+                $textbox_2_link = get_theme_mod('textbox_2_link', '/about/');
+                
+                $textbox_3_title = get_theme_mod('textbox_3_title', 'Join Our Journey');
+                $textbox_3_text = get_theme_mod('textbox_3_text', 'Follow Scáthach as we forge new paths in music and storytelling.');
+                $textbox_3_link = get_theme_mod('textbox_3_link', '/contact/');
+                
+                // Convert relative URLs to absolute
+                $textbox_1_url = (strpos($textbox_1_link, 'http') === 0) ? $textbox_1_link : home_url($textbox_1_link);
+                $textbox_2_url = (strpos($textbox_2_link, 'http') === 0) ? $textbox_2_link : home_url($textbox_2_link);
+                $textbox_3_url = (strpos($textbox_3_link, 'http') === 0) ? $textbox_3_link : home_url($textbox_3_link);
+                ?>
+                <a href="<?php echo esc_url($textbox_1_url); ?>" class="text-box">
+                    <h3><?php echo esc_html($textbox_1_title); ?></h3>
+                    <p><?php echo esc_html($textbox_1_text); ?></p>
                 </a>
-                <a href="<?php echo home_url('/about/'); ?>" class="text-box">
-                    <h3>Celtic Heritage</h3>
-                    <p>Exploring ancient legends through modern musical expression.</p>
+                <a href="<?php echo esc_url($textbox_2_url); ?>" class="text-box">
+                    <h3><?php echo esc_html($textbox_2_title); ?></h3>
+                    <p><?php echo esc_html($textbox_2_text); ?></p>
                 </a>
-                <a href="<?php echo home_url('/contact/'); ?>" class="text-box text-box-large">
-                    <h3>Join Our Journey</h3>
-                    <p>Follow Scáthach as we forge new paths in music and storytelling.</p>
+                <a href="<?php echo esc_url($textbox_3_url); ?>" class="text-box text-box-large">
+                    <h3><?php echo esc_html($textbox_3_title); ?></h3>
+                    <p><?php echo esc_html($textbox_3_text); ?></p>
                 </a>
             </div>
          </section>

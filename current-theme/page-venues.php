@@ -304,27 +304,42 @@ get_header(); ?>
         <!-- Venue Partnerships Section -->
         <section class="venue-partnerships-section">
             <div class="partnerships-container">
-                <h2 class="section-title">Venue Partnerships</h2>
+                <?php
+                // Get customizable partnerships content
+                $partnerships_title = get_theme_mod('partnerships_title', 'Venue Partnerships');
+                $partnerships_description = get_theme_mod('partnerships_description', 'We\'re always looking to connect with venues that share our passion for Celtic culture and live music. Whether you\'re a historic theatre, festival organizer, or intimate music venue, we\'d love to bring our unique sound to your space.');
+                $partnerships_cta_text = get_theme_mod('partnerships_cta_text', 'Book Us for Your Venue');
+                $partnerships_cta_link = get_theme_mod('partnerships_cta_link', '/contact/');
+                
+                $benefit_1_title = get_theme_mod('benefit_1_title', 'Professional Production');
+                $benefit_1_text = get_theme_mod('benefit_1_text', 'Complete sound and lighting technical requirements provided');
+                $benefit_2_title = get_theme_mod('benefit_2_title', 'Promotional Support');
+                $benefit_2_text = get_theme_mod('benefit_2_text', 'Full marketing collaboration and social media promotion');
+                $benefit_3_title = get_theme_mod('benefit_3_title', 'Flexible Programming');
+                $benefit_3_text = get_theme_mod('benefit_3_text', 'Customizable setlists to fit your venue\'s unique atmosphere');
+                
+                // Convert relative URLs to absolute
+                $cta_url = (strpos($partnerships_cta_link, 'http') === 0) ? $partnerships_cta_link : home_url($partnerships_cta_link);
+                ?>
+                <h2 class="section-title"><?php echo esc_html($partnerships_title); ?></h2>
                 <p class="partnerships-description">
-                    We're always looking to connect with venues that share our passion for Celtic culture and live music. 
-                    Whether you're a historic theatre, festival organizer, or intimate music venue, we'd love to bring 
-                    our unique sound to your space.
+                    <?php echo esc_html($partnerships_description); ?>
                 </p>
                 <div class="partnership-benefits">
                     <div class="benefit-item">
-                        <h3>Professional Production</h3>
-                        <p>Complete sound and lighting technical requirements provided</p>
+                        <h3><?php echo esc_html($benefit_1_title); ?></h3>
+                        <p><?php echo esc_html($benefit_1_text); ?></p>
                     </div>
                     <div class="benefit-item">
-                        <h3>Promotional Support</h3>
-                        <p>Full marketing collaboration and social media promotion</p>
+                        <h3><?php echo esc_html($benefit_2_title); ?></h3>
+                        <p><?php echo esc_html($benefit_2_text); ?></p>
                     </div>
                     <div class="benefit-item">
-                        <h3>Flexible Programming</h3>
-                        <p>Customizable setlists to fit your venue's unique atmosphere</p>
+                        <h3><?php echo esc_html($benefit_3_title); ?></h3>
+                        <p><?php echo esc_html($benefit_3_text); ?></p>
                     </div>
                 </div>
-                <a href="<?php echo home_url('/contact'); ?>" class="partnership-cta">Book Us for Your Venue</a>
+                <a href="<?php echo esc_url($cta_url); ?>" class="partnership-cta"><?php echo esc_html($partnerships_cta_text); ?></a>
             </div>
         </section>
     </main>
