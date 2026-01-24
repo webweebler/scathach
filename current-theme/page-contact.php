@@ -14,14 +14,13 @@ get_header(); ?>
                 <div class="contact-content">
                     <div class="contact-container">
                         <div class="contact-header">
-                            <h2 class="contact-title">GET IN<br>TOUCH</h2>
+                            <h2 class="contact-title"><?php echo wp_kses(get_theme_mod('contact_main_heading', 'GET IN<br>TOUCH'), array('br' => array())); ?></h2>
                         </div>
                         
                         <div class="contact-main">
                             <div class="contact-form-section">
                                 <div class="contact-intro">
-                                    <p>Ready to connect with Scáthach? Whether you have questions, want to collaborate, 
-                                    or just want to say hello, we'd love to hear from you.</p>
+                                    <p><?php echo esc_html(get_theme_mod('contact_intro_text', 'Ready to connect with Scáthach? Whether you have questions, want to collaborate, or just want to say hello, we\'d love to hear from you.')); ?></p>
                                 </div>
                                 
                                 <form class="contact-form" id="contactForm">
@@ -75,15 +74,15 @@ get_header(); ?>
                                             <span class="contact-icon">📧</span>
                                             <div>
                                                 <strong>General Enquiries</strong>
-                                                <p>We'd love to hear from you! Send us a message using the form or reach out directly for any questions, collaborations, or just to say hello.</p>
+                                                <p><?php echo esc_html(get_theme_mod('contact_get_in_touch_text', 'We\'d love to hear from you! Send us a message using the form or reach out directly for any questions, collaborations, or just to say hello.')); ?></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="social-connect">
-                                    <h3>Follow Our Journey</h3>
-                                    <p>Stay connected with us on social media for the latest updates, behind-the-scenes content, and exclusive announcements.</p>
+                                    <h3><?php echo esc_html(get_theme_mod('contact_social_heading', 'Follow Our Journey')); ?></h3>
+                                    <p><?php echo esc_html(get_theme_mod('contact_follow_journey_text', 'Stay connected with us on social media for the latest updates, behind-the-scenes content, and exclusive announcements.')); ?></p>
                                     <div class="social-links">
                                         <a href="<?php echo esc_url(get_theme_mod('social_facebook', 'https://www.facebook.com/profile.php?id=61572786083629')); ?>" class="social-link" target="_blank">
                                             <img src="<?php echo get_template_directory_uri(); ?>/images/fbIcon.svg" alt="Facebook">
@@ -100,6 +99,14 @@ get_header(); ?>
                                         <a href="<?php echo esc_url(get_theme_mod('social_spotify', 'https://open.spotify.com/artist/scathach')); ?>" class="social-link" target="_blank">
                                             <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
                                             <span>Spotify</span>
+                                        </a>
+                                        <a href="<?php echo esc_url(get_theme_mod('social_apple_music', 'https://music.apple.com/us/artist/sc%C3%A1thach/1801620227')); ?>" class="social-link" target="_blank">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/images/amIcon.svg" alt="Apple Music">
+                                            <span>Apple Music</span>
+                                        </a>
+                                        <a href="<?php echo esc_url(get_theme_mod('social_tiktok', 'https://tiktok.com/@scathach')); ?>" class="social-link" target="_blank">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
+                                            <span>TikTok</span>
                                         </a>
                                     </div>
                                 </div>

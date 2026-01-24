@@ -34,9 +34,9 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.95);
+    background: transparent;
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 165, 0, 0.3);
+    border-bottom: 1px solid #ffa500;
     transition: background 0.3s ease, box-shadow 0.3s ease, border-bottom-color 0.3s ease;
 }
 
@@ -45,9 +45,9 @@ body {
 }
 
 .blog-header.scrolled {
-    background: rgba(0, 0, 0, 0.98);
+    background: transparent;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-    border-bottom-color: rgba(255, 165, 0, 0.5);
+    border-bottom-color: #ffa500;
 }
 
 .header-overlay {
@@ -92,7 +92,7 @@ body {
 .logo-image {
     width: 45px !important;
     height: auto;
-    filter: drop-shadow(0 0 6px rgba(255, 165, 0, 0.3));
+    filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.3));
     transition: all 0.3s ease;
 }
 
@@ -107,12 +107,12 @@ body {
 
 .header-logo .logo-link:hover .logo-image {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 12px rgba(255, 165, 0, 0.6));
+    filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.6));
 }
 
 .header-logo .logo-link:hover .logo-text {
     color: #fff;
-    text-shadow: 0 0 8px rgba(255, 165, 0, 0.8);
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.8);
 }
 
 /* Navigation */
@@ -151,8 +151,8 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #ffa500;
-    text-shadow: 0 0 8px rgba(255, 165, 0, 0.4);
+    color: #ff8c00;
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
 }
 
 .nav-link:hover::after,
@@ -191,7 +191,7 @@ body {
 }
 
 .social-icon:hover img {
-    filter: drop-shadow(0 0 6px rgba(255, 165, 0, 0.6));
+    filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.6));
 }
 
 /* Hamburger Menu (hidden by default) */
@@ -254,7 +254,7 @@ body {
 }
 
 .footer-social a:hover img {
-    filter: brightness(1.5) drop-shadow(0 0 4px rgba(255, 165, 0, 0.6));
+    filter: brightness(1.5) drop-shadow(0 0 4px rgba(255, 140, 0, 0.6));
 }
 
 .footer-links {
@@ -317,9 +317,9 @@ body {
 }
 
 .terms-content {
-    background: rgba(26, 26, 26, 0.9);
-    border: 1px solid rgba(139, 69, 19, 0.3);
-    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #ffa500;
+    border-radius: 0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -331,16 +331,18 @@ body {
     text-align: center;
     margin-bottom: 40px;
     padding-bottom: 30px;
-    border-bottom: 2px solid rgba(139, 69, 19, 0.5);
+    border-bottom: 2px solid #ffa500;
 }
 
 .terms-title {
     font-size: 2.8rem;
     font-weight: bold;
-    color: #8B4513;
+    color: #ffa500;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Diplomata SC', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .terms-last-updated {
@@ -354,11 +356,11 @@ body {
 }
 
 .terms-intro {
-    background: rgba(139, 69, 19, 0.1);
-    border-left: 4px solid #8B4513;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #ffa500;
     padding: 20px;
     margin-bottom: 30px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0;
 }
 
 .terms-intro p {
@@ -372,24 +374,26 @@ body {
     margin-bottom: 30px;
     padding: 25px;
     background: rgba(255, 255, 255, 0.02);
-    border-radius: 8px;
-    border: 1px solid rgba(139, 69, 19, 0.2);
+    border-radius: 0;
+    border: 1px solid #ffa500;
     transition: all 0.3s ease;
 }
 
 .terms-section-item:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(139, 69, 19, 0.4);
+    border-color: #ff8c00;
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 16px rgba(255, 165, 0, 0.3);
 }
 
 .terms-section-item h2 {
     font-size: 1.6rem;
-    color: #8B4513;
+    color: #ffa500;
     margin-bottom: 15px;
     font-weight: bold;
-    font-family: 'Cinzel', serif;
+    font-family: 'Diplomata SC', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .terms-section-item p {
@@ -414,13 +418,13 @@ body {
 }
 
 .terms-section-item li::marker {
-    color: #8B4513;
+    color: #ffffff;
 }
 
 .terms-contact {
-    background: linear-gradient(135deg, rgba(139, 69, 19, 0.2), rgba(139, 69, 19, 0.1));
-    border: 2px solid rgba(139, 69, 19, 0.4);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #ffa500;
+    border-radius: 0;
     padding: 30px;
     margin-top: 40px;
     text-align: center;
@@ -428,9 +432,11 @@ body {
 
 .terms-contact h2 {
     font-size: 1.8rem;
-    color: #8B4513;
+    color: #ffa500;
     margin-bottom: 20px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Diplomata SC', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .terms-contact p {

@@ -381,9 +381,9 @@ function scathach_customizer_settings($wp_customize) {
     
     // Add section for contact page settings
     $wp_customize->add_section('scathach_contact_form', array(
-        'title' => 'Contact Form Settings',
+        'title' => 'Contact Page Settings',
         'priority' => 34,
-        'description' => 'Customize the contact form options and email settings'
+        'description' => 'Customize the contact page content and form options'
     ));
     
     // Contact form email recipient
@@ -393,6 +393,37 @@ function scathach_customizer_settings($wp_customize) {
         'transport' => 'refresh'
     ));
     
+    // Contact page content settings
+    $wp_customize->add_setting('contact_get_in_touch_text', array(
+        'default' => 'We\'d love to hear from you! Send us a message using the form or reach out directly for any questions, collaborations, or just to say hello.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('contact_follow_journey_text', array(
+        'default' => 'Stay connected with us on social media for the latest updates, behind-the-scenes content, and exclusive announcements.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('contact_intro_text', array(
+        'default' => 'Ready to connect with Scáthach? Whether you have questions, want to collaborate, or just want to say hello, we\'d love to hear from you.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('contact_main_heading', array(
+        'default' => 'GET IN TOUCH',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('contact_social_heading', array(
+        'default' => 'Follow Our Journey',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh'
+    ));
+
     // Contact form subject options
     $wp_customize->add_setting('contact_subject_1', array(
         'default' => 'General Inquiry',
@@ -590,6 +621,42 @@ function scathach_customizer_settings($wp_customize) {
         'description' => 'Enter the TikTok profile URL',
         'section' => 'scathach_social_media',
         'type' => 'url'
+    ));
+    
+    // Contact Page Content Controls
+    $wp_customize->add_control('contact_main_heading', array(
+        'label' => 'Main Contact Heading',
+        'description' => 'The main "GET IN TOUCH" heading',
+        'section' => 'scathach_contact_form',
+        'type' => 'text'
+    ));
+    
+    $wp_customize->add_control('contact_intro_text', array(
+        'label' => 'Contact Intro Text',
+        'description' => 'The introductory paragraph above the contact form',
+        'section' => 'scathach_contact_form',
+        'type' => 'textarea'
+    ));
+    
+    $wp_customize->add_control('contact_get_in_touch_text', array(
+        'label' => 'Get in Touch Paragraph',
+        'description' => 'Text in the "Get in Touch" information card',
+        'section' => 'scathach_contact_form',
+        'type' => 'textarea'
+    ));
+    
+    $wp_customize->add_control('contact_social_heading', array(
+        'label' => 'Social Media Section Heading',
+        'description' => 'The "Follow Our Journey" heading',
+        'section' => 'scathach_contact_form',
+        'type' => 'text'
+    ));
+    
+    $wp_customize->add_control('contact_follow_journey_text', array(
+        'label' => 'Follow Our Journey Paragraph',
+        'description' => 'Text in the "Follow Our Journey" social media section',
+        'section' => 'scathach_contact_form',
+        'type' => 'textarea'
     ));
     
     // Venues Background Image Control
