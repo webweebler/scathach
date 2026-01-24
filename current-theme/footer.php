@@ -5,22 +5,22 @@
             
             <div class="footer-center">
                 <div class="footer-social">
-                    <a href="https://www.facebook.com/profile.php?id=61572786083629" target="_blank">
+                    <a href="<?php echo esc_url(get_theme_mod('social_facebook', 'https://www.facebook.com/profile.php?id=61572786083629')); ?>" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/fbIcon.svg" alt="Facebook">
                     </a>
-                    <a href="https://www.instagram.com/scathach_official/" target="_blank">
+                    <a href="<?php echo esc_url(get_theme_mod('social_instagram', 'https://www.instagram.com/scathach_official/')); ?>" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/instaIcon.svg" alt="Instagram">
                     </a>
-                    <a href="https://youtube.com/scathach" target="_blank">
+                    <a href="<?php echo esc_url(get_theme_mod('social_youtube', 'https://youtube.com/scathach')); ?>" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube">
                     </a>
-                    <a href="https://open.spotify.com/artist/scathach" target="_blank">
+                    <a href="<?php echo esc_url(get_theme_mod('social_spotify', 'https://open.spotify.com/artist/scathach')); ?>" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
                     </a>
-                    <a href="https://twitter.com/scathach" target="_blank">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/twitterIcon.svg" alt="Twitter">
+                    <a href="<?php echo esc_url(get_theme_mod('social_apple_music', 'https://music.apple.com/us/artist/sc%C3%A1thach/1801620227')); ?>" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/applemusicIcon.svg" alt="Apple Music">
                     </a>
-                    <a href="https://tiktok.com/@scathach" target="_blank">
+                    <a href="<?php echo esc_url(get_theme_mod('social_tiktok', 'https://tiktok.com/@scathach')); ?>" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
                     </a>
                 </div>

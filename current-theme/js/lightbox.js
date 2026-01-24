@@ -2,6 +2,8 @@
 (function() {
     let currentImageIndex = 0;
     let galleryImages = [];
+    let savedScrollPosition = 0; // Store gallery scroll position
+    let isRestoring = false; // Flag to prevent interference during restoration
     
     // Create lightbox HTML structure
     function createLightbox() {
@@ -22,9 +24,9 @@
     
     // Initialize lightbox
     function initLightbox() {
-        // Get all gallery images
-        const galleryWrapper = document.querySelector('.gallery-img-wrapper');
-        if (!galleryWrapper) return;
+        // Get gallery scroll container and all gallery images
+        const galleryScrollContainer = document.querySelector('.horizontal-scroll-wrapper');
+        if (!galleryScrollContainer) return;
         
         const allWrappers = document.querySelectorAll('.gallery-img-wrapper img');
         galleryImages = Array.from(allWrappers);
@@ -45,7 +47,16 @@
         
         // Add click event to each gallery image
         galleryImages.forEach((img, index) => {
-            img.parentElement.addEventListener('click', function() {
+            img.parentElement.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default behavior
+                e.stopPropagation(); // Stop event bubbling
+                
+                // Save scroll position immediately before any processing
+                const galleryScrollContainer = document.querySelector('.horizontal-scroll-wrapper');
+                if (galleryScrollContainer) {
+                    savedScrollPosition = galleryScrollContainer.scrollLeft;
+                }
+                
                 currentImageIndex = index;
                 openLightbox();
             });
@@ -53,6 +64,19 @@
         
         // Open lightbox
         function openLightbox() {
+            // Immediately lock the gallery scroll position
+            const galleryScrollContainer = document.querySelector('.horizontal-scroll-wrapper');
+            if (galleryScrollContainer) {
+                // Force the position to stay where it is
+                galleryScrollContainer.style.scrollBehavior = 'auto';
+                galleryScrollContainer.scrollLeft = savedScrollPosition;
+            }
+            
+            // Disable section flicker during lightbox
+            if (window.sectionFlickerInstance) {
+                window.sectionFlickerInstance.isAnimating = true;
+            }
+            
             modal.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
             showImage();
@@ -60,9 +84,43 @@
         
         // Close lightbox
         function closeLightbox() {
+            isRestoring = true; // Set flag to prevent interference
+            
             modal.classList.remove('active');
             document.body.style.overflow = ''; // Restore scrolling
             lightboxImage.classList.remove('loaded');
+            
+            // Re-enable section flicker after restoration is complete
+            if (window.sectionFlickerInstance) {
+                setTimeout(() => {
+                    window.sectionFlickerInstance.isAnimating = false;
+                }, 500);
+            }
+            
+            // Restore gallery scroll position with multiple attempts for reliability
+            const restoreScrollPosition = () => {
+                const galleryScrollContainer = document.querySelector('.horizontal-scroll-wrapper');
+                if (galleryScrollContainer && savedScrollPosition !== undefined) {
+                    // Disable any scroll events temporarily
+                    const originalScrollBehavior = galleryScrollContainer.style.scrollBehavior;
+                    galleryScrollContainer.style.scrollBehavior = 'auto';
+                    
+                    galleryScrollContainer.scrollLeft = savedScrollPosition;
+                    
+                    // Restore original scroll behavior
+                    setTimeout(() => {
+                        galleryScrollContainer.style.scrollBehavior = originalScrollBehavior;
+                    }, 50);
+                }
+            };
+            
+            // Try multiple times to ensure it works
+            setTimeout(restoreScrollPosition, 50);
+            setTimeout(restoreScrollPosition, 150);
+            setTimeout(() => {
+                restoreScrollPosition();
+                isRestoring = false; // Clear flag after restoration
+            }, 300);
         }
         
         // Show current image
@@ -139,8 +197,12 @@
     
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLightbox);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a small delay to ensure gallery images are fully loaded
+            setTimeout(initLightbox, 100);
+        });
     } else {
-        initLightbox();
+        // DOM is already ready
+        setTimeout(initLightbox, 100);
     }
 })();

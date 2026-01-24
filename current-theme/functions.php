@@ -88,18 +88,61 @@ require_once get_template_directory() . '/custom-post-types.php';
 
 // WordPress Customizer - Front Page Settings
 function scathach_customizer_settings($wp_customize) {
-    // Add section for front page settings
+    // Add single consolidated section for front page settings
     $wp_customize->add_section('scathach_front_page', array(
         'title' => 'Front Page Settings',
         'priority' => 30,
-        'description' => 'Customize the front page appearance and content'
+        'description' => 'Customize the front page appearance, content, and text boxes'
     ));
     
-    // Add section for front page text boxes
-    $wp_customize->add_section('scathach_front_page_textboxes', array(
-        'title' => 'Front Page Text Boxes',
-        'priority' => 31,
-        'description' => 'Customize the text boxes on the front page'
+    // Add section for social media settings
+    $wp_customize->add_section('scathach_social_media', array(
+        'title' => 'Social Media Links',
+        'priority' => 29,
+        'description' => 'Manage all social media URLs throughout the website'
+    ));
+    
+    // Social Media Settings
+    $wp_customize->add_setting('social_facebook', array(
+        'default' => 'https://www.facebook.com/profile.php?id=61572786083629',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('social_instagram', array(
+        'default' => 'https://www.instagram.com/scathach_official/',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('social_youtube', array(
+        'default' => 'https://youtube.com/scathach',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('social_spotify', array(
+        'default' => 'https://open.spotify.com/artist/scathach',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('social_apple_music', array(
+        'default' => 'https://music.apple.com/us/artist/sc%C3%A1thach/1801620227',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('social_tiktok', array(
+        'default' => 'https://tiktok.com/@scathach',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    $wp_customize->add_setting('social_youtube_music', array(
+        'default' => 'https://www.youtube.com/@Scathachmusic',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
     ));
     
     // Add setting for background image
@@ -528,6 +571,56 @@ function scathach_customizer_settings($wp_customize) {
         'transport' => 'refresh'
     ));
     
+    // Social Media Controls
+    $wp_customize->add_control('social_facebook', array(
+        'label' => 'Facebook URL',
+        'description' => 'Enter the full Facebook page URL',
+        'section' => 'scathach_social_media',
+        'type' => 'url'
+    ));
+    
+    $wp_customize->add_control('social_instagram', array(
+        'label' => 'Instagram URL',
+        'description' => 'Enter the full Instagram profile URL',
+        'section' => 'scathach_social_media',
+        'type' => 'url'
+    ));
+    
+    $wp_customize->add_control('social_youtube', array(
+        'label' => 'YouTube Channel URL',
+        'description' => 'Enter the main YouTube channel URL',
+        'section' => 'scathach_social_media',
+        'type' => 'url'
+    ));
+    
+    $wp_customize->add_control('social_youtube_music', array(
+        'label' => 'YouTube Music Channel URL',
+        'description' => 'Enter the YouTube music-specific channel URL',
+        'section' => 'scathach_social_media',
+        'type' => 'url'
+    ));
+    
+    $wp_customize->add_control('social_spotify', array(
+        'label' => 'Spotify Artist URL',
+        'description' => 'Enter the Spotify artist page URL',
+        'section' => 'scathach_social_media',
+        'type' => 'url'
+    ));
+    
+    $wp_customize->add_control('social_apple_music', array(
+        'label' => 'Apple Music Artist URL',
+        'description' => 'Enter the Apple Music artist page URL',
+        'section' => 'scathach_social_media',
+        'type' => 'url'
+    ));
+    
+    $wp_customize->add_control('social_tiktok', array(
+        'label' => 'TikTok Profile URL',
+        'description' => 'Enter the TikTok profile URL',
+        'section' => 'scathach_social_media',
+        'type' => 'url'
+    ));
+    
     // Add control for background image
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'front_page_background_image', array(
         'label' => 'Front Page Background Image',
@@ -540,21 +633,21 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('textbox_1_title', array(
         'label' => 'Text Box 1 - Title',
         'description' => 'Title for the first text box',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('textbox_1_text', array(
         'label' => 'Text Box 1 - Content',
         'description' => 'Content for the first text box',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'textarea'
     ));
     
     $wp_customize->add_control('textbox_1_link', array(
         'label' => 'Text Box 1 - Link URL',
         'description' => 'URL for the first text box (e.g., /blog/ or https://example.com)',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'url'
     ));
     
@@ -562,21 +655,21 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('textbox_2_title', array(
         'label' => 'Text Box 2 - Title',
         'description' => 'Title for the second text box',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('textbox_2_text', array(
         'label' => 'Text Box 2 - Content',
         'description' => 'Content for the second text box',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'textarea'
     ));
     
     $wp_customize->add_control('textbox_2_link', array(
         'label' => 'Text Box 2 - Link URL',
         'description' => 'URL for the second text box (e.g., /about/ or https://example.com)',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'url'
     ));
     
@@ -584,21 +677,21 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('textbox_3_title', array(
         'label' => 'Text Box 3 - Title',
         'description' => 'Title for the third text box',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('textbox_3_text', array(
         'label' => 'Text Box 3 - Content',
         'description' => 'Content for the third text box',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'textarea'
     ));
     
     $wp_customize->add_control('textbox_3_link', array(
         'label' => 'Text Box 3 - Link URL',
         'description' => 'URL for the third text box (e.g., /contact/ or https://example.com)',
-        'section' => 'scathach_front_page_textboxes',
+        'section' => 'scathach_front_page',
         'type' => 'url'
     ));
     
