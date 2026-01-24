@@ -12,7 +12,7 @@ html {
 }
 
 body {
-    background: #000000;
+    background: #000000 url('../images/venue-bg.jpg') center center / cover no-repeat fixed;
     color: #fff;
     font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 200;
@@ -628,12 +628,7 @@ body {
 /* Past Shows Section */
 .past-shows-section {
     padding: 80px 0;
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-        url('../images/scBackground1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: #000000;
 }
 
 .past-shows-container {
@@ -706,7 +701,7 @@ body {
     padding: 80px 0;
     background: 
         linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-        url('../images/scBackground2.jpg');
+        url('../images/scBackground.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

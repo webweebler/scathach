@@ -6,6 +6,52 @@ function scathach_theme_setup() {
 }
 add_action('after_setup_theme', 'scathach_theme_setup');
 
+// Helper functions for default section content
+function scathach_get_default_section_title($section_num) {
+    $defaults = array(
+        1 => 'Our Story',
+        2 => 'Our Sound', 
+        3 => 'Live Performances',
+        4 => 'Our Journey',
+        5 => 'Recognition',
+        6 => 'The Future'
+    );
+    return $defaults[$section_num] ?? '';
+}
+
+function scathach_get_default_section_text($section_num) {
+    $defaults = array(
+        1 => 'Born from the mists of Irish mythology, Scáthach emerged in 2018 as a force that bridges ancient Celtic legends with modern metal fury. Named after the legendary warrior woman who trained heroes on the Isle of Skye, we carry forward her legacy of strength, wisdom, and fierce determination.',
+        2 => 'We forge a unique path in metal by weaving traditional Irish instruments with crushing guitar riffs and thunderous drums. Our music tells stories of ancient warriors, mystical landscapes, and the eternal struggle between light and darkness that defines Celtic mythology.',
+        3 => 'On stage, we transform into the warriors of old, bringing raw energy and theatrical storytelling to every performance. From intimate venues to festival stages, each show is a journey through the mystical realms of Celtic lore, complete with traditional costumes and immersive visuals.',
+        4 => 'From small Dublin pubs to international festivals, our path has been one of constant growth and artistic evolution. Three albums deep into our discography, we\'ve explored themes from the Book of Invasions to modern interpretations of ancient Celtic wisdom, always pushing the boundaries of folk metal.',
+        5 => 'Our dedication to authentic Celtic metal has earned recognition from critics and fans alike. From winning "Best New Metal Act" to topping Irish metal charts, we\'ve proven that traditional stories can find new life in heavy music while staying true to their mystical roots.',
+        6 => 'As we look ahead, our mission remains unchanged: to keep the ancient stories alive through powerful music. With new material exploring the deeper mysteries of Celtic cosmology and plans for international tours, the legend of Scáthach continues to grow stronger with each passing season.'
+    );
+    return $defaults[$section_num] ?? '';
+}
+
+function scathach_get_default_section_image($section_num) {
+    $defaults = array(
+        1 => get_template_directory_uri() . '/images/scathachGalleryPic2.jpg',
+        2 => get_template_directory_uri() . '/images/scathachGalleryPic3.jpg',
+        3 => get_template_directory_uri() . '/images/scathachGalleryPic4.jpg',
+        4 => get_template_directory_uri() . '/images/scathachPic1.jpg',
+        5 => get_template_directory_uri() . '/images/merchimg1.jpg',
+        6 => get_template_directory_uri() . '/images/merchImg2.webp'
+    );
+    return $defaults[$section_num] ?? '';
+}
+
+function scathach_get_default_section_layout($section_num) {
+    // Alternate layouts - odd sections: text-left, even sections: text-right
+    return ($section_num % 2 === 1) ? 'text-left' : 'text-right';
+}
+
+function scathach_sanitize_layout($input) {
+    return in_array($input, array('text-left', 'text-right')) ? $input : 'text-left';
+}
+
 // Enqueue styles and scripts with preloading
 function scathach_theme_enqueue() {
     // Dequeue WordPress default jQuery to prevent conflicts with our scripts
@@ -102,6 +148,13 @@ function scathach_customizer_settings($wp_customize) {
         'description' => 'Manage all social media URLs throughout the website'
     ));
     
+    // Add section for venues settings
+    $wp_customize->add_section('scathach_venues', array(
+        'title' => 'Venues Page Settings',
+        'priority' => 28,
+        'description' => 'Customize venues page background image and partnerships section'
+    ));
+    
     // Social Media Settings
     $wp_customize->add_setting('social_facebook', array(
         'default' => 'https://www.facebook.com/profile.php?id=61572786083629',
@@ -142,6 +195,13 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_setting('social_youtube_music', array(
         'default' => 'https://www.youtube.com/@Scathachmusic',
         'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
+    // Venues Background Image Setting
+    $wp_customize->add_setting('venues_background_image', array(
+        'default' => get_template_directory_uri() . '/images/scBackground.jpg',
+        'sanitize_callback' => 'sanitize_url',
         'transport' => 'refresh'
     ));
     
@@ -216,13 +276,7 @@ function scathach_customizer_settings($wp_customize) {
         'transport' => 'refresh'
     ));
     
-    // Add section for venues page partnerships
-    $wp_customize->add_section('scathach_venues_partnerships', array(
-        'title' => 'Venues Page Partnerships',
-        'priority' => 32,
-        'description' => 'Customize the venue partnerships section on the venues page'
-    ));
-    
+
     // Venue Partnerships Settings
     $wp_customize->add_setting('partnerships_title', array(
         'default' => 'Venue Partnerships',
@@ -291,122 +345,39 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_section('scathach_about_sections', array(
         'title' => 'About Page Sections',
         'priority' => 33,
-        'description' => 'Customize the content sections on the about page'
+        'description' => 'Customize the content sections on the about page. Leave title blank to hide a section.'
     ));
     
-    // About Section 1: Our Story
-    $wp_customize->add_setting('about_section_1_title', array(
-        'default' => 'Our Story',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_1_text', array(
-        'default' => 'Born from the mists of Irish mythology, Scáthach emerged in 2018 as a force that bridges ancient Celtic legends with modern metal fury. Named after the legendary warrior woman who trained heroes on the Isle of Skye, we carry forward her legacy of strength, wisdom, and fierce determination.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_1_image', array(
-        'default' => get_template_directory_uri() . '/images/scathachGalleryPic2.jpg',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh'
-    ));
-    
-    // About Section 2: Our Sound
-    $wp_customize->add_setting('about_section_2_title', array(
-        'default' => 'Our Sound',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_2_text', array(
-        'default' => 'We forge a unique path in metal by weaving traditional Irish instruments with crushing guitar riffs and thunderous drums. Our music tells stories of ancient warriors, mystical landscapes, and the eternal struggle between light and darkness that defines Celtic mythology.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_2_image', array(
-        'default' => get_template_directory_uri() . '/images/scathachGalleryPic3.jpg',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh'
-    ));
-    
-    // About Section 3: Live Performances
-    $wp_customize->add_setting('about_section_3_title', array(
-        'default' => 'Live Performances',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_3_text', array(
-        'default' => 'On stage, we transform into the warriors of old, bringing raw energy and theatrical storytelling to every performance. From intimate venues to festival stages, each show is a journey through the mystical realms of Celtic lore, complete with traditional costumes and immersive visuals.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_3_image', array(
-        'default' => get_template_directory_uri() . '/images/scathachGalleryPic4.jpg',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh'
-    ));
-    
-    // About Section 4: Our Journey
-    $wp_customize->add_setting('about_section_4_title', array(
-        'default' => 'Our Journey',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_4_text', array(
-        'default' => 'From small Dublin pubs to international festivals, our path has been one of constant growth and artistic evolution. Three albums deep into our discography, we\'ve explored themes from the Book of Invasions to modern interpretations of ancient Celtic wisdom, always pushing the boundaries of folk metal.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_4_image', array(
-        'default' => get_template_directory_uri() . '/images/scathachPic1.jpg',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh'
-    ));
-    
-    // About Section 5: Recognition
-    $wp_customize->add_setting('about_section_5_title', array(
-        'default' => 'Recognition',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_5_text', array(
-        'default' => 'Our dedication to authentic Celtic metal has earned recognition from critics and fans alike. From winning "Best New Metal Act" to topping Irish metal charts, we\'ve proven that traditional stories can find new life in heavy music while staying true to their mystical roots.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_5_image', array(
-        'default' => get_template_directory_uri() . '/images/merchimg1.jpg',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh'
-    ));
-    
-    // About Section 6: The Future
-    $wp_customize->add_setting('about_section_6_title', array(
-        'default' => 'The Future',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_6_text', array(
-        'default' => 'As we look ahead, our mission remains unchanged: to keep the ancient stories alive through powerful music. With new material exploring the deeper mysteries of Celtic cosmology and plans for international tours, the legend of Scáthach continues to grow stronger with each passing season.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-        'transport' => 'refresh'
-    ));
-    
-    $wp_customize->add_setting('about_section_6_image', array(
-        'default' => get_template_directory_uri() . '/images/merchImg2.webp',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh'
-    ));
+    // About sections - up to 10 sections available
+    for ($i = 1; $i <= 10; $i++) {
+        // Section Title
+        $wp_customize->add_setting("about_section_{$i}_title", array(
+            'default' => $i <= 6 ? scathach_get_default_section_title($i) : '',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport' => 'refresh'
+        ));
+        
+        // Section Text
+        $wp_customize->add_setting("about_section_{$i}_text", array(
+            'default' => $i <= 6 ? scathach_get_default_section_text($i) : '',
+            'sanitize_callback' => 'sanitize_textarea_field',
+            'transport' => 'refresh'
+        ));
+        
+        // Section Image
+        $wp_customize->add_setting("about_section_{$i}_image", array(
+            'default' => $i <= 6 ? scathach_get_default_section_image($i) : '',
+            'sanitize_callback' => 'esc_url_raw',
+            'transport' => 'refresh'
+        ));
+        
+        // Section Layout
+        $wp_customize->add_setting("about_section_{$i}_layout", array(
+            'default' => $i <= 6 ? scathach_get_default_section_layout($i) : 'text-left',
+            'sanitize_callback' => 'scathach_sanitize_layout',
+            'transport' => 'refresh'
+        ));
+    }
     
     // Add section for contact page settings
     $wp_customize->add_section('scathach_contact_form', array(
@@ -621,6 +592,14 @@ function scathach_customizer_settings($wp_customize) {
         'type' => 'url'
     ));
     
+    // Venues Background Image Control
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'venues_background_image', array(
+        'label' => 'Venues Background Image',
+        'description' => 'Choose a background image for both venues sections',
+        'section' => 'scathach_venues',
+        'settings' => 'venues_background_image'
+    )));
+    
     // Add control for background image
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'front_page_background_image', array(
         'label' => 'Front Page Background Image',
@@ -707,28 +686,28 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('partnerships_title', array(
         'label' => 'Section Title',
         'description' => 'Main title for the partnerships section',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('partnerships_description', array(
         'label' => 'Section Description',
         'description' => 'Main description text for the partnerships section',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'textarea'
     ));
     
     $wp_customize->add_control('partnerships_cta_text', array(
         'label' => 'Call to Action Button Text',
         'description' => 'Text for the main button (e.g., "Book Us for Your Venue")',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('partnerships_cta_link', array(
         'label' => 'Call to Action Button Link',
         'description' => 'URL for the main button (e.g., /contact/ or external booking form)',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'url'
     ));
     
@@ -736,14 +715,14 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('benefit_1_title', array(
         'label' => 'Benefit 1 - Title',
         'description' => 'Title for the first benefit box',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('benefit_1_text', array(
         'label' => 'Benefit 1 - Description',
         'description' => 'Description for the first benefit box',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'textarea'
     ));
     
@@ -751,14 +730,14 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('benefit_2_title', array(
         'label' => 'Benefit 2 - Title',
         'description' => 'Title for the second benefit box',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('benefit_2_text', array(
         'label' => 'Benefit 2 - Description',
         'description' => 'Description for the second benefit box',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'textarea'
     ));
     
@@ -766,149 +745,55 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('benefit_3_title', array(
         'label' => 'Benefit 3 - Title',
         'description' => 'Title for the third benefit box',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'text'
     ));
     
     $wp_customize->add_control('benefit_3_text', array(
         'label' => 'Benefit 3 - Description',
         'description' => 'Description for the third benefit box',
-        'section' => 'scathach_venues_partnerships',
+        'section' => 'scathach_venues',
         'type' => 'textarea'
     ));
     
     // About Page Section Controls
-    // Section 1 Controls
-    $wp_customize->add_control('about_section_1_title', array(
-        'label' => 'Section 1 - Title',
-        'description' => 'Title for the first section',
-        'section' => 'scathach_about_sections',
-        'type' => 'text'
-    ));
-    
-    $wp_customize->add_control('about_section_1_text', array(
-        'label' => 'Section 1 - Content',
-        'description' => 'Content text for the first section',
-        'section' => 'scathach_about_sections',
-        'type' => 'textarea'
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'about_section_1_image', array(
-        'label' => 'Section 1 - Image',
-        'description' => 'Image for the first section',
-        'section' => 'scathach_about_sections',
-        'settings' => 'about_section_1_image'
-    )));
-    
-    // Section 2 Controls
-    $wp_customize->add_control('about_section_2_title', array(
-        'label' => 'Section 2 - Title',
-        'description' => 'Title for the second section',
-        'section' => 'scathach_about_sections',
-        'type' => 'text'
-    ));
-    
-    $wp_customize->add_control('about_section_2_text', array(
-        'label' => 'Section 2 - Content',
-        'description' => 'Content text for the second section',
-        'section' => 'scathach_about_sections',
-        'type' => 'textarea'
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'about_section_2_image', array(
-        'label' => 'Section 2 - Image',
-        'description' => 'Image for the second section',
-        'section' => 'scathach_about_sections',
-        'settings' => 'about_section_2_image'
-    )));
-    
-    // Section 3 Controls
-    $wp_customize->add_control('about_section_3_title', array(
-        'label' => 'Section 3 - Title',
-        'description' => 'Title for the third section',
-        'section' => 'scathach_about_sections',
-        'type' => 'text'
-    ));
-    
-    $wp_customize->add_control('about_section_3_text', array(
-        'label' => 'Section 3 - Content',
-        'description' => 'Content text for the third section',
-        'section' => 'scathach_about_sections',
-        'type' => 'textarea'
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'about_section_3_image', array(
-        'label' => 'Section 3 - Image',
-        'description' => 'Image for the third section',
-        'section' => 'scathach_about_sections',
-        'settings' => 'about_section_3_image'
-    )));
-    
-    // Section 4 Controls
-    $wp_customize->add_control('about_section_4_title', array(
-        'label' => 'Section 4 - Title',
-        'description' => 'Title for the fourth section',
-        'section' => 'scathach_about_sections',
-        'type' => 'text'
-    ));
-    
-    $wp_customize->add_control('about_section_4_text', array(
-        'label' => 'Section 4 - Content',
-        'description' => 'Content text for the fourth section',
-        'section' => 'scathach_about_sections',
-        'type' => 'textarea'
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'about_section_4_image', array(
-        'label' => 'Section 4 - Image',
-        'description' => 'Image for the fourth section',
-        'section' => 'scathach_about_sections',
-        'settings' => 'about_section_4_image'
-    )));
-    
-    // Section 5 Controls
-    $wp_customize->add_control('about_section_5_title', array(
-        'label' => 'Section 5 - Title',
-        'description' => 'Title for the fifth section',
-        'section' => 'scathach_about_sections',
-        'type' => 'text'
-    ));
-    
-    $wp_customize->add_control('about_section_5_text', array(
-        'label' => 'Section 5 - Content',
-        'description' => 'Content text for the fifth section',
-        'section' => 'scathach_about_sections',
-        'type' => 'textarea'
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'about_section_5_image', array(
-        'label' => 'Section 5 - Image',
-        'description' => 'Image for the fifth section',
-        'section' => 'scathach_about_sections',
-        'settings' => 'about_section_5_image'
-    )));
-    
-    // Section 6 Controls
-    $wp_customize->add_control('about_section_6_title', array(
-        'label' => 'Section 6 - Title',
-        'description' => 'Title for the sixth section',
-        'section' => 'scathach_about_sections',
-        'type' => 'text'
-    ));
-    
-    $wp_customize->add_control('about_section_6_text', array(
-        'label' => 'Section 6 - Content',
-        'description' => 'Content text for the sixth section',
-        'section' => 'scathach_about_sections',
-        'type' => 'textarea'
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'about_section_6_image', array(
-        'label' => 'Section 6 - Image',
-        'description' => 'Image for the sixth section',
-        'section' => 'scathach_about_sections',
-        'settings' => 'about_section_6_image'
-    )));
+    for ($i = 1; $i <= 10; $i++) {
+        // Section Title Control
+        $wp_customize->add_control("about_section_{$i}_title", array(
+            'label' => "Section {$i} - Title" . ($i > 6 ? ' (Optional)' : ''),
+            'description' => $i > 6 ? 'Leave blank to hide this section' : 'Title for section ' . $i,
+            'section' => 'scathach_about_sections',
+            'type' => 'text'
+        ));
+        
+        // Section Text Control
+        $wp_customize->add_control("about_section_{$i}_text", array(
+            'label' => "Section {$i} - Content",
+            'description' => 'Content text for section ' . $i,
+            'section' => 'scathach_about_sections',
+            'type' => 'textarea'
+        ));
+        
+        // Section Image Control
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "about_section_{$i}_image", array(
+            'label' => "Section {$i} - Image",
+            'description' => 'Image for section ' . $i,
+            'section' => 'scathach_about_sections',
+            'settings' => "about_section_{$i}_image"
+        )));
+        
+        // Section Layout Control
+        $wp_customize->add_control("about_section_{$i}_layout", array(
+            'label' => "Section {$i} - Layout",
+            'description' => 'Choose whether text appears on left or right',
+            'section' => 'scathach_about_sections',
+            'type' => 'select',
+            'choices' => array(
+                'text-left' => 'Text Left, Image Right',
+                'text-right' => 'Image Left, Text Right'
+            )
+        ));
+    }
     
     // Contact Form Controls
     $wp_customize->add_control('contact_form_email', array(
@@ -1124,13 +1009,21 @@ function scathach_customizer_settings($wp_customize) {
 }
 add_action('customize_register', 'scathach_customizer_settings');
 
-// Add custom CSS for dynamic background
+// Add custom CSS for dynamic backgrounds
 function scathach_custom_css() {
     $background_image = get_theme_mod('front_page_background_image', get_template_directory_uri() . '/images/scBackground2.jpg');
+    $venues_background = get_theme_mod('venues_background_image', get_template_directory_uri() . '/images/scBackground.jpg');
     
     if (is_front_page()) {
         echo '<style type="text/css">';
         echo '#background { background-image: url(' . esc_url($background_image) . '); }';
+        echo '</style>';
+    }
+    
+    if (is_page('venues')) {
+        echo '<style type="text/css">';
+        echo '.venues-container { background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(' . esc_url($venues_background) . ') !important; }';
+        echo '.venue-partnerships-section { background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url(' . esc_url($venues_background) . ') !important; }';
         echo '</style>';
     }
 }
