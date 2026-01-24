@@ -113,6 +113,24 @@ body {
     display: block;
 }
 
+/* Facebook icon - 1px bigger */
+.social-icon:first-child img {
+    width: calc(2.5rem + 1px); /* 40px + 1px -> rem */
+    height: calc(2.5rem + 1px);
+}
+
+/* Spotify icon - 1px smaller */
+.social-icon:nth-child(4) img {
+    width: calc(2.5rem - 1px); /* 40px - 1px -> rem */
+    height: calc(2.5rem - 1px);
+}
+
+/* TikTok icon - 1px smaller */
+.social-icon:nth-child(6) img {
+    width: calc(2.5rem - 1px); /* 40px - 1px -> rem */
+    height: calc(2.5rem - 1px);
+}
+
 .social-icon:hover img {
     transform: scale(1.2);
     opacity: 1;

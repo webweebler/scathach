@@ -25,8 +25,8 @@
             </a>
         </div>
         <div class="corner-link bottom-left">
-            <a href="<?php echo home_url('/venues/'); ?>" class="menu-link">
-                Venues
+            <a href="<?php echo home_url('/about/'); ?>" class="menu-link">
+                About
             </a>
         </div>
         <div class="corner-link bottom-right-upper">
@@ -35,8 +35,8 @@
             </a>
         </div>
         <div class="corner-link bottom-right">
-            <a href="<?php echo home_url('/about/'); ?>" class="menu-link">
-                About
+            <a href="<?php echo home_url('/venues/'); ?>" class="menu-link">
+                Venues
             </a>
         </div>
     </div>
@@ -56,8 +56,8 @@
                 <a href="https://open.spotify.com/artist/scathach" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
                 </a>
-                <a href="https://twitter.com/scathach" class="social-icon" target="_blank">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/twitterIcon.svg" alt="Twitter">
+                <a href="https://music.apple.com/us/artist/sc%C3%A1thach/1801620227" class="social-icon" target="_blank">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/applemusicIcon.svg" alt="Apple Music">
                 </a>
                 <a href="https://tiktok.com/@scathach" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
@@ -94,8 +94,8 @@
                             <a href="https://open.spotify.com/artist/scathach" class="mobile-social-icon" target="_blank">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
                             </a>
-                            <a href="https://twitter.com/scathach" class="mobile-social-icon" target="_blank">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/twitterIcon.svg" alt="Twitter">
+                            <a href="https://music.apple.com/us/artist/sc%C3%A1thach/1801620227" class="mobile-social-icon" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/applemusicIcon.svg" alt="Apple Music">
                             </a>
                             <a href="https://tiktok.com/@scathach" class="mobile-social-icon" target="_blank">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
@@ -252,9 +252,13 @@
 
         <section id="tickets">
            <div class="tickets-video-background">
+               <?php 
+               $venue_video = get_theme_mod('venue_video_background', get_template_directory_uri() . '/videos/scathachVideo1.mp4');
+               if (!empty($venue_video)) : ?>
                <video autoplay muted loop>
-                   <source src="<?php echo get_template_directory_uri(); ?>/videos/scathachVideo1.mp4" type="video/mp4">
+                   <source src="<?php echo esc_url($venue_video); ?>" type="video/mp4">
                </video>
+               <?php endif; ?>
            </div>
            <div class="tickets-wrapper">
                 <div class="venues-label">VENUES</div>

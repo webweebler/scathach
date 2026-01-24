@@ -166,6 +166,13 @@ function scathach_customizer_settings($wp_customize) {
         'transport' => 'refresh'
     ));
     
+    // Venue Video Background Settings
+    $wp_customize->add_setting('venue_video_background', array(
+        'default' => get_template_directory_uri() . '/videos/scathachVideo1.mp4',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport' => 'refresh'
+    ));
+    
     // Add section for venues page partnerships
     $wp_customize->add_section('scathach_venues_partnerships', array(
         'title' => 'Venues Page Partnerships',
@@ -592,6 +599,14 @@ function scathach_customizer_settings($wp_customize) {
         'label' => 'Text Box 3 - Link URL',
         'description' => 'URL for the third text box (e.g., /contact/ or https://example.com)',
         'section' => 'scathach_front_page_textboxes',
+        'type' => 'url'
+    ));
+    
+    // Venue Video Background Control
+    $wp_customize->add_control('venue_video_background', array(
+        'label' => 'Venue Section Video Background',
+        'description' => 'Upload or enter the URL for the video background in the venues section. Recommended: MP4 format, under 50MB.',
+        'section' => 'scathach_front_page',
         'type' => 'url'
     ));
     
