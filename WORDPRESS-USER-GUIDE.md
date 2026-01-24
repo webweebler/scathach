@@ -5,14 +5,22 @@
 1. [Getting Started](#getting-started)
 2. [Basic Navigation](#basic-navigation)
 3. [Updating Content](#updating-content)
-4. [Editing Front Page Text Boxes](#editing-front-page-text-boxes)
-5. [Editing Venues Page Partnerships](#editing-venues-page-partnerships)
-6. [Editing About Page Sections](#editing-about-page-sections)
-7. [Managing Contact Form](#managing-contact-form)
-8. [Managing Images](#managing-images)
-9. [Adding New Content](#adding-new-content)
-10. [Common Tasks](#common-tasks)
-11. [Troubleshooting](#troubleshooting)
+4. [Customizing Your Website](#customizing-your-website)
+   - [Front Page Settings](#front-page-settings)
+   - [Social Media Links](#social-media-links) 
+   - [Venues Page Settings](#venues-page-settings)
+   - [About Page Sections](#about-page-sections)
+   - [Contact Page Settings](#contact-page-settings)
+   - [Terms & Conditions](#terms--conditions)
+5. [Managing Content](#managing-content)
+   - [Gallery Images](#gallery-images)
+   - [Shows & Venues](#shows--venues)
+   - [Merchandise](#merchandise)
+   - [Albums](#albums)
+   - [Blog Posts](#blog-posts)
+6. [Media Management](#media-management)
+7. [Common Tasks](#common-tasks)
+8. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -21,7 +29,7 @@
 ### Accessing Your WordPress Admin
 1. **Open your web browser** (Chrome, Firefox, Safari, etc.)
 2. **Go to your admin URL:**
-   - For local development: `http://localhost/scathach/wordpress/wp-admin`
+   - For local development: `http://localhost/scathach/wp-admin` 
    - For live site: `https://yourwebsite.com/wp-admin`
 3. **Enter your login credentials**
    - Username: (provided by your administrator)
@@ -32,13 +40,14 @@
 When you log in, you'll see the WordPress Dashboard - this is your control center. On the left side, you'll see a menu with different sections:
 
 - **Dashboard** - Overview and quick stats
-- **Gallery** - Manage photo gallery
-- **Shows** - Add/edit concert dates and venues
+- **Gallery** - Manage photo gallery images
+- **Shows** - Add/edit concert dates and venues  
 - **Merch** - Manage merchandise listings
 - **Albums** - Add/edit music releases
 - **Posts** - Blog posts and news
 - **Media** - All your images, videos, and files
-- **Pages** - Static pages (About, Contact, etc.)
+- **Pages** - Static pages (About, Contact, Terms, etc.)
+- **Appearance** - Customize your website's look and content
 
 ---
 
@@ -89,392 +98,343 @@ When you log in, you'll see the WordPress Dashboard - this is your control cente
 
 ---
 
-## Editing Front Page Text Boxes
+## Customizing Your Website
 
-The front page of your website features three prominent text boxes that can be easily customized without any coding knowledge. These boxes appear prominently on your home page and can link to different sections of your site.
+Your Scathach website can be extensively customized through the WordPress Customizer, which allows you to change content, settings, and appearance without any coding knowledge. All customizations are made through **Appearance → Customize**.
 
-### Accessing Front Page Text Box Settings
+### Accessing the Customizer
 1. **Go to Appearance → Customize** in your WordPress admin
-2. **Click on "Front Page Text Boxes"** in the customizer menu
-3. You'll see options for all three text boxes
+2. **Select the section** you want to edit from the left sidebar
+3. **Make your changes** using the available controls
+4. **Preview changes** in real-time on the right side
+5. **Click "Publish"** when you're satisfied with your changes
 
-### What You Can Edit
-Each text box has three editable components:
-- **Title** - The heading text (e.g., "Latest News")
-- **Content** - The descriptive text below the title
-- **Link URL** - Where the box goes when clicked
+### Available Customization Sections
+Your website includes the following customizable sections:
+- **Front Page Settings** - Homepage content and text boxes
+- **Social Media Links** - All social media URLs
+- **Venues Page Settings** - Venues page content and partnerships
+- **About Page Sections** - Story sections with text and images
+- **Contact Page Settings** - Contact form and page content
+- **Terms & Conditions** - Legal page content
 
-### Editing Text Box Content
+---
 
-#### Text Box 1 (Latest News)
-**Default content:** "Latest News" with "Stay updated with our latest releases and tour announcements."
-1. **Text Box 1 - Title:** Change the heading text
-2. **Text Box 1 - Content:** Update the description text
-3. **Text Box 1 - Link URL:** Set where this box links to (e.g., `/blog/` or `https://facebook.com/yourpage`)
+## Front Page Settings
 
-#### Text Box 2 (Celtic Heritage)
-**Default content:** "Celtic Heritage" with "Exploring ancient legends through modern musical expression."
-1. **Text Box 2 - Title:** Change the heading text
-2. **Text Box 2 - Content:** Update the description text
-3. **Text Box 2 - Link URL:** Set where this box links to (e.g., `/about/` or external link)
+The front page (homepage) of your website features several customizable elements including background images and three prominent text boxes that link to different sections of your site.
 
-#### Text Box 3 (Join Our Journey)
-**Default content:** "Join Our Journey" with "Follow Scáthach as we forge new paths in music and storytelling."
-1. **Text Box 3 - Title:** Change the heading text
-2. **Text Box 3 - Content:** Update the description text  
-3. **Text Box 3 - Link URL:** Set where this box links to (e.g., `/contact/` or social media link)
+### Accessing Front Page Settings
+1. **Go to Appearance → Customize** in your WordPress admin
+2. **Click on "Front Page Settings"** in the customizer menu
+
+### What You Can Customize
+
+#### Background Image
+- **Front Page Background Image** - The main background image for your homepage
+
+#### Text Box 1 (Default: "Latest News")
+- **Text Box 1 - Title** - The heading text
+- **Text Box 1 - Content** - The descriptive text below the title
+- **Text Box 1 - Link URL** - Where this box goes when clicked
+
+#### Text Box 2 (Default: "Celtic Heritage")  
+- **Text Box 2 - Title** - The heading text
+- **Text Box 2 - Content** - The descriptive text below the title
+- **Text Box 2 - Link URL** - Where this box goes when clicked
+
+#### Text Box 3 (Default: "Join Our Journey")
+- **Text Box 3 - Title** - The heading text
+- **Text Box 3 - Content** - The descriptive text below the title
+- **Text Box 3 - Link URL** - Where this box goes when clicked
 
 ### Link URL Guidelines
-- **Internal pages:** Use relative URLs like `/blog/`, `/about/`, `/contact/`, `/venues/`
-- **External websites:** Use full URLs like `https://facebook.com/yourpage` or `https://spotify.com/artist/yourband`
-- **Social media:** Link directly to your profiles (e.g., `https://instagram.com/youraccount`)
-
-### Saving Your Changes
-1. **Make your edits** in the text fields
-2. **Preview changes** in real-time on the right side of the screen
-3. **Click "Publish"** when you're satisfied with your changes
-4. **Visit your website** to see the changes live
+- **Internal pages** - Use relative URLs like `/blog/`, `/about/`, `/contact/`, `/venues/`
+- **External websites** - Use full URLs like `https://facebook.com/yourpage`
+- **Social media** - Link directly to your profiles
 
 ### Best Practices for Text Boxes
 - **Keep titles short** (1-3 words work best)
 - **Write engaging descriptions** that encourage clicks
 - **Use action words** like "Discover", "Explore", "Join", "Follow"
 - **Link to relevant content** that matches the box's message
-- **Test your links** to make sure they work properly
-
-### Example Customizations
-Here are some ideas for how you might customize your text boxes:
-
-**Music Focus:**
-- Box 1: "New Album" → "Our latest release is now available" → Link to Spotify
-- Box 2: "Live Shows" → "See us perform live at upcoming venues" → Link to `/venues/`
-- Box 3: "Follow Us" → "Stay connected on social media" → Link to Instagram
-
-**News Focus:**
-- Box 1: "Latest News" → "Read our recent updates and announcements" → Link to `/blog/`
-- Box 2: "Tour Dates" → "Find a show near you" → Link to `/venues/`
-- Box 3: "Contact" → "Get in touch with us directly" → Link to `/contact/`
-
-**Fan Engagement:**
-- Box 1: "Join Newsletter" → "Get exclusive updates and early access" → Link to newsletter signup
-- Box 2: "Fan Stories" → "Share your experience with our music" → Link to contact form
-- Box 3: "Merchandise" → "Shop official Scáthach gear" → Link to merch store
+- **Test your links** to ensure they work properly
 
 ---
 
-## Editing Venues Page Partnerships
+## Social Media Links
 
-The venues page includes a "Venue Partnerships" section at the bottom that can be customized to attract venue bookings and partnerships. This section includes a main description, three benefit boxes, and a call-to-action button.
+Manage all social media URLs that appear throughout your website in one central location.
 
-### Accessing Venues Page Partnership Settings
-1. **Go to Appearance → Customize** in your WordPress admin
-2. **Click on "Venues Page Partnerships"** in the customizer menu
-3. You'll see options for the entire partnerships section
+### Accessing Social Media Settings
+1. **Go to Appearance → Customize**
+2. **Click on "Social Media Links"**
 
-### What You Can Edit
-The partnerships section includes several editable components:
-- **Section Title** - The main heading (default: "Venue Partnerships")
-- **Section Description** - The introductory paragraph
-- **Three Benefit Boxes** - Each with their own title and description
-- **Call to Action Button** - Both the text and link destination
+### Available Social Media Platforms
+- **Facebook URL** - Your Facebook page
+- **Instagram URL** - Your Instagram profile  
+- **YouTube Music Channel URL** - Your YouTube music channel
+- **Spotify Artist URL** - Your Spotify artist page
+- **Apple Music Artist URL** - Your Apple Music profile
+- **TikTok URL** - Your TikTok profile
 
-### Editing Partnership Content
+### URL Format Guidelines
+- **Use complete URLs** including `https://`
+- **Test all links** after updating to ensure they work
+- **Keep URLs current** if you change usernames or page names
 
-#### Main Section Content
-1. **Section Title:** Change the main heading (e.g., "Venue Partnerships", "Book Our Band", "Performance Opportunities")
-2. **Section Description:** Update the introductory text that explains your venue partnership approach
+---
 
-#### Benefit Boxes
-Each of the three benefit boxes can be customized:
+## Venues Page Settings
 
+Customize the venues page background and partnership information to attract venue bookings.
+
+### Accessing Venues Page Settings  
+1. **Go to Appearance → Customize**
+2. **Click on "Venues Page Settings"**
+
+### What You Can Customize
+
+#### Background Elements
+- **Venues Background Image** - The main background image for the venues page
+- **Venue Video Background** - Background video file (if applicable)
+
+#### Partnership Section Content
+- **Partnerships Title** - Main heading (default: "Venue Partnerships")
+- **Partnerships Description** - Introductory paragraph explaining your approach
+- **Call to Action Button Text** - Text on the contact button
+- **Call to Action Button Link** - Where the button leads
+
+#### Three Benefit Boxes
 **Benefit 1** (Default: "Professional Production")
-- **Benefit 1 - Title:** Heading for the first benefit
-- **Benefit 1 - Description:** Details about this benefit
+- **Benefit 1 - Title** - Heading for first benefit
+- **Benefit 1 - Description** - Details about this benefit
 
-**Benefit 2** (Default: "Promotional Support")  
-- **Benefit 2 - Title:** Heading for the second benefit
-- **Benefit 2 - Description:** Details about this benefit
+**Benefit 2** (Default: "Promotional Support")
+- **Benefit 2 - Title** - Heading for second benefit  
+- **Benefit 2 - Description** - Details about this benefit
 
 **Benefit 3** (Default: "Flexible Programming")
-- **Benefit 3 - Title:** Heading for the third benefit  
-- **Benefit 3 - Description:** Details about this benefit
-
-#### Call to Action Button
-- **Call to Action Button Text:** The text that appears on the button (e.g., "Book Us for Your Venue", "Contact for Booking", "Get Quote")
-- **Call to Action Button Link:** Where the button leads (e.g., `/contact/`, external booking form, email link)
+- **Benefit 3 - Title** - Heading for third benefit
+- **Benefit 3 - Description** - Details about this benefit
 
 ### Example Customizations
-
 **Professional Focus:**
-- Title: "Professional Venue Services"
 - Benefits: "Technical Excellence" / "Marketing Partnership" / "Flexible Scheduling"
 - CTA: "Request Technical Rider"
 
-**Festival Focus:**
-- Title: "Festival Partnerships"
+**Festival Focus:**  
 - Benefits: "Festival Experience" / "Crowd Engagement" / "Multi-Stage Ready"
 - CTA: "Apply for Festival Slot"
 
-**Private Events:**
-- Title: "Private Event Bookings"
-- Benefits: "Intimate Performances" / "Custom Setlists" / "Event Coordination"
-- CTA: "Book Private Show"
-
-### Best Practices
-- **Keep benefit titles short** (2-4 words work best)
-- **Focus on venue benefits** rather than band features
-- **Use action-oriented language** in descriptions
-- **Make the CTA clear** about what happens when clicked
-- **Update contact information** to match your booking process
-
-### Link Guidelines
-- **Internal pages:** Use `/contact/`, `/about/`, etc.
-- **External booking forms:** Use full URLs like `https://yourform.com`
-- **Email links:** Use `mailto:booking@youremail.com`
-- **Phone links:** Use `tel:+1234567890`
-
 ---
 
-## Editing About Page Sections
+## About Page Sections
 
-The about page features six horizontal sections that tell your band's story. Each section includes a title, content text, and image that can be fully customized through the WordPress Customizer.
+The about page features up to 10 customizable horizontal sections that tell your band's story. Each section includes a title, content text, and image.
 
 ### Accessing About Page Settings
-1. **Go to Appearance → Customize** in your WordPress admin
-2. **Click on "About Page Sections"** in the customizer menu
-3. You'll see options for all six sections
+1. **Go to Appearance → Customize** 
+2. **Click on "About Page Sections"**
 
 ### What You Can Edit
-Each section has three editable components:
-- **Section Title** - The heading for each section
-- **Section Content** - The paragraph text that tells your story
-- **Section Image** - The visual element for each section
+Each of the 10 available sections has:
+- **Section Title** - The heading for the section
+- **Section Text** - The paragraph content
+- **Section Image** - The visual element
+- **Section Layout** - Text position (left or right of image)
 
-### The Six Sections
+### Default Sections (1-6 are pre-configured)
+1. **Our Story** - Band origins and formation
+2. **Our Sound** - Musical style and influences  
+3. **Live Performances** - Concert experience and stage presence
+4. **Our Journey** - Evolution and milestones
+5. **Recognition** - Awards and accomplishments
+6. **The Future** - Upcoming plans and vision
 
-#### Section 1 (Default: "Our Story")
-**Purpose:** Introduction and band origins
-- **Section 1 - Title:** Main heading
-- **Section 1 - Content:** Story of how the band formed
-- **Section 1 - Image:** Band formation or early photo
+**Sections 7-10** are available for additional content and are hidden by default.
 
-#### Section 2 (Default: "Our Sound") 
-**Purpose:** Musical style and influences
-- **Section 2 - Title:** Heading about your music
-- **Section 2 - Content:** Description of your sound/style
-- **Section 2 - Image:** Instruments, recording, or performance photo
+### To Hide a Section
+- Leave the **Section Title** field blank to hide that section completely
 
-#### Section 3 (Default: "Live Performances")
-**Purpose:** Concert experience and stage presence
-- **Section 3 - Title:** Live show heading
-- **Section 3 - Content:** What audiences can expect
-- **Section 3 - Image:** Live performance photo
-
-#### Section 4 (Default: "Our Journey")
-**Purpose:** Band evolution and milestones
-- **Section 4 - Title:** Growth/development heading
-- **Section 4 - Content:** Career progression and achievements
-- **Section 4 - Image:** Timeline or milestone photo
-
-#### Section 5 (Default: "Recognition")
-**Purpose:** Awards, reviews, and accomplishments
-- **Section 5 - Title:** Achievement heading
-- **Section 5 - Content:** Awards, chart positions, press coverage
-- **Section 5 - Image:** Awards ceremony or press photo
-
-#### Section 6 (Default: "The Future")
-**Purpose:** Upcoming plans and vision
-- **Section 6 - Title:** Forward-looking heading
-- **Section 6 - Content:** Future albums, tours, or goals
-- **Section 6 - Image:** Studio work or conceptual photo
-
-### Best Practices for About Sections
-
-#### Content Writing Tips:
-- **Keep sections balanced** - Similar length paragraphs work best
-- **Tell a chronological story** - Flow from formation to future
-- **Use engaging language** - Paint vivid pictures with words
-- **Include specific details** - Dates, venue names, album titles add credibility
-- **Show personality** - Let your band's character shine through
-
-#### Image Guidelines:
+### Best Practices
+- **Keep sections balanced** - similar length paragraphs work best
+- **Tell a chronological story** - flow from formation to future
 - **Use high-quality images** (at least 1200px wide recommended)
 - **Choose relevant photos** that match each section's theme
-- **Maintain visual consistency** in style/color treatment
-- **Consider image orientation** - horizontal images work best for this layout
-- **Test on mobile** - ensure images look good on smaller screens
-
-### Example Customizations
-
-**Alternative Section Ideas:**
-
-**Musical Focus:**
-1. "Formation" → Band origins and early days
-2. "Influences" → Musical inspirations and style development  
-3. "Recording" → Studio work and album creation process
-4. "Touring" → Live performance experiences
-5. "Collaborations" → Work with other artists
-6. "Evolution" → How your sound has changed
-
-**Story-Driven Approach:**
-1. "The Beginning" → How it all started
-2. "Finding Our Voice" → Developing your unique sound
-3. "Breaking Through" → First major success
-4. "Growing Stronger" → Building your fanbase
-5. "Making Waves" → Industry recognition
-6. "What's Next" → Future aspirations
-
-**Fan-Focused Approach:**
-1. "Who We Are" → Band member introductions
-2. "What Drives Us" → Passion and motivation
-3. "Our Community" → Relationship with fans
-4. "Behind the Scenes" → Creative process
-5. "Achievements" → What you're proud of
-6. "Join Our Journey" → How fans can get involved
-
-### Technical Tips
-- **Save frequently** while editing long content
-- **Preview changes** before publishing
-- **Test all images** to ensure they load properly
-- **Check mobile responsiveness** after making changes
-- **Keep backup copies** of your original content before major edits
-
-### Image Upload Process
-1. **Click the image control** for the section you want to change
-2. **Choose "Upload New"** or "Select from Library"
-3. **Upload your image** (JPG, PNG, or WebP formats work best)
-4. **Add Alt Text** for accessibility
-5. **Click "Select"** to apply the new image
-6. **Preview the change** in the customizer
-7. **Publish when satisfied**
+- **Test on mobile** to ensure content looks good on all devices
 
 ---
 
-## Managing Contact Form
+## Contact Page Settings
 
-The contact form on your contact page can be fully customized to suit your needs. You can change where form submissions are sent and customize the subject options that visitors can choose from.
+Customize your contact page content, form options, and messaging.
 
-### Accessing Contact Form Settings
-1. **Go to Appearance → Customize** in your WordPress admin
-2. **Click on "Contact Form Settings"** in the customizer menu
-3. You'll see options for email settings and subject options
+### Accessing Contact Page Settings
+1. **Go to Appearance → Customize**
+2. **Click on "Contact Page Settings"**
 
-### What You Can Edit
+### What You Can Customize
 
-#### Email Settings
-**Form Recipient Email**
-- **Purpose:** Where contact form submissions will be sent
-- **Default:** info@scathach.com
-- **How to change:** Enter your preferred email address
-- **Important:** Make sure this is a valid email address you check regularly
+#### Page Content
+- **Contact Main Heading** - Primary heading (default: "GET IN TOUCH")
+- **Contact Intro Text** - Opening paragraph text
+- **Get In Touch Text** - Description under main form
+- **Social Heading** - Social media section title
+- **Follow Journey Text** - Social media section description
 
-#### Subject Options
-The contact form dropdown includes up to 5 customizable subject options:
+#### Contact Form Settings
+- **Form Recipient Email** - Where contact submissions are sent
+- **Contact Subject Options 1-5** - Dropdown options for inquiry types
 
-**Subject Option 1** (Default: "General Inquiry")
-- The first subject option in the dropdown
-- Should be your most common inquiry type
+### Form Subject Options
+**Default Options:**
+1. "General Inquiry" - Most common inquiry type
+2. "Collaboration" - Business or partnership inquiries  
+3. "Fan Message" - General fan mail and comments
+4. "Press Inquiry" - Media and press contacts
+5. (Optional) - Additional category as needed
 
-**Subject Option 2** (Default: "Collaboration") 
-- Second subject option
-- Good for business or partnership inquiries
+**To hide subject options:** Leave the field blank for options 3, 4, or 5
 
-**Subject Option 3** (Default: "Fan Message" - Optional)
-- Third subject option - leave blank to hide
-- Perfect for fan mail and general comments
-
-**Subject Option 4** (Default: "Press Inquiry" - Optional)
-- Fourth subject option - leave blank to hide  
-- For media and press-related contacts
-
-**Subject Option 5** (Optional)
-- Fifth subject option - leave blank to hide
-- Add additional categories as needed
-
-### How Form Submissions Work
-1. **Visitor fills out form** on your contact page
-2. **Form is submitted** through your website
-3. **Email is sent** to your specified recipient address
-4. **You receive notification** with all form details:
-   - Visitor's name and email
-   - Selected subject
-   - Their message
-   - Reply-to address set to visitor's email
-
-### Best Practices for Contact Forms
-
-#### Email Setup:
-- **Use a professional email** (yourname@yourdomain.com)
-- **Check email regularly** to respond promptly
+### Email Setup Tips
+- **Use a professional email** you check regularly
 - **Set up email filters** to organize form submissions
-- **Consider a dedicated contact email** separate from personal use
-
-#### Subject Options:
-- **Keep subjects clear** and specific
-- **Use 2-4 words** per subject for clarity
-- **Order by importance** (most common inquiries first)
-- **Update seasonally** if needed (e.g., "Booking Request" during tour season)
-- **Leave unused options blank** to hide them (options 3, 4, and 5 can be hidden)
-
-#### Response Management:
-- **Respond within 24-48 hours** when possible
-- **Set up auto-responders** if you receive high volumes
-- **Create email templates** for common responses
-- **Track important inquiries** (spreadsheet, CRM, etc.)
-
-### Example Subject Customizations
-
-**Music Industry Focus:**
-1. "Booking Request"
-2. "Media Inquiry" 
-3. "Collaboration"
-4. "Fan Message"
-5. (Leave blank)
-
-**General Business:**
-1. "General Question"
-2. "Business Inquiry"
-3. "Support Request" 
-4. "Feedback"
-5. "Partnership"
-
-**Event/Venue Focus:**
-1. "Performance Booking"
-2. "Event Planning"
-3. "Technical Requirements"
-4. "General Info"
-5. (Leave blank)
-
-### Troubleshooting Contact Forms
-
-**Problem: "Not receiving form submissions"**
-- Check your spam folder
-- Verify the recipient email address is correct
-- Ensure your hosting provider allows wp_mail function
-- Test with a different email address
-
-**Problem: "Visitors report form not working"**
-- Check if JavaScript is enabled on their browser
-- Test the form yourself from different devices
-- Verify all required fields are filled out
-- Check browser console for error messages
-
-**Problem: "Getting spam through contact form"**
-- Consider adding a simple captcha plugin
-- Monitor submission patterns
-- Add terms like "No spam" to your form description
-- Review and potentially limit subject options
-
-### Form Maintenance
-- **Test your form monthly** to ensure it's working
-- **Update your email** if it changes
-- **Review subject options** quarterly
-- **Monitor spam levels** and adjust if needed
-- **Keep contact page content** up to date
+- **Respond promptly** to maintain good communication
+- **Test the form** monthly to ensure it's working
 
 ---
 
-## Managing Images
+## Terms & Conditions
+
+Customize the legal content on your Terms & Conditions page.
+
+### Accessing Terms & Conditions Settings
+1. **Go to Appearance → Customize**
+2. **Click on "Terms & Conditions"**
+
+### What You Can Customize
+- **Introduction Text** - Opening paragraph explaining the terms
+- **Section Titles** - Headings for each legal section (11 sections total)
+- **Key Content Sections** - Important legal text for:
+  - Music and content usage policies
+  - Merchandise sales terms
+  - Live events and ticket policies  
+  - Governing law information
+  - Contact information
+
+### Important Legal Note
+Always consult with legal professionals when making significant changes to terms and conditions, especially regarding copyright, sales policies, and governing law.
+
+---
+
+## Managing Content
+
+Your website includes several content types that can be managed through the WordPress admin.
+
+## Gallery Images
+
+Add and manage photos that appear in your website's gallery section.
+
+### Adding New Gallery Images
+1. **Click "Gallery"** in the left menu
+2. **Click "Add New Image"**
+3. **Enter a descriptive title** (for organization - won't show on site)
+4. **Set Featured Image:**
+   - Click "Set featured image"
+   - Upload new image or select from library
+   - Add Alt Text for accessibility
+   - Click "Set featured image"
+5. **Click "Publish"**
+
+**Note:** Gallery images appear in the order they were published (newest first).
+
+## Shows & Venues  
+
+Manage your concert dates, venue information, and show details.
+
+### Adding New Shows
+1. **Click "Shows" → "Add New Show"**
+2. **Enter event information:**
+   - **Title** - For your reference (not displayed publicly)
+   - **Date** - Performance date (e.g., "March 15, 2026")  
+   - **Venue Name** - Performance venue (e.g., "The Academy")
+   - **Location/City** - City and country (e.g., "Dublin, Ireland")
+   - **Ticket Purchase Link** - Full URL where fans can buy tickets
+3. **Set Featured Image** - This becomes the background image for the show
+4. **Click "Publish"**
+
+### Managing Shows
+- **Edit existing shows** by clicking on them in the Shows list
+- **Change show order** by modifying the publish date (earlier dates appear first)
+- **Delete shows** by moving them to Trash
+
+## Merchandise
+
+Add and manage merchandise items available for purchase.
+
+### Adding New Merchandise
+1. **Click "Merch" → "Add New Item"** 
+2. **Enter product details:**
+   - **Product Name** - Item title (e.g., "Black T-Shirt") 
+   - **Price** - Item cost (e.g., "€25.00")
+   - **Purchase Link** - URL where people can buy it
+3. **Add description** in main content area (optional)
+4. **Set Featured Image** - Product photo
+5. **Click "Publish"**
+
+### Best Practices for Merchandise
+- **Use high-quality product photos**
+- **Include accurate pricing** 
+- **Test purchase links** regularly
+- **Update inventory** by removing sold-out items
+
+## Albums
+
+Manage your music releases with streaming links.
+
+### Adding New Albums  
+1. **Click "Albums" → "Add New Album"**
+2. **Enter album information:**
+   - **Album Title** - Release name (e.g., "New Horizons")
+   - **Spotify Link** - Link to album on Spotify
+   - **Apple Music Link** - Link to album on Apple Music  
+   - **Listen Now Link** - Primary streaming platform link
+3. **Set Featured Image** - Album cover artwork
+4. **Click "Publish"**
+
+### Music Platform Links
+- **Always use direct album/artist links** rather than general platform URLs
+- **Test all streaming links** to ensure they work
+- **Update links** if platforms change URLs
+
+## Blog Posts
+
+Create news updates, tour announcements, and other blog content.
+
+### Creating New Blog Posts
+1. **Go to Posts → Add New**
+2. **Enter a catchy title**
+3. **Write your content** using the WordPress editor
+4. **Add images** where needed using the + button
+5. **Set Categories** (e.g., "News", "Tour Updates", "Behind the Scenes")
+6. **Add Tags** for better organization (e.g., "new music", "tour", "studio")
+7. **Set Featured Image** - Appears as thumbnail in blog listings
+8. **Choose publish option:**
+   - **Publish** - Goes live immediately  
+   - **Schedule** - Set future publish date
+   - **Save Draft** - Continue working later
+
+### Blog Writing Tips
+- **Write engaging headlines** that grab attention
+- **Use short paragraphs** for better readability
+- **Include images** to break up text
+- **Add internal links** to other pages on your site
+- **Include calls to action** (e.g., "Buy tickets here", "Stream now")
+
+---
+
+## Media Management
 
 ### Uploading New Images
 1. **Go to Media → Add New**
@@ -482,138 +442,112 @@ The contact form dropdown includes up to 5 customizable subject options:
 3. **Choose your images** from your computer
 4. **Wait for upload** to complete
 5. **Add information** (optional):
-   - Title
-   - Alt Text (important for accessibility)
-   - Description
+   - Title - Descriptive name for organization
+   - Alt Text - Important for accessibility and SEO
+   - Description - Additional details
 
 ### Organizing Your Media Library
 1. **Go to Media → Library**
 2. **View options:**
-   - **List View** - See details and edit info
-   - **Grid View** - Visual thumbnails
+   - **List View** - See details and edit information
+   - **Grid View** - Visual thumbnails for easy browsing
 3. **Filter by type:**
    - All media items
    - Images only
-   - Audio files
+   - Audio files  
    - Video files
 4. **Search** using the search box in the top right
+
+### Best Practices for Images
+- **Use descriptive filenames** before uploading (e.g., "scathach-live-dublin-2026.jpg")
+- **Optimize image sizes** - Keep files under 2MB when possible
+- **Add Alt Text** to all images for accessibility
+- **Use consistent naming** for better organization
+- **Regular cleanup** - Remove unused images periodically
 
 ### Replacing Images
 To replace an image that's already on your site:
 1. **Upload the new image** to Media Library
-2. **Go to the page/post** where the old image appears
-3. **Click on the old image** to select it
-4. **Use the "Replace" button** in the toolbar
-5. **Select your new image** from the Media Library
-
----
-
-## Adding New Content
-
-### Adding Gallery Images
-Your site has a special Gallery section for showcasing photos:
-
-1. **Click "Gallery" in the left menu**
-2. **Click "Add New Image"**
-3. **Enter a title** (for your reference only - won't show on site)
-4. **Set Featured Image:**
-   - Click "Set featured image" on the right
-   - Upload new image or select from library
-   - Click "Set featured image"
-5. **Click "Publish"**
-
-**Note:** Gallery images appear in the order they were published.
-
-### Adding New Shows/Concerts
-1. **Click "Shows" → "Add New Show"**
-2. **Enter a title** (for your reference)
-3. **Fill in Show Details** (right sidebar):
-   - **Date:** e.g., "March 15, 2026"
-   - **Venue Name:** e.g., "The Academy"
-   - **Location/City:** e.g., "Dublin, Ireland"
-   - **Ticket Purchase Link:** Full URL where fans can buy tickets
-4. **Set Featured Image** (this becomes the background image)
-5. **Click "Publish"**
-
-### Adding Merchandise Items
-1. **Click "Merch" → "Add New Item"**
-2. **Enter product name** as title (e.g., "Black T-Shirt")
-3. **Fill in Merch Details:**
-   - **Price:** e.g., "€25.00"
-   - **Purchase Link:** URL where people can buy it
-4. **Add description** in main content area (optional)
-5. **Set Featured Image** (product photo)
-6. **Click "Publish"**
-
-### Adding New Albums
-1. **Click "Albums" → "Add New Album"**
-2. **Enter album title** (e.g., "New Horizons")
-3. **Fill in Album Details:**
-   - **Spotify Link:** Link to Spotify
-   - **Apple Music Link:** Link to Apple Music
-   - **Listen Now Link:** Primary streaming link
-4. **Set Featured Image** (album cover)
-5. **Click "Publish"**
-
-### Creating Blog Posts/News
-1. **Go to Posts → Add New**
-2. **Enter a catchy title**
-3. **Write your content** using the editor
-4. **Add images** where needed
-5. **Set Categories** (e.g., "News", "Tour Updates")
-6. **Add Tags** for better organization
-7. **Set Featured Image** (appears as thumbnail)
-8. **Choose publish option:**
-   - **Publish** - Goes live immediately
-   - **Schedule** - Set future publish date
-   - **Save Draft** - Keep working on it later
+2. **Note the new image filename**
+3. **Go to the page/post** where the old image appears
+4. **Edit the content** and replace the old image with the new one
+5. **Update the page/post**
 
 ---
 
 ## Common Tasks
 
 ### Changing the Order of Items
-For Gallery, Shows, Merch, or Albums:
+For Gallery, Shows, Merch, or Albums, the display order is based on publish date:
 1. **Go to the relevant section** (Gallery → All Images, Shows → All Shows, etc.)
-2. **Change the publish date** to reorder items
+2. **Edit the item** you want to reorder
+3. **Change the publish date:**
    - Earlier dates appear first
    - Later dates appear last
-3. **Update the item**
+4. **Update the item**
 
-### Creating Menus and Navigation
-1. **Go to Appearance → Menus**
-2. **Select a menu** or create a new one
-3. **Add items from:**
-   - Pages (your site pages)
-   - Custom Links (external websites)
-   - Categories
-4. **Drag items** to reorder
-5. **Create submenus** by dragging items slightly to the right
-6. **Save Menu**
+### Creating Custom Pages
+1. **Go to Pages → Add New**
+2. **Enter page title** (e.g., "Band Bio", "Tour History")
+3. **Write your content** using the editor
+4. **Add images** where needed
+5. **Set page attributes** if creating a parent/child page structure
+6. **Choose publication status:**
+   - **Publish** - Makes page live immediately
+   - **Save Draft** - Keep working on it
+   - **Private** - Only visible to logged-in users
 
 ### Managing User Accounts
-If you have permission to add users:
+If you have administrative permissions:
 1. **Go to Users → Add New**
 2. **Fill in details:**
-   - Username (can't be changed later)
+   - Username (cannot be changed later)
    - Email address
-   - Name
-3. **Choose Role:**
-   - **Administrator** - Full control
-   - **Editor** - Can edit all content
+   - First and Last Name
+3. **Choose User Role:**
+   - **Administrator** - Full control of website
+   - **Editor** - Can edit all content but not settings
    - **Author** - Can only edit their own posts
    - **Contributor** - Can write but not publish
-4. **Click "Add New User"**
+4. **Send notification** - Option to email login details
+5. **Click "Add New User"**
 
 ### Updating Your Profile
-1. **Click your name** in the top right
-2. **Select "Edit My Profile"**
+1. **Click your name** in the top right of admin area
+2. **Select "Edit My Profile"** 
 3. **Update information:**
-   - Name and bio
-   - Email address
-   - Password
-   - Profile picture
+   - Display name and bio
+   - Contact information
+   - Password (use strong passwords)
+   - Profile picture via Gravatar
 4. **Click "Update Profile"**
+
+### Managing Menus and Navigation
+1. **Go to Appearance → Menus**
+2. **Select existing menu** or create new one
+3. **Add items from:**
+   - Pages (your website pages)
+   - Custom Links (external websites)
+   - Categories (blog categories)
+4. **Organize items:**
+   - **Drag to reorder** items
+   - **Drag slightly right** to create submenus
+   - **Remove items** using the dropdown arrow
+5. **Assign menu location** (if theme supports multiple menus)
+6. **Save Menu**
+
+### Backup and Maintenance
+**Regular Backups** (usually handled by administrator):
+- Keep current backups of all content
+- Test restore procedures periodically
+- Store backups in multiple locations
+
+**Content Maintenance:**
+- **Review and update** content quarterly
+- **Check all links** to ensure they still work
+- **Update show dates** and remove past events
+- **Refresh social media links** if accounts change
+- **Monitor contact form** for spam or technical issues
 
 ---
 
@@ -621,73 +555,134 @@ If you have permission to add users:
 
 ### Common Issues and Solutions
 
-**Problem: "I can't find the content I'm looking for"**
-- Use the search box in the top right
-- Check different sections (Posts vs Pages)
-- Look in the Trash (if something was accidentally deleted)
+**Problem: "I can't find content I'm looking for"**
+- Use the search box in the top right of admin area
+- Check different content types (Posts vs Pages vs Shows)
+- Look in Trash if something was accidentally deleted
+- Use the "Screen Options" to show more items per page
 
-**Problem: "My changes aren't showing on the website"**
-- Make sure you clicked "Update" or "Publish"
-- Clear your browser cache (Ctrl+F5 or Cmd+R)
-- Check if the page is set to "Private" instead of "Published"
+**Problem: "My changes aren't showing on the website"**  
+- Ensure you clicked "Update" or "Publish" 
+- Clear your browser cache (Ctrl+F5 or Cmd+Shift+R)
+- Check if content is set to "Private" instead of "Published"
+- Try viewing in a different browser or incognito mode
 
-**Problem: "I uploaded an image but it's not showing"**
-- Make sure the image uploaded successfully
-- Check the image format (JPG, PNG, GIF are best)
-- Ensure the image file isn't too large (under 2MB is recommended)
+**Problem: "I uploaded an image but it's not displaying"**
+- Verify the image uploaded successfully to Media Library
+- Check file format - use JPG, PNG, or WebP
+- Ensure image file size is reasonable (under 2MB)
+- Check image placement in content editor
 
-**Problem: "I accidentally deleted something"**
+**Problem: "I accidentally deleted something important"**
 - Check the Trash in the relevant section
-- Click "Restore" to bring it back
-- If permanently deleted, you'll need to recreate it
+- Click "Restore" to bring content back
+- If permanently deleted, check with administrator about backups
+- For future: use "Save Draft" frequently while editing
 
-**Problem: "I can't access certain features"**
-- Check your user role/permissions
-- Contact your site administrator
-- Make sure you're logged in properly
+**Problem: "Contact form submissions not being received"**
+- Check spam folder in email
+- Verify recipient email address is correct in Customizer
+- Test form from different devices/browsers
+- Contact hosting provider about email delivery
 
-### Getting Help
+**Problem: "Can't access certain features or settings"**
+- Check your user role and permissions
+- Contact site administrator for access
+- Ensure you're properly logged in
+- Clear browser cookies and try logging in again
+
+**Problem: "Website looks broken or formatting is wrong"**
+- Try refreshing the page
+- Clear browser cache
+- Check if any recent changes might have caused the issue
+- Contact administrator if problem persists
+
+### Getting Additional Help
+
+**WordPress Resources:**
 - **WordPress Documentation:** https://wordpress.org/documentation/
-- **Contact your site administrator** for specific issues
-- **Use the "Help" tab** in the top right of admin screens
+- **WordPress Support Forums:** https://wordpress.org/support/
+- **WordPress TV:** Video tutorials at https://wordpress.tv/
 
-### Best Practices
-1. **Always preview** before publishing
-2. **Save drafts frequently** when working on long content
-3. **Use descriptive filenames** for images
-4. **Add Alt Text** to all images
-5. **Keep regular backups** (usually done by your administrator)
-6. **Update content regularly** to keep your site fresh
-7. **Test links** to make sure they work
-8. **Optimize images** before uploading (compress large files)
+**When to Contact Your Administrator:**
+- Technical issues with hosting or server
+- User permission problems
+- Plugin or theme conflicts  
+- Security concerns
+- Backup and restore needs
 
-### WordPress Editor Tips
-- **Use headings** (H1, H2, H3) to organize content
-- **Keep paragraphs short** for better readability
-- **Use bullet points** to break up information
-- **Add internal links** to other pages on your site
-- **Include calls to action** (e.g., "Buy tickets here")
+### Best Practices for Website Management
+
+**Content Creation:**
+1. **Plan your content** before writing
+2. **Write for your audience** - fans, venues, media
+3. **Use clear, engaging headlines**
+4. **Include relevant images** with each piece of content
+5. **Proofread** before publishing
+
+**SEO and Visibility:**
+1. **Use descriptive page titles**
+2. **Add Alt Text** to all images
+3. **Include internal links** to other pages on your site
+4. **Write meta descriptions** for important pages
+5. **Keep content fresh** with regular updates
+
+**User Experience:**
+1. **Test your website** on different devices
+2. **Keep navigation simple** and intuitive  
+3. **Ensure fast loading times** by optimizing images
+4. **Make contact information** easy to find
+5. **Update outdated information** promptly
+
+**Security and Maintenance:**
+1. **Use strong passwords** for all accounts
+2. **Keep WordPress updated** (usually handled by administrator)
+3. **Monitor for broken links** and fix them
+4. **Regular content reviews** to ensure accuracy
+5. **Backup important content** before major changes
 
 ---
 
-## Quick Reference
+## Quick Reference Guide
 
-### Essential Shortcuts
+### Essential WordPress Shortcuts
 - **Ctrl+S (Windows) / Cmd+S (Mac)** - Save draft
-- **Ctrl+Z (Windows) / Cmd+Z (Mac)** - Undo
-- **Ctrl+Y (Windows) / Cmd+Y (Mac)** - Redo
+- **Ctrl+Z (Windows) / Cmd+Z (Mac)** - Undo last action
+- **Ctrl+Y (Windows) / Cmd+Y (Mac)** - Redo action  
+- **Ctrl+B (Windows) / Cmd+B (Mac)** - Bold text
+- **Ctrl+I (Windows) / Cmd+I (Mac)** - Italic text
 
-### Status Meanings
-- **Published** - Live on your website
-- **Draft** - Saved but not public
-- **Pending Review** - Waiting for approval
-- **Private** - Only visible to logged-in users
-- **Scheduled** - Will publish automatically at set time
+### Content Status Meanings
+- **Published** - Content is live and visible on website
+- **Draft** - Content is saved but not public
+- **Pending Review** - Waiting for approval (if workflow enabled)
+- **Private** - Only visible to logged-in users with permissions
+- **Scheduled** - Will publish automatically at specified date/time
+- **Trash** - Deleted content (can be restored or permanently deleted)
 
-### File Types Supported
-- **Images:** JPG, PNG, GIF, WebP
-- **Videos:** MP4, MOV, WMV, AVI
-- **Audio:** MP3, WAV, OGG
-- **Documents:** PDF, DOC, DOCX
+### Supported File Types
+**Images:** JPG, JPEG, PNG, GIF, WebP, SVG
+**Videos:** MP4, MOV, WMV, AVI, WPV, FLV  
+**Audio:** MP3, M4A, OGG, WAV
+**Documents:** PDF, DOC, DOCX, PPT, PPTX, ODT, XLS, XLSX
 
-Remember: When in doubt, save your work as a draft and ask for help! It's always better to be safe than sorry when managing your website content.
+### Image Size Recommendations
+- **Gallery Images:** 1200px wide minimum
+- **Featured Images:** 1200x630px (good for social sharing)
+- **About Page Sections:** 1200px wide, horizontal orientation preferred
+- **Background Images:** 1920px wide minimum for full-screen display
+- **Profile/Band Photos:** 800px wide minimum
+
+### WordPress Admin URL Quick Links
+- **Dashboard:** `/wp-admin/`
+- **All Pages:** `/wp-admin/edit.php?post_type=page` 
+- **Media Library:** `/wp-admin/upload.php`
+- **Customizer:** `/wp-admin/customize.php`
+- **Menu Editor:** `/wp-admin/nav-menus.php`
+- **User Profile:** `/wp-admin/profile.php`
+
+Remember: When in doubt, save your work as a draft and ask for help. It's always better to preserve your content and get assistance than to accidentally break something. Your website administrator is there to help with technical issues and advanced features.
+
+**Last Updated:** January 2026
+**Website:** Scathach Official Site
+**Support:** Contact your website administrator for technical assistance

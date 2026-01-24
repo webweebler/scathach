@@ -192,19 +192,6 @@ body {
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
 }
 
-@media screen and (max-width: 480px) {
-
-@media screen and (max-height: 700px) {
-    .mobile-menu-link {
-        font-size: 1.4rem;
-        padding: 8px;
-    }
-    
-    .mobile-menu-content {
-        gap: 0.8rem;
-    }
-}
-
 .menu-section {
     display: none;
 }
