@@ -43,7 +43,7 @@
 .mobile-menu-content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 2rem;
     text-align: center;
     width: 100%;
     max-width: 500px;
@@ -76,16 +76,20 @@
         font-size: 1.5rem;
         padding: 0.6rem 1rem;
     }
+    
+    .mobile-menu-content {
+        gap: 1rem;
+    }
 }
 
 @media screen and (max-height: 700px) {
     .mobile-menu-link {
         font-size: 1.4rem;
-        padding: 0.5rem 1rem;
+        padding: 8px;
     }
     
     .mobile-menu-content {
-        gap: 0.3rem;
+        gap: 0.8rem;
     }
 }
 

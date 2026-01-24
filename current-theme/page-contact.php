@@ -92,8 +92,8 @@ get_header(); ?>
                                             <img src="<?php echo get_template_directory_uri(); ?>/images/instaIcon.svg" alt="Instagram">
                                             <span>Instagram</span>
                                         </a>
-                                        <a href="<?php echo esc_url(get_theme_mod('social_youtube', 'https://youtube.com/scathach')); ?>" class="social-link" target="_blank">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube">
+                                        <a href="<?php echo esc_url(get_theme_mod('social_youtube_music', 'https://music.youtube.com/channel/UC_scathach')); ?>" class="social-link" target="_blank">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube Music">
                                             <span>YouTube</span>
                                         </a>
                                         <a href="<?php echo esc_url(get_theme_mod('social_spotify', 'https://open.spotify.com/artist/scathach')); ?>" class="social-link" target="_blank">
@@ -101,7 +101,7 @@ get_header(); ?>
                                             <span>Spotify</span>
                                         </a>
                                         <a href="<?php echo esc_url(get_theme_mod('social_apple_music', 'https://music.apple.com/us/artist/sc%C3%A1thach/1801620227')); ?>" class="social-link" target="_blank">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/images/amIcon.svg" alt="Apple Music">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/images/applemusicIcon.svg" alt="Apple Music">
                                             <span>Apple Music</span>
                                         </a>
                                         <a href="<?php echo esc_url(get_theme_mod('social_tiktok', 'https://tiktok.com/@scathach')); ?>" class="social-link" target="_blank">

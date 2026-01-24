@@ -11,8 +11,8 @@
                     <a href="<?php echo esc_url(get_theme_mod('social_instagram', 'https://www.instagram.com/scathach_official/')); ?>" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/instaIcon.svg" alt="Instagram">
                     </a>
-                    <a href="<?php echo esc_url(get_theme_mod('social_youtube', 'https://youtube.com/scathach')); ?>" target="_blank">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube">
+                    <a href="<?php echo esc_url(get_theme_mod('social_youtube_music', 'https://music.youtube.com/channel/UC_scathach')); ?>" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube Music">
                     </a>
                     <a href="<?php echo esc_url(get_theme_mod('social_spotify', 'https://open.spotify.com/artist/scathach')); ?>" target="_blank">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">

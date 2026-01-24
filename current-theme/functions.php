@@ -168,12 +168,6 @@ function scathach_customizer_settings($wp_customize) {
         'transport' => 'refresh'
     ));
     
-    $wp_customize->add_setting('social_youtube', array(
-        'default' => 'https://youtube.com/scathach',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh'
-    ));
-    
     $wp_customize->add_setting('social_spotify', array(
         'default' => 'https://open.spotify.com/artist/scathach',
         'sanitize_callback' => 'esc_url_raw',
@@ -584,13 +578,6 @@ function scathach_customizer_settings($wp_customize) {
     $wp_customize->add_control('social_instagram', array(
         'label' => 'Instagram URL',
         'description' => 'Enter the full Instagram profile URL',
-        'section' => 'scathach_social_media',
-        'type' => 'url'
-    ));
-    
-    $wp_customize->add_control('social_youtube', array(
-        'label' => 'YouTube Channel URL',
-        'description' => 'Enter the main YouTube channel URL',
         'section' => 'scathach_social_media',
         'type' => 'url'
     ));
