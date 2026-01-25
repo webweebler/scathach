@@ -331,23 +331,14 @@ function scathach_album_meta_box($post) {
     wp_nonce_field('scathach_album_nonce', 'scathach_album_nonce_field');
     $spotify_link = get_post_meta($post->ID, '_album_spotify', true);
     $apple_link = get_post_meta($post->ID, '_album_apple', true);
-    $listen_link = get_post_meta($post->ID, '_album_listen_link', true);
     ?>
     <p>
         <label><strong>Spotify Link:</strong></label><br>
         <input type="url" name="album_spotify" value="<?php echo esc_attr($spotify_link); ?>" placeholder="https://spotify.com/..." style="width:100%;">
     </p>
     <p>
-        <label><strong>Appshow_description'])) update_post_meta($post_id, '_show_description', sanitize_textarea_field($_POST['show_description']));
-        if (isset($_POST['doors_time'])) update_post_meta($post_id, '_doors_time', sanitize_text_field($_POST['doors_time']));
-        if (isset($_POST['show_time'])) update_post_meta($post_id, '_show_time', sanitize_text_field($_POST['show_time']));
-        if (isset($_POST['ticket_price'])) update_post_meta($post_id, '_ticket_price', sanitize_text_field($_POST['ticket_price']));
-        if (isset($_POST['le Music Link:</strong></label><br>
+        <label><strong>Apple Music Link:</strong></label><br>
         <input type="url" name="album_apple" value="<?php echo esc_attr($apple_link); ?>" placeholder="https://music.apple.com/..." style="width:100%;">
-    </p>
-    <p>
-        <label><strong>Listen Now Link:</strong></label><br>
-        <input type="url" name="album_listen_link" value="<?php echo esc_attr($listen_link); ?>" placeholder="https://" style="width:100%;">
     </p>
     <?php
 }
@@ -416,7 +407,6 @@ function scathach_save_custom_fields($post_id) {
     if (isset($_POST['scathach_album_nonce_field']) && wp_verify_nonce($_POST['scathach_album_nonce_field'], 'scathach_album_nonce')) {
         if (isset($_POST['album_spotify'])) update_post_meta($post_id, '_album_spotify', esc_url_raw($_POST['album_spotify']));
         if (isset($_POST['album_apple'])) update_post_meta($post_id, '_album_apple', esc_url_raw($_POST['album_apple']));
-        if (isset($_POST['album_listen_link'])) update_post_meta($post_id, '_album_listen_link', esc_url_raw($_POST['album_listen_link']));
     }
 }
 add_action('save_post', 'scathach_save_custom_fields');

@@ -1400,6 +1400,11 @@ body {
     display: none; /* Remove overlay */
 }
 
+/* Dual-platform albums: entire panel is clickable, can expand on hover */
+.accordion-panel.dual-platform-album {
+    cursor: pointer;
+}
+
 .horizontal-accordion:hover .accordion-panel {
     flex: 0.2;
 }
@@ -1497,7 +1502,38 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.accordion-link:hover {
+.listen-prompt {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 12px 30px;
+    border: 2px solid #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+}
+
+.listen-now-btn {
+    display: inline-block;
+    color: #fff;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 12px 30px;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.accordion-link:hover,
+.listen-now-btn:hover {
     background: #fff;
     color: #000;
     text-shadow: none;
@@ -1846,6 +1882,16 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
+/* Remove hover effects specifically for shop merch button */
+.merch-item.merch-button-item:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.merch-item.merch-button-item {
+    cursor: default;
+}
+
 .merch-shop-btn {
     display: inline-block;
     padding: 15px 40px;
@@ -1859,13 +1905,7 @@ body {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     border-radius: 5px;
-}
-
-.merch-shop-btn:hover {
-    background: #ffa500;
-    color: #000;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.3);
+    cursor: default;
 }
 
 .merch-more-btn:hover {
@@ -3227,4 +3267,141 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Platform Selection Modal */
+.platform-modal {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.platform-modal-content {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.95));
+    margin: 10% auto;
+    padding: 0;
+    border: 2px solid #ffa500;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.platform-modal-header {
+    padding: 20px;
+    background: rgba(255, 165, 0, 0.1);
+    border-bottom: 1px solid #ffa500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.platform-modal-header h3 {
+    color: #ffa500;
+    font-family: 'Diplomata SC', serif;
+    font-size: 1.2rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.platform-modal-close {
+    color: #ffa500;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.platform-modal-close:hover {
+    color: #ff8c00;
+}
+
+.platform-options {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.platform-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 165, 0, 0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.platform-option:hover {
+    background: rgba(255, 165, 0, 0.1);
+    border-color: #ffa500;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.2);
+}
+
+.platform-option img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.platform-option:hover img {
+    filter: brightness(1.1);
+}
+
+.platform-option span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .platform-modal-content {
+        margin: 20% auto;
+        width: 95%;
+    }
+    
+    .platform-modal-header h3 {
+        font-size: 1rem;
+    }
+    
+    .platform-options {
+        padding: 20px 15px;
+    }
+    
+    .platform-option {
+        padding: 12px 15px;
+    }
+    
+    .platform-option span {
+        font-size: 1rem;
+    }
 }

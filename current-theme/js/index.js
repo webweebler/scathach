@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 // Gallery horizontal scrolling functionality
-class HorizontalGallery {
+window.HorizontalGallery = window.HorizontalGallery || class HorizontalGallery {
     constructor(gallerySelector) {
         this.gallery = document.querySelector(gallerySelector);
         this.scrollContainer = this.gallery.querySelector('.horizontal-scroll-wrapper');
         this.images = this.scrollContainer.querySelectorAll('img');
-        this.scrollAmount = 300; // pixels to scroll per click
+        this.scrollAmount = 300; // pixels to scroll per click;
         
         // Hover delay properties
         this.hoverDelay = 1000; // 1 second delay
@@ -339,12 +339,12 @@ class GalleryAutoScroll {
             clearInterval(this.autoScrollTimer);
         }
     }
-}
+};
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the main gallery
-    const gallery = new HorizontalGallery('#gallery');
+    const gallery = new window.HorizontalGallery('#gallery');
     
     // Initialize merch horizontal scrolling - only if merch section exists
     const merchSection = document.querySelector('#merch');
@@ -820,10 +820,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                // For dual-platform albums, open modal instead of expanding
+                if (this.classList.contains('dual-platform-album')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const spotifyLink = this.dataset.spotify;
+                    const appleLink = this.dataset.apple;
+                    const modal = document.getElementById('platformModal');
+                    const spotifyOption = document.getElementById('spotifyOption');
+                    const appleOption = document.getElementById('appleOption');
+                    
+                    if (spotifyLink && appleLink && modal) {
+                        if (spotifyOption) spotifyOption.href = spotifyLink;
+                        if (appleOption) appleOption.href = appleLink;
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden';
+                    }
+                    return;
+                }
+                
                 e.preventDefault();
                 e.stopPropagation();
                 
-                // Toggle behavior
+                // Toggle behavior for normal panels
                 if (this.classList.contains('expanded')) {
                     collapseAll();
                 } else {
@@ -845,6 +865,31 @@ document.addEventListener('DOMContentLoaded', function() {
             panel.addEventListener('mouseenter', function() {
                 expandPanel(this);
             });
+            
+            // Add click handler for dual-platform albums on desktop
+            if (panel.classList.contains('dual-platform-album')) {
+                panel.addEventListener('click', function(e) {
+                    if (e.target.closest('.accordion-link')) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const spotifyLink = this.dataset.spotify;
+                    const appleLink = this.dataset.apple;
+                    const modal = document.getElementById('platformModal');
+                    const spotifyOption = document.getElementById('spotifyOption');
+                    const appleOption = document.getElementById('appleOption');
+                    
+                    if (spotifyLink && appleLink && modal) {
+                        if (spotifyOption) spotifyOption.href = spotifyLink;
+                        if (appleOption) appleOption.href = appleLink;
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            }
         });
         
         // Reset when mouse leaves the entire accordion
@@ -862,4 +907,128 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 250);
     });
 });
+
+// Platform Selection Modal for Albums - Execute immediately
+(function() {
+    'use strict';
+    
+    function initPlatformModal() {
+        console.log('Initializing platform modal');
+        
+        const modal = document.getElementById('platformModal');
+        const closeBtn = document.querySelector('.platform-modal-close');
+        const spotifyOption = document.getElementById('spotifyOption');
+        const appleOption = document.getElementById('appleOption');
+        
+        console.log('Modal elements found:', { 
+            modal: !!modal, 
+            closeBtn: !!closeBtn, 
+            spotifyOption: !!spotifyOption, 
+            appleOption: !!appleOption 
+        });
+        
+        // Add click event listeners to all "Listen Now" buttons
+        const listenButtons = document.querySelectorAll('.listen-now-btn');
+        console.log('Found listen now buttons:', listenButtons.length);
+        
+        listenButtons.forEach((button, index) => {
+            console.log('Adding listener to button', index);
+            
+            // Use capturing phase (true) to intercept before bubbling
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                console.log('Listen now button clicked!');
+                
+                const spotifyLink = this.dataset.spotify;
+                const appleLink = this.dataset.apple;
+                const generalLink = this.dataset.general;
+                
+                console.log('Links found:', { 
+                    spotify: spotifyLink, 
+                    apple: appleLink, 
+                    general: generalLink 
+                });
+                
+                // If both Spotify and Apple Music links are available, show modal
+                if (spotifyLink && appleLink && modal) {
+                    console.log('Showing modal with both platforms');
+                    
+                    // Set the href attributes for the platform options
+                    if (spotifyOption) spotifyOption.href = spotifyLink;
+                    if (appleOption) appleOption.href = appleLink;
+                    
+                    // Show the modal
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    
+                } else if (spotifyLink) {
+                    console.log('Opening Spotify directly');
+                    window.open(spotifyLink, '_blank');
+                } else if (appleLink) {
+                    console.log('Opening Apple Music directly');
+                    window.open(appleLink, '_blank');
+                } else if (generalLink) {
+                    console.log('Opening general link');
+                    window.open(generalLink, '_blank');
+                } else {
+                    console.log('No links available!');
+                }
+            });
+        });
+        
+        // Close modal functionality
+        function closeModal() {
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Close modal when clicking the close button
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+        
+        // Close modal when clicking outside of it
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+        
+        // Platform option clicks
+        if (spotifyOption) {
+            spotifyOption.addEventListener('click', function() {
+                console.log('Spotify option clicked');
+                closeModal();
+            });
+        }
+        
+        if (appleOption) {
+            appleOption.addEventListener('click', function() {
+                console.log('Apple Music option clicked');
+                closeModal();
+            });
+        }
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPlatformModal);
+    } else {
+        initPlatformModal();
+    }
+    
+})();
 

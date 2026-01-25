@@ -157,7 +157,7 @@
                   <div class="merch-label">MERCH</div>
                   <div class="merch-scroll-container">
                       <div class="merch-item merch-button-item">
-                          <a href="#" class="merch-shop-btn">Shop Merch</a>
+                          <div class="merch-shop-btn">Shop Merch</div>
                       </div>
                       
                       <?php
@@ -384,6 +384,8 @@
                 if ($albums_query->have_posts()) :
                     while ($albums_query->have_posts()) : $albums_query->the_post();
                         $album_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                        $spotify_link = get_post_meta(get_the_ID(), '_album_spotify', true);
+                        $apple_link = get_post_meta(get_the_ID(), '_album_apple', true);
                         $listen_link = get_post_meta(get_the_ID(), '_album_listen_link', true);
                         
                         // Use featured image or fallback
@@ -391,12 +393,21 @@
                             $album_image = get_template_directory_uri() . '/images/scathachPic1.jpg';
                         }
                 ?>
-                <div class="accordion-panel" data-bg="<?php echo esc_url($album_image); ?>">
+                <div class="accordion-panel<?php echo (!empty($spotify_link) && !empty($apple_link)) ? ' dual-platform-album' : ''; ?>" 
+                     data-bg="<?php echo esc_url($album_image); ?>"
+                     <?php if (!empty($spotify_link) && !empty($apple_link)) : ?>
+                     data-spotify="<?php echo esc_url($spotify_link); ?>" 
+                     data-apple="<?php echo esc_url($apple_link); ?>"
+                     <?php endif; ?>>
                     <div class="panel-header">
                         <h3><?php echo strtoupper(get_the_title()); ?></h3>
                     </div>
                     <div class="panel-content">
+                        <?php if (empty($spotify_link) || empty($apple_link)) : ?>
                         <a href="<?php echo esc_url($listen_link ? $listen_link : '#'); ?>" class="accordion-link" <?php echo $listen_link ? 'target="_blank"' : ''; ?>>LISTEN NOW</a>
+                        <?php else : ?>
+                        <span class="listen-prompt">LISTEN NOW</span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php
@@ -441,6 +452,26 @@
             </div>
         </section>
         <?php endif; ?>
+
+        <!-- Platform Selection Modal -->
+        <div id="platformModal" class="platform-modal" style="display: none;">
+            <div class="platform-modal-content">
+                <div class="platform-modal-header">
+                    <h3>Choose Your Platform</h3>
+                    <span class="platform-modal-close">&times;</span>
+                </div>
+                <div class="platform-options">
+                    <a href="#" id="spotifyOption" class="platform-option" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/sptfyIcon.svg" alt="Spotify">
+                        <span>Spotify</span>
+                    </a>
+                    <a href="#" id="appleOption" class="platform-option" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/applemusicIcon.svg" alt="Apple Music">
+                        <span>Apple Music</span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
          <section id="music">
            <div class="music-label">MUSIC</div>
@@ -499,8 +530,7 @@
         </div>
     </div>
 
-    <script src="<?php echo get_template_directory_uri(); ?>/js/index.js"></script>
-    <script src="<?php echo get_template_directory_uri(); ?>/js/lightbox.js"></script>
+    <!-- index.js and lightbox.js are loaded via wp_enqueue_script in functions.php -->
     <?php wp_footer(); ?>
 </body>
 </html>
