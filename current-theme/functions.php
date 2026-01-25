@@ -65,7 +65,7 @@ function scathach_theme_enqueue() {
     wp_enqueue_style('scathach-mobile-css', get_template_directory_uri() . '/css/mobile-menu-uniform.css', array(), '1.0');
 
     if (is_front_page()) {
-        wp_enqueue_style('scathach-index-css', get_template_directory_uri() . '/css/index.css', array('scathach-mobile-css'), '1.0');
+        wp_enqueue_style('scathach-index-css', get_template_directory_uri() . '/css/index.css', array('scathach-mobile-css'), '1.6');
         wp_enqueue_style('scathach-lightbox-css', get_template_directory_uri() . '/css/lightbox.css', array(), '1.0');
         wp_enqueue_script('scathach-index-js', get_template_directory_uri() . '/js/index.js', array(), '1.0', true);
         wp_enqueue_script('scathach-lightbox-js', get_template_directory_uri() . '/js/lightbox.js', array(), '1.0', true);
