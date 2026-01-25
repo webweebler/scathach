@@ -566,6 +566,49 @@ function scathach_customizer_settings($wp_customize) {
         'sanitize_callback' => 'sanitize_textarea_field',
         'transport' => 'refresh'
     ));
+
+    // Add content settings for sections that were missing them
+    $wp_customize->add_setting('terms_section_1_content', array(
+        'default' => 'By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_setting('terms_section_2_content', array(
+        'default' => 'Permission is granted to temporarily download one copy of the materials (information or software) on Scáthach\'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_setting('terms_section_4_content', array(
+        'default' => 'When using our website, you agree not to: use the website for any unlawful purpose, post or transmit offensive content, attempt unauthorized access, or interfere with the website.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_setting('terms_section_5_content', array(
+        'default' => 'Your privacy is important to us. Any personal information collected through this website is governed by our Privacy Policy, which is incorporated into these Terms by reference.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_setting('terms_section_8_content', array(
+        'default' => 'The materials on Scáthach\'s website are provided on an \'as is\' basis. Scáthach makes no warranties, expressed or implied, and hereby disclaims all other warranties.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_setting('terms_section_9_content', array(
+        'default' => 'In no event shall Scáthach be liable for any damages arising out of the use or inability to use the materials on the website.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_setting('terms_section_10_content', array(
+        'default' => 'Scáthach may revise these Terms at any time without notice. By using this website, you agree to be bound by the current version of these Terms.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport' => 'refresh'
+    ));
     
     // Social Media Controls
     $wp_customize->add_control('social_facebook', array(
@@ -907,6 +950,13 @@ function scathach_customizer_settings($wp_customize) {
         'section' => 'scathach_terms_conditions',
         'type' => 'text'
     ));
+
+    $wp_customize->add_control('terms_section_1_content', array(
+        'label' => 'Section 1 - Content',
+        'description' => 'Text for the Acceptance of Terms section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
     
     // Section 2: Use License
     $wp_customize->add_control('terms_section_2_title', array(
@@ -914,6 +964,13 @@ function scathach_customizer_settings($wp_customize) {
         'description' => 'Title for Use License section',
         'section' => 'scathach_terms_conditions',
         'type' => 'text'
+    ));
+
+    $wp_customize->add_control('terms_section_2_content', array(
+        'label' => 'Section 2 - Content',
+        'description' => 'Text for the Use License section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
     ));
     
     // Section 3: Music and Content
@@ -938,6 +995,13 @@ function scathach_customizer_settings($wp_customize) {
         'section' => 'scathach_terms_conditions',
         'type' => 'text'
     ));
+
+    $wp_customize->add_control('terms_section_4_content', array(
+        'label' => 'Section 4 - Content',
+        'description' => 'Text for the User Conduct section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
     
     // Section 5: Privacy Policy
     $wp_customize->add_control('terms_section_5_title', array(
@@ -945,6 +1009,13 @@ function scathach_customizer_settings($wp_customize) {
         'description' => 'Title for Privacy Policy section',
         'section' => 'scathach_terms_conditions',
         'type' => 'text'
+    ));
+
+    $wp_customize->add_control('terms_section_5_content', array(
+        'label' => 'Section 5 - Content',
+        'description' => 'Text for the Privacy Policy section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
     ));
     
     // Section 6: Merchandise and Sales
@@ -984,6 +1055,13 @@ function scathach_customizer_settings($wp_customize) {
         'section' => 'scathach_terms_conditions',
         'type' => 'text'
     ));
+
+    $wp_customize->add_control('terms_section_8_content', array(
+        'label' => 'Section 8 - Content',
+        'description' => 'Text for the Disclaimer section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
     
     // Section 9: Limitations
     $wp_customize->add_control('terms_section_9_title', array(
@@ -992,6 +1070,13 @@ function scathach_customizer_settings($wp_customize) {
         'section' => 'scathach_terms_conditions',
         'type' => 'text'
     ));
+
+    $wp_customize->add_control('terms_section_9_content', array(
+        'label' => 'Section 9 - Content',
+        'description' => 'Text for the Limitations section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
+    ));
     
     // Section 10: Changes to Terms
     $wp_customize->add_control('terms_section_10_title', array(
@@ -999,6 +1084,13 @@ function scathach_customizer_settings($wp_customize) {
         'description' => 'Title for Changes to Terms section',
         'section' => 'scathach_terms_conditions',
         'type' => 'text'
+    ));
+
+    $wp_customize->add_control('terms_section_10_content', array(
+        'label' => 'Section 10 - Content',
+        'description' => 'Text for the Changes to Terms section',
+        'section' => 'scathach_terms_conditions',
+        'type' => 'textarea'
     ));
     
     // Section 11: Governing Law
