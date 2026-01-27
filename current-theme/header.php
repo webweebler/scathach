@@ -47,13 +47,13 @@
                 <a href="https://www.facebook.com/profile.php?id=61572786083629" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/fbIcon.svg" alt="Facebook">
                 </a>
-                <a href="https://www.instagram.com/scathach_official/" class="social-icon" target="_blank">
+                <a href="<?php echo esc_url(get_theme_mod('social_instagram', 'https://www.instagram.com/scathach_official/')); ?>" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/instaIcon.svg" alt="Instagram">
                 </a>
                 <a href="<?php echo esc_url(get_theme_mod('social_youtube_music', 'https://music.youtube.com/channel/UC_scathach')); ?>" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/ytIcon.svg" alt="YouTube Music">
                 </a>
-                <a href="https://www.tiktok.com/@scathach" class="social-icon" target="_blank">
+                <a href="<?php echo esc_url(get_theme_mod('social_tiktok', 'https://tiktok.com/@scathach')); ?>" class="social-icon" target="_blank">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/tiktokIcon.svg" alt="TikTok">
                 </a>
                 <a href="<?php echo esc_url(get_theme_mod('social_spotify', 'https://open.spotify.com/artist/scathach')); ?>" class="social-icon" target="_blank">
