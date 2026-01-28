@@ -96,7 +96,7 @@ body {
 .social-icon:not(:last-child)::after {
     content: '';
     position: absolute;
-    bottom: -1.125rem; /* -18px -> rem */
+    bottom: -1.25rem; /* -20px -> positions line in the center of the gap */
     left: 50%;
     transform: translateX(-50%);
     width: 0.125rem; /* 2px -> rem */
@@ -152,7 +152,7 @@ body {
     
     .social-icon:not(:last-child)::after {
         height: 1rem; /* 16px */
-        bottom: -0.9375rem; /* -15px */
+        bottom: -1rem; /* -16px -> centers line in gap */
     }
 }
 
@@ -169,7 +169,7 @@ body {
     
     .social-icon:not(:last-child)::after {
         height: 1rem; /* 16px */
-        bottom: -0.875rem; /* -14px */
+        bottom: -1rem; /* -16px -> centers line in gap */
     }
 }
 
@@ -186,7 +186,7 @@ body {
     
     .social-icon:not(:last-child)::after {
         height: 0.9375rem; /* 15px -> rem */
-        bottom: -0.75rem; /* -12px -> rem */
+        bottom: -0.9375rem; /* -15px -> centers line in gap */
     }
 }
 
@@ -1776,6 +1776,12 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
+}
+
+.merch-item-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .merch-item:hover {

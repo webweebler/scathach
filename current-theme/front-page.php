@@ -182,6 +182,20 @@
                                   $thumbnail = get_template_directory_uri() . '/images/default-merch.jpg';
                               }
                       ?>
+                      <?php if ($link) : ?>
+                      <a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener" class="merch-item merch-item-link">
+                          <div class="merch-image">
+                              <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                          </div>
+                          <div class="merch-info">
+                              <h3 class="merch-name"><?php the_title(); ?></h3>
+                              <?php if ($price) : ?>
+                                  <p class="merch-price"><?php echo esc_html($price); ?></p>
+                              <?php endif; ?>
+                              <span class="merch-btn">Buy Now</span>
+                          </div>
+                      </a>
+                      <?php else : ?>
                       <div class="merch-item">
                           <div class="merch-image">
                               <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
@@ -191,13 +205,10 @@
                               <?php if ($price) : ?>
                                   <p class="merch-price"><?php echo esc_html($price); ?></p>
                               <?php endif; ?>
-                              <?php if ($link) : ?>
-                                  <a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener" class="merch-btn">Buy Now</a>
-                              <?php else : ?>
-                                  <button class="merch-btn">View</button>
-                              <?php endif; ?>
+                              <button class="merch-btn">View</button>
                           </div>
                       </div>
+                      <?php endif; ?>
                       <?php 
                           endwhile;
                           wp_reset_postdata();

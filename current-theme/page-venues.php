@@ -206,9 +206,6 @@ get_header(); ?>
                                                     <?php if ($status_text) : ?>
                                                     <span class="show-status <?php echo esc_attr($status_class); ?>"><?php echo esc_html($status_text); ?></span>
                                                     <?php endif; ?>
-                                                    <?php if ($ticket_link) : ?>
-                                                    <a href="<?php echo esc_url($ticket_link); ?>" target="_blank">Get Tickets</a>
-                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                             <?php
