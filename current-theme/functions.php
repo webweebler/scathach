@@ -71,6 +71,7 @@ function scathach_theme_enqueue() {
         wp_enqueue_script('scathach-lightbox-js', get_template_directory_uri() . '/js/lightbox.js', array(), '1.0', true);
     } elseif (is_page('venues')) {
         wp_enqueue_style('scathach-venues-css', get_template_directory_uri() . '/css/venues.css', array('scathach-mobile-css'), '1.0');
+        wp_enqueue_script('scathach-venues-js', get_template_directory_uri() . '/js/venues.js', array(), '1.0', true);
     } elseif (is_page('about')) {
         wp_enqueue_style('scathach-about-css', get_template_directory_uri() . '/css/about.css', array('scathach-mobile-css'), '1.0');
     } elseif (is_page('contact')) {
